@@ -259,11 +259,11 @@ import { useMenu } from "../../../store/use-menu.js";
 import BASE_URL from "../../../configs/api.js";
 import { message } from "ant-design-vue";
 import { useRouter } from "vue-router";
-import { UserOutlined } from '@ant-design/icons-vue';
+import { UserOutlined } from "@ant-design/icons-vue";
 export default defineComponent({
   components: {
     MyUpload,
-    UserOutlined
+    UserOutlined,
   },
   data() {
     return {
@@ -300,15 +300,7 @@ export default defineComponent({
     });
 
     const getUsersCreate = () => {
-      axios
-        .get(`${BASE_URL}/users/create`)
-        .then((res) => {
-          users_status.value = res.data.users_status;
-          departments.value = res.data.departments;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      
     };
     const filterOption = (input, option) => {
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
@@ -316,16 +308,8 @@ export default defineComponent({
 
     const createUsers = async () => {
       try {
-        message.loading({ content: "Loading...", key });
-        const res = await axios.post(`${BASE_URL}/users`, user);
-        if (res.status == 200) {
-          message.success({ key, duration: 3, content: "Thêm thành công!" });
-          router.push({ name: "admin-user" });
-        }
-      } catch (error) {
-        message.destroy();
-        errors.value = error.response.data.errors;
-      }
+       console.log('ok')
+      } catch (error) {}
     };
 
     const clearForm = () => {
