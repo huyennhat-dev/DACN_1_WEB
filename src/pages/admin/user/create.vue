@@ -40,9 +40,128 @@
             <div class="col-12 col-sm-3 text-start">
               <label for="">
                 <span class="text-danger me-1">*</span>
-                <span :class="{ 'text-danger': errors.status_id }">
-                  Tình trạng:
-                </span>
+                <span>Tên tài khoản:</span>
+              </label>
+            </div>
+            <div class="col-12 col-sm-9">
+              <div class="row">
+                <div class="col-12 col-sm-10">
+                  <a-input
+                    placeholder="Tên tài khoản"
+                    v-model:value="user.username"
+                    allowClear
+                    :class="{ 'input-danger': errors.username }"
+                  />
+                  <div class="w-100"></div>
+                  <small v-if="errors.username" class="text-danger">
+                    {{ errors.username }}
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-12 col-sm-3 text-start">
+              <label for="">
+                <span class="text-danger me-1">*</span>
+                <span>Họ và Tên:</span>
+              </label>
+            </div>
+            <div class="col-12 col-sm-9">
+              <div class="row">
+                <div class="col-12 col-sm-10">
+                  <a-input
+                    placeholder="Họ và Tên"
+                    v-model:value="user.name"
+                    allowClear
+                    :class="{ 'input-danger': errors.name }"
+                  />
+                  <div class="w-100"></div>
+                  <small v-if="errors.name" class="text-danger">
+                    {{ errors.name }}
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-12 col-sm-3 text-start">
+              <label for="">
+                <span class="text-danger me-1">*</span>
+                <span>Email:</span>
+              </label>
+            </div>
+            <div class="col-12 col-sm-9">
+              <div class="row">
+                <div class="col-12 col-sm-10">
+                  <a-input
+                    placeholder="Email"
+                    v-model:value="user.email"
+                    type="email"
+                    :class="{ 'input-danger': errors.email }"
+                    allowClear
+                  />
+                  <div class="w-100"></div>
+                  <small v-if="errors.email" class="text-danger">
+                    {{ errors.email }}
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-12 col-sm-3 text-start">
+              <label for="">
+                <span class="text-danger me-1">*</span>
+                <span>Số điện thoại:</span>
+              </label>
+            </div>
+            <div class="col-12 col-sm-9">
+              <div class="row">
+                <div class="col-12 col-sm-10">
+                  <a-input
+                    placeholder="Số điện thoại"
+                    v-model:value="user.phone"
+                    :class="{ 'input-danger': errors.phone }"
+                    allowClear
+                  />
+                  <div class="w-100"></div>
+                  <small v-if="errors.phone" class="text-danger">
+                    {{ errors.phone }}
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-12 col-sm-3 text-start">
+              <label for="">
+                <span class="text-danger me-1">*</span>
+                <span>Địa chỉ:</span>
+              </label>
+            </div>
+            <div class="col-12 col-sm-9">
+              <div class="row">
+                <div class="col-12 col-sm-10">
+                  <a-input
+                    placeholder="address"
+                    v-model:value="user.address"
+                    :class="{ 'input-danger': errors.address }"
+                    allowClear
+                  />
+                  <div class="w-100"></div>
+                  <small v-if="errors.address" class="text-danger">
+                    {{ errors.address }}
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-12 col-sm-3 text-start">
+              <label for="">
+                <span class="text-danger me-1">*</span>
+                <span> Tình trạng: </span>
               </label>
             </div>
             <div class="col-12 col-sm-9">
@@ -54,12 +173,12 @@
                     style="width: 100%"
                     :options="users_status"
                     :filter-option="filterOption"
-                    v-model:value="status_id"
-                    :class="{ ' input-danger': errors.status_id }"
+                    v-model:value="user.status_id"
+                    :class="{ ' input-danger': errors.status }"
                   ></a-select>
                   <div class="w-100"></div>
-                  <small v-if="errors.status_id" class="text-danger">
-                    {{ errors.status_id[0] }}
+                  <small v-if="errors.status" class="text-danger">
+                    {{ errors.status }}
                   </small>
                 </div>
               </div>
@@ -69,83 +188,7 @@
             <div class="col-12 col-sm-3 text-start">
               <label for="">
                 <span class="text-danger me-1">*</span>
-                <span :class="{ 'text-danger': errors.username }"
-                  >Tên tài khoản:</span
-                >
-              </label>
-            </div>
-            <div class="col-12 col-sm-9">
-              <div class="row">
-                <div class="col-12 col-sm-10">
-                  <a-input
-                    placeholder="Tên tài khoản"
-                    v-model:value="username"
-                    allowClear
-                    :class="{ 'input-danger': errors.username }"
-                  />
-                  <div class="w-100"></div>
-                  <small v-if="errors.username" class="text-danger">
-                    {{ errors.username[0] }}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-12 col-sm-3 text-start">
-              <label for="">
-                <span class="text-danger me-1">*</span>
-                <span :class="{ 'text-danger': errors.name }">Họ và Tên:</span>
-              </label>
-            </div>
-            <div class="col-12 col-sm-9">
-              <div class="row">
-                <div class="col-12 col-sm-10">
-                  <a-input
-                    placeholder="Họ và Tên"
-                    v-model:value="name"
-                    allowClear
-                    :class="{ 'input-danger': errors.name }"
-                  />
-                  <div class="w-100"></div>
-                  <small v-if="errors.name" class="text-danger">
-                    {{ errors.name[0] }}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-12 col-sm-3 text-start">
-              <label for="">
-                <span class="text-danger me-1">*</span>
-                <span :class="{ 'text-danger': errors.email }">Email:</span>
-              </label>
-            </div>
-            <div class="col-12 col-sm-9">
-              <div class="row">
-                <div class="col-12 col-sm-10">
-                  <a-input
-                    placeholder="Email"
-                    v-model:value="email"
-                    :class="{ 'input-danger': errors.email }"
-                    allowClear
-                  />
-                  <div class="w-100"></div>
-                  <small v-if="errors.email" class="text-danger">
-                    {{ errors.email[0] }}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-12 col-sm-3 text-start">
-              <label for="">
-                <span class="text-danger me-1">*</span>
-                <span :class="{ 'text-danger': errors.department_id }"
-                  >Vai trò:</span
-                >
+                <span>Vai trò:</span>
               </label>
             </div>
             <div class="col-12 col-sm-9">
@@ -155,14 +198,14 @@
                     show-search
                     placeholder="Vai trò"
                     style="width: 100%"
-                    :options="departments"
+                    :options="roles"
                     :filter-option="filterOption"
-                    v-model:value="department_id"
-                    :class="{ 'input-danger': errors.department_id }"
+                    v-model:value="user.role_id"
+                    :class="{ 'input-danger': errors.role }"
                   ></a-select>
                   <div class="w-100"></div>
-                  <small v-if="errors.department_id" class="text-danger">
-                    {{ errors.department_id[0] }}
+                  <small v-if="errors.role" class="text-danger">
+                    {{ errors.role }}
                   </small>
                 </div>
               </div>
@@ -172,9 +215,7 @@
             <div class="col-12 col-sm-3 text-start">
               <label for="">
                 <span class="text-danger me-1">*</span>
-                <span :class="{ 'text-danger': errors.password }">
-                  Mật khẩu:
-                </span>
+                <span> Mật khẩu: </span>
               </label>
             </div>
             <div class="col-12 col-sm-9">
@@ -182,37 +223,12 @@
                 <div class="col-12 col-sm-10">
                   <a-input-password
                     placeholder="Mật khẩu"
-                    v-model:value="password"
+                    v-model:value="user.password"
                     :class="{ 'input-danger': errors.password }"
                   />
                   <div class="w-100"></div>
                   <small v-if="errors.password" class="text-danger">
-                    {{ errors.password[0] }}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-12 col-sm-3 text-start">
-              <label for="">
-                <span class="text-danger me-1">*</span>
-                <span :class="{ 'text-danger': errors.password }">
-                  Xác nhận mật khẩu:
-                </span>
-              </label>
-            </div>
-            <div class="col-12 col-sm-9">
-              <div class="row">
-                <div class="col-12 col-sm-10">
-                  <a-input-password
-                    placeholder="Xác nhận mật khẩu"
-                    v-model:value="password_confirmation"
-                    :class="{ 'input-danger': errors.password }"
-                  />
-                  <div class="w-100"></div>
-                  <small v-if="errors.password" class="text-danger">
-                    {{ errors.password[0] }}
+                    {{ errors.password }}
                   </small>
                 </div>
               </div>
@@ -256,7 +272,14 @@
 import { defineComponent, ref, reactive, toRefs } from "vue";
 import MyUpload from "vue-image-crop-upload";
 import { useMenu } from "../../../store/use-menu.js";
-import BASE_URL from "../../../configs/api.js";
+import { BASE_URL } from "../../../configs/api.js";
+import {
+  isPhone,
+  isEmail,
+  isPassWord,
+  isUsername,
+  isName,
+} from "../../../utils/validation";
 import { message } from "ant-design-vue";
 import { useRouter } from "vue-router";
 import { UserOutlined } from "@ant-design/icons-vue";
@@ -265,29 +288,9 @@ export default defineComponent({
     MyUpload,
     UserOutlined,
   },
-  data() {
-    return {
-      show: false,
-      imgUrl: "",
-    };
-  },
   setup() {
     useMenu().onSelectedKeys(["admin-create-user"]);
     useMenu().onOpenKeys(["admin-users-sub"]);
-
-    const router = useRouter();
-    const users_status = ref([]);
-    const departments = ref([]);
-    const user = reactive({
-      username: "",
-      name: "",
-      email: "",
-      password: "",
-      password_confirmation: "",
-      department_id: [],
-      status_id: [],
-    });
-    const errors = ref([]);
 
     const langExt = reactive({
       hint: "Nhấp hoặc kéo tệp vào đây để tải lên",
@@ -298,45 +301,123 @@ export default defineComponent({
         lowestPx: "Kích thước của hình ảnh quá thấp. Dự kiến ít nhất: ",
       },
     });
-
-    const getUsersCreate = () => {
-      
-    };
     const filterOption = (input, option) => {
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     };
 
-    const createUsers = async () => {
-      try {
-       console.log('ok')
-      } catch (error) {}
-    };
-
-    const clearForm = () => {
-      user.username = "";
-      user.name = "";
-      user.email = "";
-      user.password = "";
-      user.password_confirmation = "";
-      user.department_id = [];
-      user.status_id = [];
-      errors.value = [];
-    };
-
-    getUsersCreate();
-
     return {
-      departments,
-      users_status,
-      errors,
-      ...toRefs(user),
       filterOption,
-      createUsers,
-      clearForm,
       langExt,
     };
   },
+  data() {
+    return {
+      show: false,
+      imgUrl: "",
+      user: {
+        username: "",
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        password: "",
+        role_id: "",
+        status_id: "",
+      },
+      errors: {
+        username: "",
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        password: "",
+        role: "",
+        status: "",
+      },
+      users_status: [],
+      roles: [],
+    };
+  },
+
+  created() {
+    this.getUsersCreate();
+  },
   methods: {
+    async getUsersCreate() {
+      try {
+        const res = await axios.get(`${BASE_URL}/admin/user/create`);
+        this.users_status = res.data.data.users_status;
+        this.roles = res.data.data.role;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    validate() {
+      let inValid = true;
+      this.errors = {
+        username: "",
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        password: "",
+        role: "",
+        status: "",
+      };
+
+      if (!this.user.username) {
+        this.errors.username = "Tên tài khoản không được để trống!";
+        inValid = false;
+      } else if (!this.isUsername(this.user.username)) {
+        this.errors.username = "Tên tài khoản không hợp lệ!";
+        inValid = false;
+      }
+      if (!this.user.name) {
+        this.errors.name = "Họ và tên không được để trống!";
+        inValid = false;
+      } else if (!this.isName(this.user.name)) {
+        this.errors.name = "Họ và tên không hợp lệ!";
+        inValid = false;
+      }
+      if (!this.user.email) {
+        this.errors.email = "Email không được để trống!";
+        inValid = false;
+      } else if (!this.isEmail(this.user.email)) {
+        this.errors.email = "Email không hợp lệ!";
+        inValid = false;
+      }
+      if (!this.user.phone) {
+        this.errors.phone = "Số điện thoại không được để trống!";
+        inValid = false;
+      } else if (!this.isPhone(this.user.phone)) {
+        this.errors.phone = "Số điện thoại không hợp lệ!";
+        inValid = false;
+      }
+      if (!this.user.password) {
+        this.errors.password = "Mật khẩu không được để trống!";
+        inValid = false;
+      } else if (!this.isPassWord(this.user.password)) {
+        this.errors.password = "Mật khẩu không hợp lệ!";
+        inValid = false;
+      }
+      if (!this.user.role_id) {
+        this.errors.role = "Vai trò trạng không được để trống!";
+        inValid = false;
+      }
+      if (!this.user.status_id) {
+        this.errors.status = "Tình trạng không được để trống!";
+        inValid = false;
+      }
+      return inValid;
+    },
+
+    createUsers() {
+      if (this.validate()) {
+      }
+    },
+
+    clearForm() {},
+
     toggleShow() {
       this.show = !this.show;
     },
