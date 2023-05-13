@@ -17,8 +17,8 @@
               <a-image
                 v-for="(image, index) in record.photos"
                 :key="index"
-                :width="70"
-                :height="(70 * 4) / 3"
+                :width="100"
+                :height="100"
                 :src="image"
                 class="shadow-full brr-2"
               />
@@ -123,13 +123,13 @@ export default defineComponent({
         title: "Hình ảnh",
         key: "photos",
         dataIndex: "photos",
-        width: 80,
+        width: 110,
       },
       {
         title: "Tên sách",
         key: "name",
         dataIndex: "name",
-        width: 100,
+        width: 180,
       },
       {
         title: "Giá",
@@ -143,7 +143,7 @@ export default defineComponent({
         title: "Bán ra",
         key: "purchases",
         dataIndex: "purchases",
-        width: 50,
+        width: 100,
         sorter: (a, b) => a.purchases.length - b.purchases.length,
         sortDirections: ["descend", "ascend"],
       },
@@ -151,7 +151,7 @@ export default defineComponent({
         title: "Kho còn",
         key: "quantity",
         dataIndex: "quantity",
-        width: 50,
+        width: 100,
         sorter: (a, b) => a.quantity.length - b.quantity.length,
         sortDirections: ["descend", "ascend"],
       },
@@ -165,7 +165,8 @@ export default defineComponent({
         title: "Công cụ",
         key: "action",
         dataIndex: "action",
-        width: 170,
+        width: 70,
+        fixed:"right"
       },
     ];
     return { columns, fomated };

@@ -151,7 +151,7 @@ export default defineComponent({
         {
           title: "Công cụ",
           key: "action",
-          width: 170,
+          width: 70,
           fixed: "right",
         },
       ],

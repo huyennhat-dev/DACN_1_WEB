@@ -57,7 +57,7 @@ export default defineComponent({
   },
   setup() {
     const tonggle = ref(false);
-    const collapsed = ref(true);
+    const collapsed = ref(false);
     const visible = ref(false);
     const showDrawer = () => {
       visible.value = true;

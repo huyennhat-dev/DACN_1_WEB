@@ -27,7 +27,10 @@
           </a-tooltip>
           <a-tooltip placement="topRight" title="Chỉnh sửa">
             <router-link
-              :to="{ name: 'admin-edit-categories', params: { id: record._id } }"
+              :to="{
+                name: 'admin-edit-categories',
+                params: { id: record._id },
+              }"
             >
               <a-button class="me-0 me-sm-1 mb-1 mb-sm-1" type="primary" ghost>
                 <form-outlined />
@@ -87,21 +90,25 @@ export default defineComponent({
           title: "Vai trò",
           dataIndex: "name",
           key: "categories",
+          width: 200,
         },
         {
           title: "Đường dẫn",
           dataIndex: "slug",
           key: "slug",
+          width: 200,
         },
         {
           title: "Trạng thái",
           dataIndex: "status",
           key: "status",
+          width: 200,
         },
         {
           title: "Công cụ",
           key: "action",
-          width: 170,
+          width: 70,
+          fixed: "right",
         },
       ],
     };
@@ -122,9 +129,7 @@ export default defineComponent({
     async deleteCategories(id) {
       return new Promise(async (resolve) => {
         try {
-          const res = await axios.delete(
-            `${BASE_URL}/categories/delete/${id}`
-          );
+          const res = await axios.delete(`${BASE_URL}/categories/delete/${id}`);
 
           if (res.status == 200) {
             setTimeout(() => {

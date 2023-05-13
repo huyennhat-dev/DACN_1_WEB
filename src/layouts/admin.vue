@@ -29,7 +29,7 @@ export default defineComponent({
     TheFooter,
   },
   setup() {
-    const collapsed = ref(true);
+    const collapsed = ref(false);
 
     const handleCollapsed = () => {
       collapsed.value = !collapsed.value;

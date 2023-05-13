@@ -10,16 +10,24 @@
                 <span>Hình ảnh</span>
               </label>
             </div>
-            <div class="col-12 preview-image-groups d-flex mb-1">
+            <div class="col-12 preview-image-groups d-flex mb-1 flex-wrap">
               <a-image-preview-group v-if="product.photos.length > 0">
-                <a-image
+                <div
                   v-for="(image, index) in product.photos"
                   :key="index"
-                  :src="image"
-                  :width="100"
-                  :height="1-0"
-                  class="brr-2 d-block shadow-full"
-                />
+                  class="image-container"
+                >
+                  <a-image
+                    :src="image"
+                    :width="100"
+                    :height="100"
+                    class="brr-2 d-block shadow-full"
+                  />
+
+                  <div @click="removeImage(index)" class="btn-image-close">
+                    <close-circle-outlined :style="{ color: '#d0011b' }" />
+                  </div>
+                </div>
               </a-image-preview-group>
               <div
                 v-if="product.photos.length < 10"
@@ -261,6 +269,7 @@ import {
   FileImageOutlined,
   LeftOutlined,
   PlusCircleOutlined,
+  CloseCircleOutlined,
 } from "@ant-design/icons-vue";
 import { BASE_URL } from "../../../configs/index.js";
 const key = "createProduct";
@@ -270,6 +279,8 @@ export default defineComponent({
     FileImageOutlined,
     PlusCircleOutlined,
     LeftOutlined,
+    CloseCircleOutlined,
+
     ckeditor: CKEditor.component,
   },
   setup() {
@@ -330,6 +341,9 @@ export default defineComponent({
     this.setupCreate();
   },
   methods: {
+    removeImage(i) {
+      this.product.photos.splice(i, 1);
+    },
     async setupCreate() {
       try {
         const res = await axios.get(`${BASE_URL}/product/create`);
@@ -517,5 +531,21 @@ export default defineComponent({
   .product .preview-image-groups .ant-image:nth-child(n + 5) {
     display: none !important;
   }
+}
+
+.product .image-container {
+  position: relative;
+}
+.product .image-container .btn-image-close {
+  position: absolute;
+  top: -8px;
+  left: -6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50px;
+  background-color: #fff;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0px 0px 4px 1px rgba(255, 0, 0, 0.56) !important;
 }
 </style>
