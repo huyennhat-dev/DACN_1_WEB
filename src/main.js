@@ -12,7 +12,7 @@ import axios from "axios";
 window.axios = axios;
 
 /**import the fullscreen */
-import VueFullscreen from 'vue-fullscreen'
+import VueFullscreen from "vue-fullscreen";
 
 /* import the boostrap */
 import "bootstrap/dist/css/bootstrap-grid.min.css";
@@ -30,7 +30,9 @@ import {
   Checkbox,
   Input,
   Popconfirm,
-  Layout
+  Layout,
+  Tooltip,
+  Image,
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 
@@ -58,7 +60,9 @@ app.use(Card);
 app.use(Avatar);
 app.use(Checkbox);
 app.use(Input);
+app.use(Image);
+app.use(Tooltip);
 app.use(Select);
 app.use(Popconfirm);
-app.use(VueFullscreen)
+app.use(VueFullscreen);
 app.mount("#app");

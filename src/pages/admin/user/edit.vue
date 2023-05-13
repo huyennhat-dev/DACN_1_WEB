@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="createUsers()" class="h-100">
-    <a-card title="Tạo mới tài khoản" class="h-100">
+  <form @submit.prevent="updateUsers()" class="h-100">
+    <a-card title="Chỉnh sửa tài khoản" class="h-100">
       <div class="row">
         <div class="col-12 col-sm-4">
           <div class="row">
@@ -10,7 +10,7 @@
               v-model="show"
               :width="300"
               :height="300"
-              img-format="png"
+              img-format="image/png"
               :maxSize="2048"
               langType="vi"
               :langExt="langExt"
@@ -213,7 +213,7 @@
                     {{ errors.role }}
                   </small>
                 </div>
-                <!-- <div class="col-2 col-sm-1 ps-0 text-end">
+                <!-- <div class="col-2 col-sm-2 ps-0 text-end">
                   <a-tooltip placement="topRight" title="Thêm vai trò">
                     <router-link :to="{ name: 'admin-create-role' }">
                       <a-button type="primary" class="w-100 p-0" ghost>
@@ -226,10 +226,22 @@
             </div>
           </div>
           <div class="row mb-2">
+            <div class="col-12 col-sm-3 text-start"></div>
+            <div class="col-12 col-sm-9">
+              <div class="row">
+                <div class="col-12 col-sm-10">
+                  <a-checkbox v-model:checked="user.change_password">
+                    Đổi mật khẩu
+                  </a-checkbox>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-if="user.change_password" class="row mb-2">
             <div class="col-12 col-sm-3 text-start">
               <label for="">
                 <span class="text-danger me-1">*</span>
-                <span> Mật khẩu: </span>
+                <span> Mật khẩu mới: </span>
               </label>
             </div>
             <div class="col-12 col-sm-9">
@@ -296,7 +308,9 @@ import {
 } from "../../../utils/validation";
 import { message } from "ant-design-vue";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons-vue";
-const key = "createUser";
+import { useRoute, useRouter } from "vue-router";
+
+const key = "updateUser";
 export default defineComponent({
   components: {
     MyUpload,
@@ -320,9 +334,14 @@ export default defineComponent({
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     };
 
+    const route = useRoute();
+    const router = useRouter();
+
     return {
       filterOption,
       langExt,
+      route,
+      router,
     };
   },
   data() {
@@ -337,6 +356,8 @@ export default defineComponent({
         address: "",
         password: "",
         photo: "",
+        change_password: false,
+
         role: null,
         status: null,
       },
@@ -356,15 +377,30 @@ export default defineComponent({
   },
 
   created() {
-    document.title = "Thêm người dùng";
-    this.getUsersCreate();
+    document.title = "Chỉnh sửa người dùng";
+    this.getUserEdit();
   },
   methods: {
-    async getUsersCreate() {
+    async getUserEdit() {
       try {
-        const res = await axios.get(`${BASE_URL}/user/create`);
-        this.status = res.data.data.status;
-        this.roles = res.data.data.roles;
+        const res = await axios.get(
+          `${BASE_URL}/user/edit/${this.route.params.id}`
+        );
+        if (res.status == 200) {
+          const data = res.data.data;
+          this.user.username = data.username;
+          this.user.name = data.name;
+          this.user.email = data.email;
+          this.user.phone = data.phone;
+          this.user.address = data.address;
+          this.user.name = data.name;
+          this.user.photo = data.photo;
+          this.user.role = data.role_id;
+          this.user.status = data.status_id;
+
+          this.roles = data.role;
+          this.status = data.status;
+        }
       } catch (error) {
         console.log(error);
       }
@@ -410,12 +446,14 @@ export default defineComponent({
         this.errors.phone = "Số điện thoại không hợp lệ!";
         inValid = false;
       }
-      if (!this.user.password) {
-        this.errors.password = "Mật khẩu không được để trống!";
-        inValid = false;
-      } else if (!isPassWord(this.user.password)) {
-        this.errors.password = "Mật khẩu không hợp lệ!";
-        inValid = false;
+      if (this.user.change_password) {
+        if (!this.user.password) {
+          this.errors.password = "Mật khẩu không được để trống!";
+          inValid = false;
+        } else if (!isPassWord(this.user.password)) {
+          this.errors.password = "Mật khẩu không hợp lệ!";
+          inValid = false;
+        }
       }
       if (!this.user.address) {
         this.errors.address = "Địa chỉ không được để trống!";
@@ -432,23 +470,23 @@ export default defineComponent({
       return inValid;
     },
 
-    async createUsers() {
+    async updateUsers() {
       if (this.validate()) {
         try {
           message.loading({ content: "Đang tải...", key, duration: 100000 });
-          const res = await axios.post(
-            `${BASE_URL}/user/create`,
+          const res = await axios.put(
+            `${BASE_URL}/user/edit/${this.route.params.id}`,
             this.user
           );
           if (res.status == 200) {
             setTimeout(() => {
+              this.router.push({ name: "admin-list-users" });
               message.success({
-                content: "Thêm thành công!",
+                content: "Sửa thành công!",
                 key,
                 duration: 3,
               });
             }, 500);
-            this.clearForm();
           }
         } catch (error) {
           if (error.response.data.error.keyPattern.email) {
@@ -472,6 +510,7 @@ export default defineComponent({
         (this.user.phone = ""),
         (this.user.address = ""),
         (this.user.password = ""),
+        (this.user.photo = ""),
         (this.user.role = null),
         (this.user.status = null);
       (this.errors.username = ""),

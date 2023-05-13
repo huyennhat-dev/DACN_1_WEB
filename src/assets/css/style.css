@@ -13,3 +13,49 @@
 #app .trigger:hover {
     color: #1890ff;
 }
+
+.ant-image-preview-switch-left,
+.ant-image-preview-switch-right {
+    z-index: 999 !important;
+    background-color: #ffffff52 !important;
+    color: #000;
+}
+
+.ant-image-preview-switch-left-disabled,
+.ant-image-preview-switch-right-disabled {
+    color: #6b6060de !important;
+}
+
+.brr-2 {
+    border-radius: 2px !important;
+}
+
+@media (max-width: 576px) {
+    .vue-image-crop-upload .vicp-wrap {
+        width: 80% !important;
+        height: 70% !important;
+    }
+    .vicp-step1 {
+        height: 90% !important;
+    }
+    .vicp-drop-area {
+        height: 100% !important;
+    }
+    .vicp-step2 {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .vicp-crop-left,
+    .vicp-crop-right {
+        float: none !important;
+    }
+    .vicp-img-container {
+        margin: auto !important;
+    }
+    .vicp-preview {
+        display: flex;
+        justify-content: center;
+    }
+}
+

@@ -1,31 +1,43 @@
 <template>
-  <a-layout-header
-    :class="{ active: collapsed == true }"
-    class="header bg-white shadow-full d-flex align-items-center p-0 justify-content-between position-fixed"
-  >
-    <menu-outlined
-      @click="collapsed = !collapsed"
-      class="trigger"
-      v-on:click="handleClick"
-    />
+  <div>
+    <a-layout-header
+      :class="{ active: collapsed == true }"
+      class="header bg-white shadow-full d-flex align-items-center p-0 justify-content-between position-fixed"
+    >
+      <menu-outlined
+        @click="collapsed = !collapsed"
+        class="trigger d-none d-sm-block"
+        v-on:click="handleClick"
+      />
 
-    <fullscreen-exit-outlined
-      v-if="tonggle == true"
-      class="trigger"
-      v-fullscreen
-      @click="tonggle = !tonggle"
-    />
-    <fullscreen-outlined
-      v-if="tonggle == false"
-      class="trigger"
-      v-fullscreen
-      @click="tonggle = !tonggle"
-    />
-  </a-layout-header>
+      <menu-outlined class="trigger d-block d-sm-none" @click="showDrawer" />
+
+      <fullscreen-exit-outlined
+        v-if="tonggle == true"
+        class="trigger"
+        v-fullscreen
+        @click="tonggle = !tonggle"
+      />
+      <fullscreen-outlined
+        v-if="tonggle == false"
+        class="trigger"
+        v-fullscreen
+        @click="tonggle = !tonggle"
+      />
+    </a-layout-header>
+    <a-drawer
+      v-model:visible="visible"
+      width="300"
+      placement="left"
+    >
+    <side-bar/>
+    </a-drawer>
+  </div>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
+import SideBar from "./SideBar.vue";
 import {
   MenuOutlined,
   FullscreenOutlined,
@@ -36,6 +48,7 @@ export default defineComponent({
     MenuOutlined,
     FullscreenOutlined,
     FullscreenExitOutlined,
+    SideBar
   },
   methods: {
     handleClick(e) {
@@ -44,9 +57,13 @@ export default defineComponent({
   },
   setup() {
     const tonggle = ref(false);
-    const collapsed = ref(false);
+    const collapsed = ref(true);
+    const visible = ref(false);
+    const showDrawer = () => {
+      visible.value = true;
+    };
 
-    return { tonggle, collapsed };
+    return { tonggle, collapsed, showDrawer, visible };
   },
 });
 </script>
@@ -54,16 +71,20 @@ export default defineComponent({
 <style>
 .header {
   height: 50px;
-  z-index: 1;
+  z-index: 999;
   top: 0;
   left: 0;
   right: 0;
-  margin-left: 300px;
-  transition: all 0.2s;
 }
+@media (min-width: 576px) {
+  .header {
+    margin-left: 300px;
+    transition: all 0.2s;
+  }
 
-.header.active {
-  margin-left: 80px;
-  transition: all 0.2s;
+  .header.active {
+    margin-left: 80px;
+    transition: all 0.2s;
+  }
 }
 </style>

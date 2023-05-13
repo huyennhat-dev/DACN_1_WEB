@@ -1,7 +1,7 @@
 <template>
   <fullscreen>
     <a-layout style="min-height: 100vh" has-sider class="container-fluid p-0">
-      <side-bar v-bind:collapsed="collapsed" class="d-none d-sm-block"/>
+      <side-bar v-bind:collapsed="collapsed" class="d-none d-sm-block" />
       <the-header v-on:handleClickCollapsed="handleCollapsed" />
 
       <a-layout class="app-layout" :class="{ active: collapsed == true }">
@@ -29,7 +29,7 @@ export default defineComponent({
     TheFooter,
   },
   setup() {
-    const collapsed = ref(false);
+    const collapsed = ref(true);
 
     const handleCollapsed = () => {
       collapsed.value = !collapsed.value;
@@ -46,11 +46,21 @@ export default defineComponent({
 }
 .app-layout {
   margin-top: 50px;
-  margin-left: 300px;
-  transition: all 0.2s;
 }
-.app-layout.active {
-  margin-left: 80px;
-  transition: all 0.2s;
+@media (max-width: 576px) {
+  .body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+@media (min-width: 576px) {
+  .app-layout {
+    margin-left: 300px;
+    transition: all 0.2s;
+  }
+  .app-layout.active {
+    margin-left: 80px;
+    transition: all 0.2s;
+  }
 }
 </style>

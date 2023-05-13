@@ -6,7 +6,10 @@
     collapsible
     class="app-sider px-2 position-fixed"
   >
-    <div class="side_bar-logo"></div>
+    <div class="side_bar-logo d-flex justify-content-center align-items-center">
+      <img v-if="!collapsed" src="../../assets/images/logo.png" alt="" height="55" />
+      <img v-if="collapsed" src="../../assets/images/logo_2.png" alt="" height="55" />
+    </div>
     <a-menu
       v-model:selectedKeys="selectedKeys"
       v-model:openKeys="openKeys"
@@ -22,20 +25,71 @@
 
       <a-sub-menu key="admin-users-sub">
         <template #icon><user-outlined /> </template>
-        <template #title>Quản lý người dùng</template>
+        <template #title>Tài khoản</template>
         <a-menu-item key="admin-list-user" class="rounded-1 my-0 mt-1">
           <router-link :to="{ name: 'admin-list-users' }">
             <team-outlined />
-            <span>Danh sách người dùng</span>
+            <span>Danh sách tài khoản</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="admin-create-user" class="rounded-1 my-1">
           <router-link :to="{ name: 'admin-create-user' }">
             <user-add-outlined />
-            <span>Thêm người dùng</span>
+            <span>Thêm tài khoản</span>
           </router-link>
         </a-menu-item>
       </a-sub-menu>
+
+      <a-sub-menu key="admin-product-sub">
+        <template #icon><appstore-outlined /></template>
+        <template #title>Sách</template>
+        <a-menu-item key="admin-list-products" class="rounded-1 my-0 mt-1">
+          <router-link :to="{ name: 'admin-list-products' }">
+            <unordered-list-outlined />
+            <span>Toàn bộ sách</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="admin-create-product" class="rounded-1 my-1">
+          <router-link :to="{ name: 'admin-create-product' }">
+            <plus-outlined />
+            <span>Thêm mới sách</span>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+
+      <a-sub-menu key="admin-categories-sub">
+        <template #icon><deployment-unit-outlined /></template>
+        <template #title>Thể loại sách</template>
+        <a-menu-item key="admin-list-categories" class="rounded-1 my-0 mt-1">
+          <router-link :to="{ name: 'admin-list-categories' }">
+            <unordered-list-outlined />
+            <span>Danh sách thể loại</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="admin-create-categories" class="rounded-1 my-1">
+          <router-link :to="{ name: 'admin-create-categories' }">
+            <plus-outlined />
+            <span>Thêm thể loại</span>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+
+      <!-- <a-sub-menu key="admin-roles-sub">
+        <template #icon><apartment-outlined /></template>
+        <template #title>Vai trò</template>
+        <a-menu-item key="admin-list-roles" class="rounded-1 my-0 mt-1">
+          <router-link :to="{ name: 'admin-list-roles' }">
+            <unordered-list-outlined />
+            <span>Danh sách vai trò</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="admin-create-role" class="rounded-1 my-1">
+          <router-link :to="{ name: 'admin-create-role' }">
+            <plus-outlined />
+            <span>Thêm vai trò</span>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu> -->
     </a-menu>
   </a-layout-sider>
 </template>
@@ -49,6 +103,11 @@ import {
   DashboardOutlined,
   UserAddOutlined,
   TeamOutlined,
+  ApartmentOutlined,
+  DeploymentUnitOutlined,
+  UnorderedListOutlined,
+  PlusOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons-vue";
 
 export default defineComponent({
@@ -57,6 +116,11 @@ export default defineComponent({
     DashboardOutlined,
     UserAddOutlined,
     TeamOutlined,
+    ApartmentOutlined,
+    DeploymentUnitOutlined,
+    UnorderedListOutlined,
+    PlusOutlined,
+    AppstoreOutlined,
   },
   props: {
     collapsed: Boolean,
@@ -76,12 +140,11 @@ export default defineComponent({
   left: 0;
   top: 0;
   bottom: 0;
+  z-index: 998;
 }
 
 .side_bar-logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 16px;
+  height: 70px;
 }
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
   background: #15222f;

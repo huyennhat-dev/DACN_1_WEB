@@ -18,6 +18,59 @@ const admin = [
         name: "admin-create-user",
         component: () => import("../pages/admin/user/create.vue"),
       },
+      {
+        path: "user/edit/:id",
+        name: "admin-edit-user",
+        component: () => import("../pages/admin/user/edit.vue"),
+      },
+      //Role manage
+      // {
+      //   path: "roles",
+      //   name: "admin-list-roles",
+      //   component: () => import("../pages/admin/role/index.vue"),
+      // },
+      // {
+      //   path: "role/create",
+      //   name: "admin-create-role",
+      //   component: () => import("../pages/admin/role/create.vue"),
+      // },
+      // {
+      //   path: "role/edit/:id",
+      //   name: "admin-edit-role",
+      //   component: () => import("../pages/admin/role/edit.vue"),
+      // },
+      //Categories manage
+      {
+        path: "categories",
+        name: "admin-list-categories",
+        component: () => import("../pages/admin/categories/index.vue"),
+      },
+      {
+        path: "category/create",
+        name: "admin-create-categories",
+        component: () => import("../pages/admin/categories/create.vue"),
+      },
+      {
+        path: "category/edit/:id",
+        name: "admin-edit-categories",
+        component: () => import("../pages/admin/categories/edit.vue"),
+      },
+      //Products manage
+      {
+        path: "product",
+        name: "admin-list-products",
+        component: () => import("../pages/admin/product/index.vue"),
+      },
+      {
+        path: "product/create",
+        name: "admin-create-product",
+        component: () => import("../pages/admin/product/create.vue"),
+      },
+      {
+        path: "product/edit/:id",
+        name: "admin-edit-product",
+        component: () => import("../pages/admin/product/edit.vue"),
+      },
     ],
   },
 ];
