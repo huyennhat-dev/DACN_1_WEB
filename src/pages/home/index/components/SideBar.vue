@@ -189,9 +189,13 @@ export default defineComponent({
   -ms-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+  transition: all 0.2s;
+
 }
 .side-bar .side-bar_item_body:hover {
-  box-shadow: 0px 0px 10px 2px rgba(101, 101, 101, 0.15) !important;
+  box-shadow: 0px 0px 5px 2px rgba(101, 101, 101, 0.15) !important;
+  transition: all 0.2s;
+
 }
 
 .side-bar .side-bar_item_body:active {

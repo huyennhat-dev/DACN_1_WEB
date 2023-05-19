@@ -2,14 +2,21 @@
   <div class="row mt-3">
     <div class="list-products col-12">
       <div class="list-products-body">
-        <div class="w-100 list-products-heading d-flex justify-content-between">
+        <div
+          class="w-100 list-products-heading d-flex mb-2 justify-content-between"
+        >
           <div class="title">Có thể bạn sẽ muốn</div>
           <div class="btn-more">Xem thêm <right-outlined /></div>
         </div>
         <div class="list-products-content">
           <div class="owl-carousel">
-            <the-product /> <the-product /> <the-product /> <the-product />
-            <the-product /> <the-product /> <the-product />
+            <the-product />
+            <the-product />
+            <the-product />
+            <the-product />
+            <the-product />
+            <the-product />
+            <the-product />
           </div>
         </div>
       </div>
@@ -43,13 +50,12 @@ export default defineComponent({
       $(".owl-carousel").owlCarousel({
         loop: true,
         margin: 10,
+        dots: false,
         responsive: {
           0: {
-            items: 1,
-          },
-          600: {
             items: 3,
           },
+
           1000: {
             items: 5,
           },
