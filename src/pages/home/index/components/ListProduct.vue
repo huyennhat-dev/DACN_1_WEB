@@ -57,7 +57,7 @@ export default defineComponent({
           },
 
           1000: {
-            items: 5,
+            items: 4,
           },
         },
       });
@@ -99,4 +99,10 @@ export default defineComponent({
   color: var(--primary-color);
   transition: all 0.2s;
 }
+
+.list-products .owl-carousel .owl-wrapper,
+.list-products .owl-carousel .owl-item {
+  -webkit-transform: none !important;
+}
+
 </style>
