@@ -1,61 +1,110 @@
-.shadow-full {
-    box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.15) !important;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
+   :root {
+      --primary-color: #f15c22;
+      --header-height: 70px;
+  }
+  
+  body {
+      font-family: 'Open Sans';
+      font-weight: 400;
+      background-color: #f5f5fa;
+  }
+  
+  .shadow-full {
+      box-shadow: 0px 0px 10px 1px rgba(101, 101, 101, 0.25) !important;
+  }
+  
+  #app .trigger {
+      font-size: 18px;
+      line-height: 64px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color 0.3s;
+  }
+  
+  #app .trigger:hover {
+      color: #1890ff;
+  }
+  
+  .ant-image-preview-switch-left,
+  .ant-image-preview-switch-right {
+      z-index: 999 !important;
+      background-color: #ffffff52 !important;
+      color: #000;
+  }
+  
+  .ant-image-preview-switch-left-disabled,
+  .ant-image-preview-switch-right-disabled {
+      color: #6b6060de !important;
+  }
+  
+  .brr-2 {
+      border-radius: 2px !important;
+  }
+  
+  .brr-5 {
+      border-radius: 5px !important;
+  }
+  
+  @media (max-width: 576px) {
+      .vue-image-crop-upload .vicp-wrap {
+          width: 80% !important;
+          height: 70% !important;
+      }
+      .vicp-step1 {
+          height: 90% !important;
+      }
+      .vicp-drop-area {
+          height: 100% !important;
+      }
+      .vicp-step2 {
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+      }
+      .vicp-crop-left,
+      .vicp-crop-right {
+          float: none !important;
+      }
+      .vicp-img-container {
+          margin: auto !important;
+      }
+      .vicp-preview {
+          display: flex;
+          justify-content: center;
+      }
+  }
+  
+  .nav {
+      --bs-nav-link-padding-x: 1rem;
+      --bs-nav-link-padding-y: 0.5rem;
+      --bs-nav-link-font-weight: ;
+      --bs-nav-link-color: var(--bs-link-color);
+      --bs-nav-link-hover-color: var(--bs-link-hover-color);
+      --bs-nav-link-disabled-color: var(--bs-secondary-color);
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+  }
+  
+  .nav .nav-item {
+      padding: 5px 10px;
+      cursor: pointer;
+  }
+  
+  .nav .nav-item a {
+      color: #000;
+  }
+  
 
-#app .trigger {
-    font-size: 18px;
-    line-height: 64px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-#app .trigger:hover {
-    color: #1890ff;
-}
-
-.ant-image-preview-switch-left,
-.ant-image-preview-switch-right {
-    z-index: 999 !important;
-    background-color: #ffffff52 !important;
-    color: #000;
-}
-
-.ant-image-preview-switch-left-disabled,
-.ant-image-preview-switch-right-disabled {
-    color: #6b6060de !important;
-}
-
-.brr-2 {
-    border-radius: 2px !important;
-}
-
-@media (max-width: 576px) {
-    .vue-image-crop-upload .vicp-wrap {
-        width: 80% !important;
-        height: 70% !important;
-    }
-    .vicp-step1 {
-        height: 90% !important;
-    }
-    .vicp-drop-area {
-        height: 100% !important;
-    }
-    .vicp-step2 {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-    .vicp-crop-left,
-    .vicp-crop-right {
-        float: none !important;
-    }
-    .vicp-img-container {
-        margin: auto !important;
-    }
-    .vicp-preview {
-        display: flex;
-        justify-content: center;
-    }
-}
-
+  
+  .nav .nav-item:hover,
+  a:hover {
+      color: var(--primary-color) !important;
+  }
+  
+  .fs-small {
+      font-size: 13px !important;
+  }

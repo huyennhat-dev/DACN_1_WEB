@@ -72,7 +72,7 @@ const admin = [
         component: () => import("../pages/admin/product/edit.vue"),
       },
     ],
-  },
+  }
 ];
 
 export default admin;

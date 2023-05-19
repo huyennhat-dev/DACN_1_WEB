@@ -33,6 +33,11 @@ import {
   Layout,
   Tooltip,
   Image,
+  Result,
+  Affix,
+  Modal,
+  Form,
+  Carousel,
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 
@@ -44,6 +49,12 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(fas, fab, far);
 
+/**import carousel */
+
+import $ from "jquery";
+window.jQuery = $;
+window.$ = $;
+
 /* import app style */
 import "./assets/css/style.css";
 
@@ -54,6 +65,7 @@ app.use(createPinia());
 app.use(Menu);
 app.use(Button);
 app.use(Layout);
+app.use(Modal);
 app.use(Drawer);
 app.use(Table);
 app.use(Card);
@@ -62,7 +74,11 @@ app.use(Checkbox);
 app.use(Input);
 app.use(Image);
 app.use(Tooltip);
+app.use(Result);
 app.use(Select);
+app.use(Form);
+app.use(Affix);
+app.use(Carousel);
 app.use(Popconfirm);
 app.use(VueFullscreen);
 app.mount("#app");

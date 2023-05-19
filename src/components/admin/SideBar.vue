@@ -125,7 +125,7 @@ export default defineComponent({
   props: {
     collapsed: Boolean,
   },
-  setup() {
+  setup() { 
     return {
       ...storeToRefs(useMenu()),
     };
