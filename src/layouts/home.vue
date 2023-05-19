@@ -1,6 +1,9 @@
 <template>
   <div class="container-fuild position-relative">
-    <the-header v-on:handleClickVisible="handleVisible" />
+    <the-header
+      v-on:handleClickVisible="handleVisible"
+      v-on:handleClickOpenCart="handleOpenCart"
+    />
     <router-view></router-view>
     <the-login-form
       v-bind:visible="visible"
@@ -25,12 +28,17 @@ export default defineComponent({
   },
   setup() {
     const visible = ref(false);
+    const isToggleCart = ref(false);
 
     const handleVisible = () => {
       visible.value = !visible.value;
     };
 
-    return { visible, handleVisible };
+    const handleClickOpenCart = () => {
+      visible.value = !visible.value;
+    };
+
+    return { visible, handleVisible, handleClickOpenCart };
   },
   created() {
     this.checkLogin();
