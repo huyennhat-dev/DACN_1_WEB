@@ -28,7 +28,7 @@
                 <login-outlined class="button-icon" />
                 Đăng nhập
               </li>
-              <li class="header-button cart brr-5">
+              <li class="header-button cart brr-5" @click="handleClickOpenCart">
                 <shopping-outlined class="button-icon" />
                 Giỏ hàng
                 <div class="count-cart">01</div>
@@ -55,7 +55,6 @@ import {
   ShoppingOutlined,
 } from "@ant-design/icons-vue";
 
-import { useUser } from "../../store/use-user";
 
 export default defineComponent({
   components: {
@@ -78,6 +77,9 @@ export default defineComponent({
   methods: {
     handleClick(e) {
       this.$emit("handleClickVisible");
+    },
+    handleClickOpenCart(e) {
+      this.$emit("handleClickOpenCart");
     },
   },
 });
