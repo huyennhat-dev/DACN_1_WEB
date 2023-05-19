@@ -79,7 +79,7 @@ export default defineComponent({
       this.$emit("handleClickVisible");
     },
     handleClickOpenCart(e) {
-      this.$emit("handleClickOpenCart");
+      this.$emit("handleClickToggleDrawer");
     },
   },
 });

@@ -35,6 +35,9 @@
         <template v-if="column.key === 'price'">
           <span>{{ fomated(record.price) }}</span>
         </template>
+        <template v-if="column.key === 'sale'">
+          <span>{{ (record.sale * 100).toFixed(0) }} % </span>
+        </template>
 
         <template v-if="column.key === 'quantity'">
           <div class="w-100 d-flex justify-content-center">
@@ -140,10 +143,16 @@ export default defineComponent({
         sortDirections: ["descend", "ascend"],
       },
       {
+        title: "Giảm giá",
+        key: "sale",
+        dataIndex: "sale",
+        width: 70,
+      },
+      {
         title: "Bán ra",
         key: "purchases",
         dataIndex: "purchases",
-        width: 100,
+        width: 70,
         sorter: (a, b) => a.purchases.length - b.purchases.length,
         sortDirections: ["descend", "ascend"],
       },
@@ -151,7 +160,7 @@ export default defineComponent({
         title: "Kho còn",
         key: "quantity",
         dataIndex: "quantity",
-        width: 100,
+        width: 70,
         sorter: (a, b) => a.quantity.length - b.quantity.length,
         sortDirections: ["descend", "ascend"],
       },
@@ -166,7 +175,7 @@ export default defineComponent({
         key: "action",
         dataIndex: "action",
         width: 70,
-        fixed:"right"
+        fixed: "right",
       },
     ];
     return { columns, fomated };

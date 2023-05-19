@@ -9,15 +9,21 @@
           <div class="btn-more">Xem thêm <right-outlined /></div>
         </div>
         <div class="list-products-content">
-          <div class="owl-carousel">
-            <the-product />
-            <the-product />
-            <the-product />
-            <the-product />
-            <the-product />
-            <the-product />
-            <the-product />
-          </div>
+          <Carousel
+            v-if="products.length > 0"
+            v-bind="settings"
+            :breakpoints="breakpoints"
+          >
+            <Slide v-for="product in products" :key="product._id" class="px-2">
+              <div class="carousel__item">
+                <the-product :product="product" />
+              </div>
+            </Slide>
+
+            <template #addons>
+              <Navigation />
+            </template>
+          </Carousel>
         </div>
       </div>
     </div>
@@ -26,48 +32,66 @@
 
 <script>
 import { defineComponent } from "vue";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel";
-import {
-  RightOutlined,
-  LeftCircleOutlined,
-  RightCircleOutlined,
-} from "@ant-design/icons-vue";
+import { Carousel, Navigation, Slide } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
+import { RightOutlined } from "@ant-design/icons-vue";
 import TheProduct from "./Product.vue";
+import { BASE_URL } from "../../../../configs";
+
 export default defineComponent({
   components: {
     TheProduct,
     RightOutlined,
-    LeftCircleOutlined,
-    RightCircleOutlined,
+    Carousel,
+    Slide,
+    Navigation,
   },
-  data() {
-    return {};
-  },
-  mounted() {
-    // Initialize Owl Carousel
-    this.$nextTick(() => {
-      $(".owl-carousel").owlCarousel({
-        loop: true,
-        margin: 10,
-        dots: false,
-        responsive: {
-          0: {
-            items: 3,
-          },
 
-          1000: {
-            items: 4,
-          },
+  data() {
+    return {
+      products: [],
+      settings: {
+        itemsToShow: 1,
+        snapAlign: "start",
+        autoplay: 5000,
+        wrapAround: true,
+      },
+
+      breakpoints: {
+        700: {
+          itemsToShow: 3,
+          snapAlign: "start",
         },
-      });
-    });
+        1024: {
+          itemsToShow: 5,
+          snapAlign: "start",
+        },
+      },
+    };
+  },
+
+  created() {
+    this.getRecommentProduct();
+  },
+  methods: {
+    async getRecommentProduct() {
+      try {
+        const res = await axios.get(`${BASE_URL}/home/index/recommend-product`);
+        if (res.status == 200) this.products = res.data.products;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });
 </script>
 <style>
 .list-products {
   padding: 10px;
+}
+
+.list-products .is-fetching {
+  height: 220px;
 }
 .list-products-body {
   height: 100%;
@@ -100,9 +124,12 @@ export default defineComponent({
   transition: all 0.2s;
 }
 
-.list-products .owl-carousel .owl-wrapper,
-.list-products .owl-carousel .owl-item {
-  -webkit-transform: none !important;
+.list-products .carousel__next,
+.list-products .carousel__prev {
+  margin: 0;
 }
 
+.list-products .carousel__slide{
+  transform: none;
+}
 </style>

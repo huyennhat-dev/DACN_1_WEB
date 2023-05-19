@@ -49,12 +49,6 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(fas, fab, far);
 
-/**import carousel */
-
-import $ from "jquery";
-window.jQuery = $;
-window.$ = $;
-
 /* import app style */
 import "./assets/css/style.css";
 

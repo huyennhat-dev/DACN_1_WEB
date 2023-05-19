@@ -159,6 +159,22 @@
           <div class="row mb-2">
             <div class="col-12 mb-1">
               <label for="">
+                <span class="text-danger me-2"></span>
+                <span>Giảm giá</span>
+              </label>
+            </div>
+            <div class="col-12 mb-">
+              <a-input
+                placeholder="Giảm giá"
+                v-model:value="product.sale"
+                allowClear
+                type="number"
+              />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-12 mb-1">
+              <label for="">
                 <span class="text-danger me-1">*</span>
                 <span>Số lượng thêm</span>
               </label>
@@ -316,6 +332,7 @@ export default defineComponent({
         photos: [],
         author: "",
         price: "",
+        sale: "",
         quantity: "",
         desciption: "",
         categories: null,

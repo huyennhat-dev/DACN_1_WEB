@@ -8,7 +8,6 @@ export const useUser = defineStore("user", {
   actions: {
     setUserInfo(userInfo) {
       this.userInfo = userInfo;
-      console.log('ok')
     },
   },
 });

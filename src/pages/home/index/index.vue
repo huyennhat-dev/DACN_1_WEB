@@ -11,7 +11,7 @@
               <div class="main-right col-12 py-3">
                 <the-carousel />
                 <the-list-product />
-                <the-list-product />
+                <the-list-new-product />
               </div>
             </div>
           </div>
@@ -26,11 +26,13 @@ import { defineComponent } from "vue";
 import TheCarousel from "./components/Carousel.vue";
 import TheSideBar from "./components/SideBar.vue";
 import TheListProduct from "./components/ListProduct.vue";
+import TheListNewProduct from "./components/ListNewProduct.vue";
 export default defineComponent({
   components: {
     TheCarousel,
     TheSideBar,
     TheListProduct,
+    TheListNewProduct
   },
 });
 </script>
