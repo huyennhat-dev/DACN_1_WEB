@@ -111,6 +111,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import { notification } from "ant-design-vue";
 
 import {
   UserOutlined,
@@ -120,6 +121,8 @@ import {
 } from "@ant-design/icons-vue";
 import axios from "axios";
 import { BASE_URL } from "../../../configs";
+import { useAuthStore } from "../../../store/auth";
+import { useCartStore } from "../../../store/cart";
 export default defineComponent({
   components: {
     UserOutlined,
@@ -144,7 +147,7 @@ export default defineComponent({
     visible: { default: false, type: Boolean },
   },
   methods: {
-    handelClickCloseModal(e) {
+    handelClickCloseModal() {
       this.$emit("handleClickCloseModal");
     },
 
@@ -166,12 +169,21 @@ export default defineComponent({
         try {
           const res = await axios.post(`${BASE_URL}/home/login`, this.user);
           if (res.status == 200) {
-            console.log(res)
-            localStorage.setItem("token", res.data.token);
-            console.log('ok')
+            useAuthStore().setToken(res.data.token);
+            useAuthStore().setUser(res.data.token);
+            useCartStore().fetchCartData();
+
+            this.handelClickCloseModal();
+            this.user.username = "";
+            this.user.password = "";
+            this.errors.username = "";
+            this.errors.username = "";
+            notification.success({
+              description: "Đăng nhập thành công!",
+            });
           }
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       }
     },

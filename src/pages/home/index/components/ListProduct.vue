@@ -1,9 +1,9 @@
 <template>
   <div class="row mt-3">
     <div class="list-products col-12">
-      <div class="list-products-body">
+      <div class="list-products-body p-1 p-sm-3">
         <div
-          class="w-100 list-products-heading d-flex mb-2 justify-content-between"
+          class="w-100 list-products-heading d-flex mb-2 justify-content-between p-2"
         >
           <div class="title">Có thể bạn sẽ muốn</div>
           <div class="btn-more">Xem thêm <right-outlined /></div>
@@ -19,11 +19,13 @@
                 <the-product :product="product" />
               </div>
             </Slide>
-
-            <template #addons>
-              <Navigation />
-            </template>
           </Carousel>
+          <animated-placeholder
+            v-else
+            height="280px"
+            width="100%"
+            borderRadius="10px"
+          />
         </div>
       </div>
     </div>
@@ -37,6 +39,7 @@ import "vue3-carousel/dist/carousel.css";
 import { RightOutlined } from "@ant-design/icons-vue";
 import TheProduct from "./Product.vue";
 import { BASE_URL } from "../../../../configs";
+import AnimatedPlaceholder from "../../../../components/skeleton_loader/AnimatedPlaceholder.vue";
 
 export default defineComponent({
   components: {
@@ -45,6 +48,7 @@ export default defineComponent({
     Carousel,
     Slide,
     Navigation,
+    AnimatedPlaceholder,
   },
 
   data() {
@@ -53,11 +57,15 @@ export default defineComponent({
       settings: {
         itemsToShow: 1,
         snapAlign: "start",
-        // autoplay: 5000,
+        autoplay: 5000,
         wrapAround: true,
       },
 
       breakpoints: {
+        390: {
+          itemsToShow: 2,
+          snapAlign: "start",
+        },
         700: {
           itemsToShow: 3,
           snapAlign: "start",
@@ -87,7 +95,7 @@ export default defineComponent({
 </script>
 <style>
 .list-products {
-  padding: 10px;
+  padding: 8px;
 }
 
 .list-products .is-fetching {
@@ -95,11 +103,10 @@ export default defineComponent({
 }
 .list-products-body {
   height: 100%;
-  border-radius: 14px;
-  padding: 15px;
+  border-radius: 8px;
   background: linear-gradient(
       rgba(255, 255, 255, 0) 22.49%,
-      rgb(255, 255, 255) 73.49%
+      rgb(245, 245, 250) 73.49%
     ),
     linear-gradient(
       264.03deg,
@@ -135,5 +142,11 @@ export default defineComponent({
 .list-products .carousel__viewport {
   overflow-x: clip;
   overflow-y: inherit;
+}
+
+@media (max-width: 576px) {
+  .list-products-heading{
+
+  }
 }
 </style>

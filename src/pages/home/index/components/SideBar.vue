@@ -143,7 +143,7 @@ export default defineComponent({
 .side-bar .side-bar_body {
   height: 100%;
   padding: 15px 10px;
-  border-radius: 14px;
+  border-radius: 10px;
   background-color: #fff;
 }
 

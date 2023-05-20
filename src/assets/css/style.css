@@ -108,3 +108,7 @@
   .fs-small {
       font-size: 13px !important;
   }
+
+  .ant-notification-notice{
+    border-radius: 10px;
+  }

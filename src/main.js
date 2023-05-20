@@ -54,7 +54,10 @@ library.add(fas, fab, far);
 /* import app style */
 import "./assets/css/style.css";
 
+/*import store */
 import { useAuthStore } from "./store/auth";
+import { useCartStore } from "./store/cart";
+
 const app = createApp(App);
 
 app.component("font-awesome-icon", FontAwesomeIcon);
@@ -82,17 +85,24 @@ app.use(Popconfirm);
 app.use(VueFullscreen);
 
 const token = localStorage.getItem("token");
-const authStore = useAuthStore();
 if (token) {
-  const tokenExpiration = jwtDecode(token).exp;
-  const currentTimestamp = Date.now();
-  if (tokenExpiration && tokenExpiration > currentTimestamp) {
-    authStore.setToken(token);
-  } else {
-    authStore.logout();
+  try {
+    const tokenExpiration = jwtDecode(token).exp;
+    console.log(tokenExpiration);
+    const currentTimestamp = Date.now();
+    if (tokenExpiration && tokenExpiration > currentTimestamp) {
+      useAuthStore().setToken(token);
+      useAuthStore().setUser(token);
+      useCartStore().fetchCartData();
+    } else {
+      useAuthStore().logout();
+    }
+  } catch (error) {
+    console.log(error);
+    useAuthStore().logout();
   }
 } else {
-  authStore.logout();
+  useAuthStore().logout();
 }
 
 app.mount("#app");

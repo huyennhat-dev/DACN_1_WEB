@@ -1,5 +1,5 @@
 <template>
-  <a-carousel :autoplay="true" arrows class="">
+  <a-carousel :autoplay="true" arrows class="banner">
     <template #prevArrow>
       <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
         <left-circle-outlined />
@@ -10,35 +10,63 @@
         <right-circle-outlined />
       </div>
     </template>
-    <img
-      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/b4/37/8b/d9de63387e72745e749f4d37c054841c.png.webp"
-      alt=""
-    />
-    <img
-      src="https://salt.tikicdn.com/cache/w1080/ts/tikimsp/03/f3/67/c2a9e084ae0e23379539b60f2f5d2ca3.png.webp"
-      alt=""
-    />
+    <img v-for="img in imgs" class="banner-img" :key="img.id" :src="img.url" />
   </a-carousel>
 </template>
 <script>
 import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons-vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 export default defineComponent({
   components: {
     LeftCircleOutlined,
     RightCircleOutlined,
   },
+  setup() {
+    const imgs = ref([
+      {
+        id: 1,
+        url: "https://bookbuy.vn/Res/Images/Album/5ffae3b1-5676-4ee9-89bf-d2910b21478c.jpg?w=880&scale=both&h=320&mode=crop",
+      },
+      {
+        id: 2,
+        url: "https://bookbuy.vn/Res/Images/Album/616255cf-c6e8-44de-a5aa-be647835b238.jpg?w=880&scale=both&h=320&mode=crop",
+      },
+      {
+        id: 3,
+        url: "https://bookbuy.vn/Res/Images/Album/38149fbe-50de-4ad6-99c8-6fdb31ea0cc7.jpg?w=880&scale=both&h=320&mode=crop",
+      },
+      {
+        id: 4,
+        url: "https://bookbuy.vn/Res/Images/Album/f8179d2f-3703-45dc-a54d-42436435f7d6.jpg?w=880&scale=both&h=320&mode=crop",
+      },
+      {
+        id: 5,
+        url: "https://bookbuy.vn/Res/Images/Album/fc1d2a82-a958-49f9-9a8e-a41c4404bd89.jpg?w=880&scale=both&h=320&mode=crop",
+      },
+    ]);
+
+    return { imgs };
+  },
 });
 </script>
+<style>
+@media (max-width: 576px) {
+  .banner .banner-img {
+    height: 200px !important;
+    object-fit: cover;
+  }
+}
+</style>
 <style scoped>
 .ant-carousel {
-  border-radius: 14px;
+  border-radius: 10px;
 }
 .ant-carousel :deep(.slick-slide) {
   text-align: center;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 10px;
 }
+
 
 .ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
   width: 25px;
@@ -61,11 +89,11 @@ export default defineComponent({
 
 .ant-carousel :deep(.slick-slider .slick-track),
 .ant-carousel :deep(.slick-slider .slick-list) {
-  border-radius: 14px;
+  border-radius: 10px;
 }
 
 .ant-carousel :deep(.slick-dots-bottom) {
-  bottom: 0;
+  bottom: -10px;
 }
 .ant-carousel :deep(.slick-dots-bottom li button) {
   border-radius: 2px;

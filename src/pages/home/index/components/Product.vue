@@ -1,72 +1,64 @@
 <template>
-  <div class="product">
+  <div v-if="product" class="product">
     <div class="product-body">
       <div class="product-image">
-        <img :src="product ? product.photos[0] : null" alt="" />
+        <img :src="product.photos[0]" alt="" />
       </div>
       <div class="product-content">
-        <div class="product-name">{{ product ? product.name : null }}</div>
+        <div class="product-name">{{ product.name }}</div>
         <div class="d-flex">
           <div class="product-rating text-secondary">
-            {{ product ? product.rate : 0 }}
+            {{ product.rate }}
             <star-filled style="color: #fdd836" /> | Đã bán
-            {{ product ? product.purchases : null }}
+            {{ product.purchases }}
           </div>
         </div>
         <div class="d-flex align-items-center">
           <div class="product-price">
-            {{ fomated(product ? product.price : 0) }}
+            {{ fomated(product.price) }}
           </div>
           &nbsp;
           <div class="product-sale">
-            - {{ product ? (product.sale * 100).toFixed(0) : null }}%
+            - {{ (product.sale * 100).toFixed(0) }}%
           </div>
         </div>
       </div>
     </div>
     <div class="product-preview shadow-full">
-      <div class="preview-title">{{ product ? product.name : null }}</div>
-      <div class="preview-author">
-        Tác giả: {{ product ? product.author : null }}
-      </div>
-      <div
-        class="preview-desc"
-        v-html="product ? product.desciption : null"
-      ></div>
+      <div class="preview-title">{{ product.name }}</div>
+      <div class="preview-author">Tác giả: {{ product.author }}</div>
+      <div class="preview-desc" v-html="product.desciption"></div>
       <div class="d-flex justify-content-start align-items-center">
         <div class="preview-price">
-          {{
-            product
-              ? fomated(product.price - product.price * product.sale)
-              : null
-          }}
+          {{ fomated(product.price - product.price * product.sale) }}
         </div>
         <div class="preview-price-sale text-secondary fst-italic ms-3">
-          {{ fomated(product ? product.price : 0) }}
+          {{ fomated(product.price) }}
         </div>
       </div>
       <div class="preview-sale">
         Giảm giá &nbsp;
-        <span>{{ product ? (product.sale * 100).toFixed(0) : null }}%</span>
+        <span>{{ (product.sale * 100).toFixed(0) }}%</span>
       </div>
       <a-button
         danger
-        class="preview-button w-100 my-2"
-        @click="addToStore(product ? product : null, 1)"
+        class="preview-button brr-5 w-100 my-2"
+        @click="addToCartStore(product, 1)"
       >
         <shopping-outlined />
         Thêm vào giỏ hàng
       </a-button>
-      <a-button type="primary" ghost class="preview-button w-100 my-2">
+      <a-button type="primary" ghost class="preview-button brr-5 w-100 my-2">
         <heart-outlined />
         Thêm vào yêu thích
       </a-button>
     </div>
   </div>
+  <animated-placeholder v-else height="280px" width="170px" />
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { formattedPrice } from "../../../../utils/formatPrice";
 
 import {
@@ -77,8 +69,15 @@ import {
 import { notification } from "ant-design-vue";
 import { useCartStore } from "../../../../store/cart";
 import { BASE_URL } from "../../../../configs";
+import { useAuthStore } from "../../../../store/auth";
+import AnimatedPlaceholder from "../../../../components/skeleton_loader/AnimatedPlaceholder.vue";
 export default defineComponent({
-  components: { StarFilled, HeartOutlined, ShoppingOutlined },
+  components: {
+    StarFilled,
+    HeartOutlined,
+    ShoppingOutlined,
+    AnimatedPlaceholder,
+  },
 
   props: {
     product: Object,
@@ -88,33 +87,27 @@ export default defineComponent({
       if (price) return formattedPrice(price);
     },
 
-    addToStore(product, quantity) {
+    async addToCartStore(product, quantity) {
       try {
         if (!product) return;
         const data = { product: product, quantity };
-        const rs = this.addToCart(product._id, quantity);
-
-        const res = useCartStore().addToCart(data);
-
-        if (res) {
+        const res = await axios.post(
+          `${BASE_URL}/home/cart/create`,
+          { id: product._id, quantity },
+          { headers: { "x-auth-token": useAuthStore().getToken } }
+        );
+        if (res.data.status) {
+          useCartStore().addToCart(data);
           notification.success({
             description: "Thêm vào giỏ hàng thành công",
+            duration: 3,
           });
         }
       } catch (error) {
-        console.log(error);
-      }
-    },
-
-    async addToCart(id, quantity) {
-      try {
-        const res = await axios.post(
-          `${BASE_URL}/home/cart/create`,
-          { id, quantity },
-          { headers: { "x-auth-token": localStorage.getItem("token") } }
-        );
-        return res;
-      } catch (error) {
+        notification.warning({
+          description: "Bạn cần phải đăng nhập",
+          duration: 3,
+        });
         console.log(error);
       }
     },

@@ -16,7 +16,7 @@
       title="Giỏ hàng"
       placement="right"
     >
-      <the-cart-drawer />
+      <the-cart-drawer  />
     </a-drawer>
   </div>
 </template>
@@ -50,10 +50,7 @@ export default defineComponent({
 
     return { visible, isToggleCartDrawer, handleVisible, handleOpenCart };
   },
-  created() {
-  },
-  methods: {
-  
-  },
+  created() {},
+  methods: {},
 });
 </script>
