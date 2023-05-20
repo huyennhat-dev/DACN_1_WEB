@@ -49,7 +49,7 @@
 <script>
 import { defineComponent } from "vue";
 import { BASE_URL } from "../../../configs";
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 import { message } from "ant-design-vue";
 import {
   FormOutlined,
@@ -63,8 +63,8 @@ export default defineComponent({
     DeleteOutlined,
   },
   setup() {
-    useMenu().onSelectedKeys(["admin-list-roles"]);
-    useMenu().onOpenKeys(["admin-roles-sub"]);
+    useMenuStore().onSelectedKeys(["admin-list-roles"]);
+    useMenuStore().onOpenKeys(["admin-roles-sub"]);
   },
   data() {
     return {

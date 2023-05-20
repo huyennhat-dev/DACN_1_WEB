@@ -76,7 +76,7 @@
 <script>
 import { defineComponent } from "vue";
 import { BASE_URL } from "../../../configs/index.js";
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 import { message } from "ant-design-vue";
 
 import {
@@ -91,8 +91,8 @@ export default defineComponent({
     DeleteOutlined,
   },
   setup() {
-    useMenu().onSelectedKeys(["admin-list-user"]);
-    useMenu().onOpenKeys(["admin-users-sub"]);
+    useMenuStore().onSelectedKeys(["admin-list-user"]);
+    useMenuStore().onOpenKeys(["admin-users-sub"]);
   },
   data() {
     return {

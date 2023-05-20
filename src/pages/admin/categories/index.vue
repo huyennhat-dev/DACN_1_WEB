@@ -58,7 +58,7 @@
 </template>
 <script>
 import { defineComponent } from "vue";
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 import { BASE_URL } from "../../../configs/index.js";
 import { message } from "ant-design-vue";
 import {
@@ -74,8 +74,8 @@ export default defineComponent({
     DeleteOutlined,
   },
   setup() {
-    useMenu().onSelectedKeys(["admin-list-categories"]);
-    useMenu().onOpenKeys(["admin-categories-sub"]);
+    useMenuStore().onSelectedKeys(["admin-list-categories"]);
+    useMenuStore().onOpenKeys(["admin-categories-sub"]);
   },
   data() {
     return {

@@ -97,7 +97,7 @@
 <script>
 import { storeToRefs } from "pinia";
 import { defineComponent } from "vue";
-import { useMenu } from "../../store/use-menu.js";
+import { useMenuStore } from "../../store/menu.js";
 import {
   UserOutlined,
   DashboardOutlined,
@@ -127,7 +127,7 @@ export default defineComponent({
   },
   setup() { 
     return {
-      ...storeToRefs(useMenu()),
+      ...storeToRefs(useMenuStore()),
     };
   },
 });

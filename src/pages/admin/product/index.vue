@@ -95,7 +95,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import { useMenu } from "../../../store/use-menu";
+import { useMenuStore } from "../../../store/menu";
 import { BASE_URL } from "../../../configs";
 import { formattedPrice } from "../../../utils/formatPrice";
 import { message } from "ant-design-vue";
@@ -112,8 +112,8 @@ export default defineComponent({
     DeleteOutlined,
   },
   setup() {
-    useMenu().onSelectedKeys(["admin-list-products"]);
-    useMenu().onOpenKeys(["admin-product-sub"]);
+    useMenuStore().onSelectedKeys(["admin-list-products"]);
+    useMenuStore().onOpenKeys(["admin-product-sub"]);
     const fomated = (price) => formattedPrice(price);
 
     const columns = [

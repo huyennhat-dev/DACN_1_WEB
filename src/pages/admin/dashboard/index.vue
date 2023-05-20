@@ -4,11 +4,11 @@
 
 <script>
 import { defineComponent } from "vue";
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 
 export default defineComponent({
   setup() {
-    useMenu().onSelectedKeys(["admin-dashboard"]);
+    useMenuStore().onSelectedKeys(["admin-dashboard"]);
   },
 });
 </script>

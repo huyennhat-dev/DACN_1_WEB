@@ -55,7 +55,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 import { BASE_URL } from "../../../configs/index.js";
 import { message } from "ant-design-vue";
 import { useRoute, useRouter } from "vue-router";
@@ -64,8 +64,8 @@ const key = "updateRole";
 
 export default defineComponent({
   setup() {
-    useMenu().onSelectedKeys(["admin-create-role"]);
-    useMenu().onOpenKeys(["admin-roles-sub"]);
+    useMenuStore().onSelectedKeys(["admin-create-role"]);
+    useMenuStore().onOpenKeys(["admin-roles-sub"]);
 
     const route = useRoute();
     const router = useRouter();

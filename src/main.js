@@ -3,7 +3,7 @@ import App from "./App.vue";
 
 /* import the pinia */
 import { createPinia } from "pinia";
-
+const pinia = createPinia();
 /* import the router */
 import router from "./router/index.js";
 
@@ -13,6 +13,8 @@ window.axios = axios;
 
 /**import the fullscreen */
 import VueFullscreen from "vue-fullscreen";
+
+import jwtDecode from "jwt-decode";
 
 /* import the boostrap */
 import "bootstrap/dist/css/bootstrap-grid.min.css";
@@ -52,10 +54,13 @@ library.add(fas, fab, far);
 /* import app style */
 import "./assets/css/style.css";
 
+import { useAuthStore } from "./store/auth";
 const app = createApp(App);
+
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(router);
-app.use(createPinia());
+app.use(pinia);
+
 app.use(Menu);
 app.use(Button);
 app.use(Layout);
@@ -75,4 +80,19 @@ app.use(Affix);
 app.use(Carousel);
 app.use(Popconfirm);
 app.use(VueFullscreen);
+
+const token = localStorage.getItem("token");
+const authStore = useAuthStore();
+if (token) {
+  const tokenExpiration = jwtDecode(token).exp;
+  const currentTimestamp = Date.now();
+  if (tokenExpiration && tokenExpiration > currentTimestamp) {
+    authStore.setToken(token);
+  } else {
+    authStore.logout();
+  }
+} else {
+  authStore.logout();
+}
+
 app.mount("#app");

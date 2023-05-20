@@ -49,7 +49,11 @@
         Giảm giá &nbsp;
         <span>{{ product ? (product.sale * 100).toFixed(0) : null }}%</span>
       </div>
-      <a-button danger class="preview-button w-100 my-2">
+      <a-button
+        danger
+        class="preview-button w-100 my-2"
+        @click="addToStore(product ? product : null, 1)"
+      >
         <shopping-outlined />
         Thêm vào giỏ hàng
       </a-button>
@@ -70,6 +74,9 @@ import {
   HeartOutlined,
   ShoppingOutlined,
 } from "@ant-design/icons-vue";
+import { notification } from "ant-design-vue";
+import { useCartStore } from "../../../../store/cart";
+import { BASE_URL } from "../../../../configs";
 export default defineComponent({
   components: { StarFilled, HeartOutlined, ShoppingOutlined },
 
@@ -79,6 +86,37 @@ export default defineComponent({
   methods: {
     fomated(price) {
       if (price) return formattedPrice(price);
+    },
+
+    addToStore(product, quantity) {
+      try {
+        if (!product) return;
+        const data = { product: product, quantity };
+        const rs = this.addToCart(product._id, quantity);
+
+        const res = useCartStore().addToCart(data);
+
+        if (res) {
+          notification.success({
+            description: "Thêm vào giỏ hàng thành công",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async addToCart(id, quantity) {
+      try {
+        const res = await axios.post(
+          `${BASE_URL}/home/cart/create`,
+          { id, quantity },
+          { headers: { "x-auth-token": localStorage.getItem("token") } }
+        );
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 });
@@ -182,13 +220,27 @@ export default defineComponent({
   font-weight: 400;
   color: green;
 }
-.product .product-preview .preview-desc {
+.product .product-preview .preview-desc,
+.product .product-preview .preview-desc strong,
+.product .product-preview .preview-desc ul,
+.product .product-preview .preview-desc h1,
+.product .product-preview .preview-desc h2,
+.product .product-preview .preview-desc h3,
+.product .product-preview .preview-desc h4,
+.product .product-preview .preview-desc h5,
+.product .product-preview .preview-desc h6 {
   font-size: 12px;
   font-weight: 400;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  max-height: 110px;
+  padding: 0;
+}
+.product .product-preview .preview-desc .table,
+.product .product-preview .preview-desc a {
+  display: none;
 }
 .product .product-preview .preview-price {
   color: #ff424e;

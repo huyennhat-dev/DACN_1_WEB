@@ -297,7 +297,7 @@
 <script>
 import { defineComponent, reactive } from "vue";
 import MyUpload from "vue-image-crop-upload";
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 import { BASE_URL } from "../../../configs/index.js";
 import {
   isPhone,
@@ -318,8 +318,8 @@ export default defineComponent({
     PlusOutlined,
   },
   setup() {
-    useMenu().onSelectedKeys(["admin-create-user"]);
-    useMenu().onOpenKeys(["admin-users-sub"]);
+    useMenuStore().onSelectedKeys(["admin-create-user"]);
+    useMenuStore().onOpenKeys(["admin-users-sub"]);
 
     const langExt = reactive({
       hint: "Nhấp hoặc kéo tệp vào đây để tải lên",

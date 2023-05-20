@@ -53,7 +53,7 @@ export default defineComponent({
       settings: {
         itemsToShow: 1,
         snapAlign: "start",
-        autoplay: 5000,
+        // autoplay: 5000,
         wrapAround: true,
       },
 
@@ -129,7 +129,11 @@ export default defineComponent({
   margin: 0;
 }
 
-.list-products .carousel__slide{
+.list-products .carousel__slide {
   transform: none;
+}
+.list-products .carousel__viewport {
+  overflow-x: clip;
+  overflow-y: inherit;
 }
 </style>

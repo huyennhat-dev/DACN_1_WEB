@@ -280,7 +280,7 @@ import { defineComponent, reactive } from "vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import MyUpload from "vue-image-crop-upload";
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 import { message } from "ant-design-vue";
 
 import {
@@ -304,8 +304,8 @@ export default defineComponent({
     ckeditor: CKEditor.component,
   },
   setup() {
-    useMenu().onSelectedKeys(["admin-create-product"]);
-    useMenu().onOpenKeys(["admin-product-sub"]);
+    useMenuStore().onSelectedKeys(["admin-create-product"]);
+    useMenuStore().onOpenKeys(["admin-product-sub"]);
 
     const langExt = reactive({
       hint: "Nhấp hoặc kéo tệp vào đây để tải lên",

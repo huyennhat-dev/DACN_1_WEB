@@ -79,7 +79,7 @@
 <script>
 import { defineComponent } from "vue";
 
-import { useMenu } from "../../../store/use-menu.js";
+import { useMenuStore } from "../../../store/menu.js";
 import { BASE_URL } from "../../../configs/index.js";
 import { message } from "ant-design-vue";
 import { useRoute, useRouter } from "vue-router";
@@ -88,8 +88,8 @@ const key = "updateCategories";
 
 export default defineComponent({
   setup() {
-    useMenu().onSelectedKeys(["admin-create-categories"]);
-    useMenu().onOpenKeys(["admin-categories-sub"]);
+    useMenuStore().onSelectedKeys(["admin-create-categories"]);
+    useMenuStore().onOpenKeys(["admin-categories-sub"]);
 
     const filterOption = (input, option) => {
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
