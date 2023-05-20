@@ -1,112 +1,100 @@
 <template>
-  <a-modal
-    v-model:visible="visible"
-    wrapClassName="auth-modal"
-    centered
-    :closable="false"
-    width="800px"
-    :footer="null"
-    class="brr-5"
-    style="padding: 20px"
-  >
-    <form @submit.prevent="login()">
-      <div class="d-flex">
-        <div class="modal-left">
-          <div class="form-title">
-            <h1>Xin chào!</h1>
+  <form @submit.prevent="login()" class="auth-modal">
+    <div class="d-flex">
+      <div class="modal-left">
+        <div class="form-title">
+          <h1>Xin chào!</h1>
+        </div>
+        <div class="form-title">Vui lòng điền thông tin đăng nhập</div>
+        <br />
+        <div class="row">
+          <div class="col-12">
+            <label for="">Tên đăng nhập</label>
           </div>
-          <div class="form-title">Vui lòng điền thông tin đăng nhập</div>
-          <br />
-          <div class="row">
-            <div class="col-12">
-              <label for="">Tên đăng nhập</label>
-            </div>
-            <div class="col-12">
-              <a-input
-                class="brr-5"
-                v-model:value="user.username"
-                placeholder="Nhập tên đăng nhập"
-              >
-                <template #prefix>
-                  <user-outlined />
-                </template>
-              </a-input>
-              <div class="w-100"></div>
-              <small v-if="errors.username" class="text-danger">
-                {{ errors.username }}
-              </small>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-12">
-              <label for="">Mật khẩu</label>
-            </div>
-            <div class="col-12">
-              <a-input-password
-                class="brr-5"
-                v-model:value="user.password"
-                placeholder="Nhập mật khẩu"
-              >
-                <template #prefix>
-                  <lock-outlined />
-                </template>
-              </a-input-password>
-              <div class="w-100"></div>
-              <small v-if="errors.password" class="text-danger">
-                {{ errors.password }}
-              </small>
-            </div>
-          </div>
-
-          <div class="row justify-content-center mt-3 mb-3">
-            <div class="col-10">
-              <a-button
-                htmlType="submit"
-                type="primary"
-                danger
-                class="w-100 brr-5"
-              >
-                Đăng nhập
-              </a-button>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12 position-relative">
-              <hr />
-
-              <div class="with-text position-absolute text-body-secondary">
-                Hoặc đăng nhập bằng
-              </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-center mt-3">
-            <div class="col-10">
-              <a-button type="primary" class="w-100 brr-5">
-                <google-outlined /> Đăng nhập bằng Google
-              </a-button>
-            </div>
-          </div>
-
-          <div class="row mt-2">
-            <div class="col-12 fs-small fst-italic text-center">
-              <span>Bằng việc đăng nhập, bạn đã chấp nhận </span>
-              <a href="">điều khoản sử dụng</a>
-            </div>
+          <div class="col-12">
+            <a-input
+              class="brr-5"
+              v-model:value="user.username"
+              placeholder="Nhập tên đăng nhập"
+            >
+              <template #prefix>
+                <user-outlined />
+              </template>
+            </a-input>
+            <div class="w-100"></div>
+            <small v-if="errors.username" class="text-danger">
+              {{ errors.username }}
+            </small>
           </div>
         </div>
-        <div
-          class="modal-right d-flex justify-content-center align-items-center"
-        >
-          <img src="../../../assets/images/login-bg.png" alt="" width="200" />
-          <div class="modal-close-icon" @click="handelClickCloseModal">
-            <close-outlined />
+        <div class="row mt-2">
+          <div class="col-12">
+            <label for="">Mật khẩu</label>
+          </div>
+          <div class="col-12">
+            <a-input-password
+              class="brr-5"
+              v-model:value="user.password"
+              placeholder="Nhập mật khẩu"
+            >
+              <template #prefix>
+                <lock-outlined />
+              </template>
+            </a-input-password>
+            <div class="w-100"></div>
+            <small v-if="errors.password" class="text-danger">
+              {{ errors.password }}
+            </small>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-3 mb-3">
+          <div class="col-10">
+            <a-button
+              htmlType="submit"
+              type="primary"
+              danger
+              class="w-100 brr-5"
+            >
+              Đăng nhập
+            </a-button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2 col-sm-3 ps-4">
+            <hr class="d-none d-sm-block" />
+          </div>
+          <div class="col-8 col-sm-6 text-center">
+            <div class="with-text text-body-secondary">Hoặc đăng nhập bằng</div>
+          </div>
+          <div class="col-2 col-sm-3 pe-4">
+            <hr class="d-none d-sm-block" />
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-3">
+          <div class="col-10">
+            <a-button type="primary" class="w-100 brr-5">
+              <google-outlined /> Đăng nhập bằng Google
+            </a-button>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12 fs-small fst-italic text-center">
+            <span>Bằng việc đăng nhập, bạn đã chấp nhận </span>
+            <a href="">điều khoản sử dụng</a>
           </div>
         </div>
       </div>
-    </form>
-  </a-modal>
+      <div
+        class="modal-right d-none d-sm-flex justify-content-center align-items-center"
+      >
+        <img src="../../../assets/images/login-bg.png" alt="" width="200" />
+      </div>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -143,14 +131,8 @@ export default defineComponent({
       },
     };
   },
-  props: {
-    visible: { default: false, type: Boolean },
-  },
-  methods: {
-    handelClickCloseModal() {
-      this.$emit("handleClickCloseModal");
-    },
 
+  methods: {
     validate() {
       let inValid = true;
       if (!this.user.username) {
@@ -173,7 +155,8 @@ export default defineComponent({
             useAuthStore().setUser(res.data.token);
             useCartStore().fetchCartData();
 
-            this.handelClickCloseModal();
+            this.$emit("handleClickToggleLoginModal");
+
             this.user.username = "";
             this.user.password = "";
             this.errors.username = "";
@@ -192,10 +175,6 @@ export default defineComponent({
 </script>
 
 <style>
-.auth-modal .ant-modal-content {
-  border-radius: 16px;
-}
-
 .auth-modal .modal-left {
   width: 500px;
   padding: 40px;
@@ -203,14 +182,6 @@ export default defineComponent({
 
 .modal-left .form-title h1 {
   margin: 0;
-}
-
-.modal-left .with-text {
-  top: -5px;
-  margin: auto;
-  left: 26.8%;
-  background-color: #fff;
-  padding: 0 15px;
 }
 
 .auth-modal .ant-modal-body {
@@ -221,7 +192,7 @@ export default defineComponent({
   position: relative;
   width: 300px;
   padding: 10px;
-  border-radius: 0 16px 16px 0;
+  border-radius: 0 10px 10px 0;
   background: linear-gradient(
     136deg,
     rgb(240, 248, 255) -1%,
@@ -229,18 +200,9 @@ export default defineComponent({
   );
 }
 
-.modal-right .modal-close-icon {
-  position: absolute;
-  background-color: #fff;
-  border-radius: 50px;
-  height: 40px;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: -15px;
-  right: -15px;
-  cursor: pointer;
-  font-size: 20px;
+@media (max-width: 570px) {
+  .auth-modal .modal-left {
+    padding: 10px;
+  }
 }
 </style>

@@ -90,10 +90,11 @@
                 <shopping-outlined class="button-icon me-1" />
                 <span class="d-none d-sm-block"> Giỏ hàng</span>
                 <div v-if="carts.length > 0" class="count-cart">
-                  {{ carts.length }}
+                  {{ carts.length < 99 ? "+99" : carts.length }}
                 </div>
               </li>
               <li
+                @click="handleClickOpenMenu"
                 class="header-button d-flex align-items-center justify-content-center d-block d-sm-none brr-5 px-1 px-sm-2"
               >
                 <menu-outlined class="button-icon" />
@@ -169,11 +170,14 @@ export default defineComponent({
 
   methods: {
     handleClick(e) {
-      this.$emit("handleClickVisible");
+      this.$emit("handleClickToggleLoginModal");
     },
 
     handleClickOpenCart(e) {
-      this.$emit("handleClickToggleDrawer");
+      this.$emit("handleClickToggleCartDrawer");
+    },
+    handleClickOpenMenu(e) {
+      this.$emit("handleClickToggleMenuDrawer");
     },
 
     logOut() {
@@ -308,6 +312,12 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 10px 0px var(--primary-color);
+}
+@media (max-width: 576px) {
+  .header-button.cart .count-cart {
+    width: 16px;
+    height: 16px;
+  }
 }
 .header .button-icon {
   font-size: 18px;

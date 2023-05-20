@@ -104,7 +104,7 @@ export default defineComponent({
 .list-products-body {
   height: 100%;
   border-radius: 8px;
-  background: linear-gradient(
+  /* background: linear-gradient(
       rgba(255, 255, 255, 0) 22.49%,
       rgb(245, 245, 250) 73.49%
     ),
@@ -113,18 +113,20 @@ export default defineComponent({
       rgb(220, 229, 251) -10.27%,
       rgb(234, 236, 255) 35.65%,
       rgb(213, 236, 253) 110.66%
-    );
+    ); */
 }
 .list-products-heading .title {
   font-size: 16px;
   font-weight: 600;
 }
 .list-products-heading .btn-more {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   color: #000;
   cursor: pointer;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
 }
 .list-products-heading .btn-more:hover {
   color: var(--primary-color);
@@ -145,8 +147,7 @@ export default defineComponent({
 }
 
 @media (max-width: 576px) {
-  .list-products-heading{
-
+  .list-products-heading {
   }
 }
 </style>
