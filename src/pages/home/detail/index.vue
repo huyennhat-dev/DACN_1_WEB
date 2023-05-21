@@ -131,7 +131,7 @@
                       <template #icon> <plus-outlined /></template>
                     </a-button>
                   </div>
-                  <div class="col-12 d-block d-sm-flex align-items-center mt-2 mb-4">
+                  <div class="col-12 d-block d-sm-flex text-center align-items-center mt-2 mb-4">
                     <a-button size="large" class="brr-5 me-sm-3 mb-3 mb-sm-0 px-4" danger>
                       <template #icon>
                         <shopping-cart-outlined />
