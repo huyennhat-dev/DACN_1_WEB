@@ -149,7 +149,7 @@ export default defineComponent({
     async login() {
       if (this.validate()) {
         try {
-          const res = await axios.post(`${BASE_URL}/home/login`, this.user);
+          const res = await axios.post(`${BASE_URL}/home/auth/login`, this.user);
           if (res.status == 200) {
             useAuthStore().setToken(res.data.token);
             useAuthStore().setUser(res.data.token);
