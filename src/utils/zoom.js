@@ -1,19 +1,22 @@
-export const imgZoom = (imgId, rsId) => {
+export const imgZoom = (imgId, rsId, imgSrc) => {
   var img, lens, rs, cx, cy;
   img = document.getElementById(imgId);
   rs = document.getElementById(rsId);
 
-  lens = document.createElement("div");
-  lens.setAttribute("class", "img-zoom-lens");
+  lens = document.querySelector(".img-zoom-lens");
 
-  img.parentElement.insertBefore(lens, img);
+  if (!lens) {
+    lens = document.createElement("div");
+    lens.setAttribute("class", "img-zoom-lens");
+    img.parentElement.insertBefore(lens, img);
+  }
 
   cx = rs.offsetWidth / lens.offsetWidth;
   cy = rs.offsetHeight / lens.offsetHeight;
 
   function initializeZoom() {
-    rs.style.backgroundImage = `url('${img.src}')`;
-    rs.style.backgroundSize = `${img.width * cx}px ${img.height * cy}px`;
+    rs.style.backgroundImage = `url('${imgSrc}')`;
+    rs.style.backgroundSize = `300px 300px`;
 
     lens.addEventListener("mousemove", moveLens);
     img.addEventListener("mousemove", moveLens);
