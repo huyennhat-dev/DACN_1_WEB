@@ -2,10 +2,10 @@
   <div class="main container detail" style="">
     <div class="row">
       <div class="col-12 py-4">
-        <div class="book-detail py-5 px-3 brr-10">
+        <div class="book-detail py-5 px-1 px-sm-3 brr-10">
           <div class="book-detail-main row">
             <div class="col-12 col-sm-4 detail-main-left">
-              <div class="px-5">
+              <div class="px-2 px-sm-5">
                 <div class="img-wrapper w-100 shadow-full brr-5">
                   <img
                     id="img-original"
@@ -16,7 +16,7 @@
                   <div id="img-zoom" class="img-zoom-rs shadow-full brr-2"></div>
                 </div>
               </div>
-              <div class="px-5 mt-2" v-if="product.photos.length > 1">
+              <div class="px-2 px-sm-5 mt-2" v-if="product.photos.length > 1">
                 <Carousel v-bind="settings" :breakpoints="breakpoints">
                   <Slide
                     v-for="photo in product.photos"
@@ -37,7 +37,7 @@
               </div>
             </div>
             <div
-              class="col-12 col-sm-8 detail-main-right px-5 border-left border-secondary"
+              class="col-12 col-sm-8 detail-main-right px-2 px-sm-5 border-left border-secondary"
             >
               <div class="row">
                 <div class="product-name col-12 mb-2">
