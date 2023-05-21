@@ -5,24 +5,31 @@
         <div class="book-detail">
           <div class="book-detail-main row">
             <div class="col-12 col-sm-4 detail-main-left">
-              <div class="px-5" v-if="product">
-                <div class="img-wrapper w-100">
+              <div class="px-5">
+                <div class="img-wrapper w-100" id="img-wrapper">
                   <img
                     id="img-original"
                     class="w-100"
-                    :src="product.photos[0]"
+                    :src="defaultPhoto ? defaultPhoto : ''"
                   />
                   <div id="img-zoom" class="img-zoom-rs"></div>
                 </div>
               </div>
-              <animated-placeholder v-else height="400px" width="400px" />
-              <div class="px-5">
+              <div class="px-5" v-if="product.photos.length > 1">
                 <Carousel v-bind="settings" :breakpoints="breakpoints">
                   <Slide class="px-2">
-                    <div class="carousel__item">1</div>
+                    <div
+                      v-for="photo in product.photos"
+                      :key="photo"
+                      class="carousel__item"
+                      @click="setDefaultPhoto(photo)"
+                    >
+                      <img :src="photo" width="100" height="100" />
+                    </div>
                   </Slide>
                 </Carousel>
               </div>
+              <animated-placeholder v-else height="100px" width="400px" />
             </div>
             <div class="col-5 detail-main-center"></div>
             <div class="col-3 detail-main-right"></div>
@@ -52,6 +59,7 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const router = useRouter();
+
     return {
       route,
       router,
@@ -71,15 +79,30 @@ export default defineComponent({
           snapAlign: "start",
         },
       },
-      product: null,
+      defaultPhoto: "",
+
+      product: {
+        name: "",
+        photos: [],
+        author: "",
+        price: "",
+        sale: "",
+        quantity: "",
+        purchases: "",
+        star: "",
+        desciption: "",
+      },
       categories: [],
     };
   },
-  mounted() {
-    if (this.product) {
-      imgZoom("img-original", "img-zoom");
-    }
+
+  watch: {
+    defaultPhoto(nVal, oVal) {
+      if (nVal) imgZoom("img-original", "img-zoom", nVal);
+    },
   },
+  mounted() {},
+
   created() {
     this.getDetailData();
   },
@@ -90,12 +113,25 @@ export default defineComponent({
           `${BASE_URL}/home/product/${this.route.params.id}`
         );
         if (res.status == 200) {
-          this.product = res.data.product;
-          console.log(res);
+          this.product.photos = res.data.product.photos;
+          this.product.name = res.data.product.name;
+          this.product.author = res.data.product.author;
+          this.product.price = res.data.product.price;
+          this.product.star = res.data.product.star;
+          this.product.sale = res.data.product.sale;
+          this.product.quantity = res.data.product.photos;
+          this.product.purchases = res.data.product.purchases;
+          this.product.desciption = res.data.product.desciption;
+
+          this.defaultPhoto = res.data.product.photos[0];
+          console.log(this.product);
         }
       } catch (error) {
         console.log(error);
       }
+    },
+    setDefaultPhoto(url) {
+      if (url) this.defaultPhoto = url;
     },
   },
 });
