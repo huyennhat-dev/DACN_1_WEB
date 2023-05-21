@@ -5,16 +5,17 @@
         <div class="book-detail">
           <div class="book-detail-main row">
             <div class="col-12 col-sm-4 detail-main-left">
-              <div class="px-5">
+              <div class="px-5" v-if="product">
                 <div class="img-wrapper w-100">
                   <img
                     id="img-original"
                     class="w-100"
-                    src="../../../assets/images/x.jpg"
+                    :src="product.photos[0]"
                   />
                   <div id="img-zoom" class="img-zoom-rs"></div>
                 </div>
               </div>
+              <animated-placeholder v-else height="400px" width="400px" />
               <div class="px-5">
                 <Carousel v-bind="settings" :breakpoints="breakpoints">
                   <Slide class="px-2">
@@ -36,6 +37,7 @@
 import { defineComponent } from "vue";
 import { imgZoom } from "../../../utils/zoom";
 import { useRoute, useRouter } from "vue-router";
+import AnimatedPlaceholder from "../../../components/skeleton_loader/AnimatedPlaceholder.vue";
 
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
@@ -45,6 +47,7 @@ export default defineComponent({
     Carousel,
     Slide,
     Navigation,
+    AnimatedPlaceholder,
   },
   setup() {
     const route = useRoute();
@@ -68,10 +71,14 @@ export default defineComponent({
           snapAlign: "start",
         },
       },
+      product: null,
+      categories: [],
     };
   },
   mounted() {
-    imgZoom("img-original", "img-zoom");
+    if (this.product) {
+      imgZoom("img-original", "img-zoom");
+    }
   },
   created() {
     this.getDetailData();
@@ -82,6 +89,10 @@ export default defineComponent({
         const res = await axios.get(
           `${BASE_URL}/home/product/${this.route.params.id}`
         );
+        if (res.status == 200) {
+          this.product = res.data.product;
+          console.log(res);
+        }
       } catch (error) {
         console.log(error);
       }
