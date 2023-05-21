@@ -20,12 +20,7 @@
               </div>
             </Slide>
           </Carousel>
-          <animated-placeholder
-            v-else
-            height="280px"
-            width="100%"
-            borderRadius="10px"
-          />
+      
         </div>
       </div>
     </div>
@@ -57,8 +52,8 @@ export default defineComponent({
       settings: {
         itemsToShow: 1,
         snapAlign: "start",
-        // autoplay: 5000,
-        wrapAround: true,
+        autoplay: 7000,
+        // wrapAround: true,
       },
 
       breakpoints: {

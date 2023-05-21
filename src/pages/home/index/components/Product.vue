@@ -104,7 +104,7 @@ export default defineComponent({
           { headers: { "x-auth-token": useAuthStore().getToken } }
         );
         if (res.data.status) {
-          useCartStore().addToCart(data);
+         useCartStore().addToCart(data);
           notification.success({
             description: "Thêm vào giỏ hàng thành công",
             duration: 3,
@@ -127,6 +127,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 200px;
 }
 .product .product-body {
   width: 100%;
