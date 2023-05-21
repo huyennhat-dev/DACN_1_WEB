@@ -4,7 +4,7 @@
       <div class="col-12 py-3">
         <div class="book-detail">
           <div class="book-detail-main row">
-            <div class="col-4 detail-main-left">
+            <div class="col-12 col-sm-4 detail-main-left">
               <div class="px-5">
                 <div class="img-wrapper w-100">
                   <img
