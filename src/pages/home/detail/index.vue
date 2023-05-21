@@ -5,48 +5,35 @@
         <div class="book-detail">
           <div class="book-detail-main row">
             <div class="col-12 col-sm-4 detail-main-left">
-<<<<<<< HEAD
-              <div class="px-5">
-                <div class="img-wrapper w-100" id="img-wrapper">
-                  <img
-                    id="img-original"
-                    class="w-100"
-                    :src="defaultPhoto ? defaultPhoto : ''"
-=======
               <div class="px-5" v-if="product">
                 <div class="img-wrapper w-100">
                   <img
                     id="img-original"
                     class="w-100"
                     :src="product.photos[0]"
->>>>>>> 485e317 (ok)
                   />
                   <div id="img-zoom" class="img-zoom-rs"></div>
                 </div>
               </div>
-<<<<<<< HEAD
               <div class="px-5" v-if="product.photos.length > 1">
-=======
-              <animated-placeholder v-else height="400px" width="400px" />
-              <div class="px-5">
->>>>>>> 485e317 (ok)
-                <Carousel v-bind="settings" :breakpoints="breakpoints">
-                  <Slide class="px-2">
-                    <div
-                      v-for="photo in product.photos"
-                      :key="photo"
-                      class="carousel__item"
-                      @click="setDefaultPhoto(photo)"
-                    >
-                      <img :src="photo" width="100" height="100" />
-                    </div>
-                  </Slide>
-                </Carousel>
+                <div class="px-5">
+                  <Carousel v-bind="settings" :breakpoints="breakpoints">
+                    <Slide class="px-2">
+                      <div
+                        v-for="photo in product.photos"
+                        :key="photo"
+                        class="carousel__item"
+                        @click="setDefaultPhoto(photo)"
+                      >
+                        <img :src="photo" width="100" height="100" />
+                      </div>
+                    </Slide>
+                  </Carousel>
+                </div>
               </div>
-              <animated-placeholder v-else height="100px" width="400px" />
+              <div class="col-5 detail-main-center"></div>
+              <div class="col-3 detail-main-right"></div>
             </div>
-            <div class="col-5 detail-main-center"></div>
-            <div class="col-3 detail-main-right"></div>
           </div>
         </div>
       </div>
@@ -93,7 +80,6 @@ export default defineComponent({
           snapAlign: "start",
         },
       },
-<<<<<<< HEAD
       defaultPhoto: "",
 
       product: {
@@ -115,18 +101,7 @@ export default defineComponent({
     defaultPhoto(nVal, oVal) {
       if (nVal) imgZoom("img-original", "img-zoom", nVal);
     },
-=======
-      product: null,
-      categories: [],
-    };
   },
-  mounted() {
-    if (this.product) {
-      imgZoom("img-original", "img-zoom");
-    }
->>>>>>> 485e317 (ok)
-  },
-  mounted() {},
 
   created() {
     this.getDetailData();
@@ -138,7 +113,6 @@ export default defineComponent({
           `${BASE_URL}/home/product/${this.route.params.id}`
         );
         if (res.status == 200) {
-<<<<<<< HEAD
           this.product.photos = res.data.product.photos;
           this.product.name = res.data.product.name;
           this.product.author = res.data.product.author;
@@ -150,11 +124,6 @@ export default defineComponent({
           this.product.desciption = res.data.product.desciption;
 
           this.defaultPhoto = res.data.product.photos[0];
-          console.log(this.product);
-=======
-          this.product = res.data.product;
-          console.log(res);
->>>>>>> 485e317 (ok)
         }
       } catch (error) {
         console.log(error);
