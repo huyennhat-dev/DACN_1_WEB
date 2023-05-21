@@ -37,7 +37,7 @@
               </div>
             </div>
             <div
-              class="col-12 col-sm-8 detail-main-right px-2 px-sm-5 border-left border-secondary"
+              class="col-12 col-sm-8 detail-main-right px-3 px-sm-5 border-left border-secondary"
             >
               <div class="row">
                 <div class="product-name col-12 mb-2">
