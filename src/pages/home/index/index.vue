@@ -11,7 +11,7 @@
               <div class="main-right col-12 py-3">
                 <the-carousel />
                 <the-list-product />
-                <the-list-new-product />
+                <!-- <the-list-new-product /> -->
               </div>
             </div>
           </div>
