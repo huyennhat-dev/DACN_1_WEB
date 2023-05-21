@@ -142,7 +142,7 @@
                     <a-button
                       size="large"
                       type="primary"
-                      class="brr-5 ps-3 pe-4"
+                      class="brr-5 ms-2 ps-3 pe-4"
                       danger
                     >
                       <template #icon>
