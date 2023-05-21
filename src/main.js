@@ -25,6 +25,7 @@ import {
   Menu,
   Drawer,
   Button,
+  Rate,
   Card,
   Table,
   Avatar,
@@ -76,6 +77,7 @@ app.use(Checkbox);
 app.use(Input);
 app.use(Image);
 app.use(Tooltip);
+app.use(Rate);
 app.use(Result);
 app.use(Select);
 app.use(Form);

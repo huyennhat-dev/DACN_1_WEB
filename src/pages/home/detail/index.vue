@@ -1,39 +1,47 @@
 <template>
   <div class="main container" style="">
     <div class="row">
-      <div class="col-12 py-3">
-        <div class="book-detail">
+      <div class="col-12 py-4">
+        <div class="book-detail p-3 brr-10">
           <div class="book-detail-main row">
             <div class="col-12 col-sm-4 detail-main-left">
-              <div class="px-5" v-if="product">
-                <div class="img-wrapper w-100">
+              <div class="px-5 py-3">
+                <div class="img-wrapper w-100 shadow-full brr-5">
                   <img
                     id="img-original"
-                    class="w-100"
-                    :src="product.photos[0]"
+                    class="w-100 brr-5"
+                    :src="defaultPhoto"
                   />
                   <div id="img-zoom" class="img-zoom-rs"></div>
                 </div>
               </div>
               <div class="px-5" v-if="product.photos.length > 1">
-                <div class="px-5">
-                  <Carousel v-bind="settings" :breakpoints="breakpoints">
-                    <Slide class="px-2">
-                      <div
-                        v-for="photo in product.photos"
-                        :key="photo"
-                        class="carousel__item"
-                        @click="setDefaultPhoto(photo)"
-                      >
-                        <img :src="photo" width="100" height="100" />
-                      </div>
-                    </Slide>
-                  </Carousel>
+                <Carousel v-bind="settings" :breakpoints="breakpoints">
+                  <Slide
+                    v-for="photo in product.photos"
+                    :key="photo"
+                    class="px-1 review-image_item brr-2"
+                    @click="setDefaultPhoto(photo)"
+                    :class="{ active: photo == defaultPhoto }"
+                  >
+                    <div>
+                      <img :src="photo" class="brr-2 w-100" />
+                    </div>
+                  </Slide>
+                </Carousel>
+              </div>
+            </div>
+            <div class="col-12 col-sm-5 detail-main-center">
+              <div class="row">
+                <div class="product-name col-12">
+                  <span>{{ product.name }}</span>
+                </div>
+                <div class="rating col-12">
+                  <a-rate :value="2" disabled />
                 </div>
               </div>
-              <div class="col-5 detail-main-center"></div>
-              <div class="col-3 detail-main-right"></div>
             </div>
+            <div class="col-12 col-sm-3 detail-main-right"></div>
           </div>
         </div>
       </div>
@@ -71,11 +79,10 @@ export default defineComponent({
       settings: {
         itemsToShow: 1,
         snapAlign: "start",
-        wrapAround: true,
       },
 
       breakpoints: {
-        390: {
+        1000: {
           itemsToShow: 4,
           snapAlign: "start",
         },
@@ -124,19 +131,24 @@ export default defineComponent({
           this.product.desciption = res.data.product.desciption;
 
           this.defaultPhoto = res.data.product.photos[0];
+          this.activeIndex = res.data.product.photos[0];
         }
       } catch (error) {
         console.log(error);
       }
     },
     setDefaultPhoto(url) {
-      if (url) this.defaultPhoto = url;
+      if (!url) return;
+      this.defaultPhoto = url;
     },
   },
 });
 </script>
 
 <style>
+.book-detail {
+  background-color: #fff;
+}
 .detail-main-left .img-wrapper {
   position: relative;
 }
@@ -173,5 +185,11 @@ export default defineComponent({
   position: absolute;
   pointer-events: none;
   transition: transform 0.5s, scale 0.5s, opacity 0.5s, top 0.5s, bottom 0.5s;
+}
+.detail-main-left .review-image_item {
+  box-sizing: content-box;
+}
+.detail-main-left .review-image_item.active {
+  border: 1px solid var(--primary-color);
 }
 </style>
