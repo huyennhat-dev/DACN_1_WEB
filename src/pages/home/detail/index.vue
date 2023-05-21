@@ -132,16 +132,17 @@
                     </a-button>
                   </div>
                   <div class="col-12 d-block d-sm-flex text-center align-items-center mt-2 mb-4">
-                    <a-button size="large" class="brr-5 me-sm-3 mb-3 mb-sm-0 px-4" danger>
+                    <a-button size="large" class="brr-5 me-sm-3 mb-3 mb-sm-0 ps-3 pe-4" danger>
                       <template #icon>
                         <shopping-cart-outlined />
                       </template>
                       Thêm vào giỏ hàng
                     </a-button>
+
                     <a-button
                       size="large"
                       type="primary"
-                      class="brr-5 px-4"
+                      class="brr-5 ps-3 pe-4"
                       danger
                     >
                       <template #icon>
