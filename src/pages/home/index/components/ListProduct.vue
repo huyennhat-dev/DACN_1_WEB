@@ -57,7 +57,7 @@ export default defineComponent({
       settings: {
         itemsToShow: 1,
         snapAlign: "start",
-        autoplay: 5000,
+        // autoplay: 5000,
         wrapAround: true,
       },
 

@@ -1,31 +1,38 @@
 <template>
   <div v-if="product" class="product">
-    <div class="product-body">
-      <div class="product-image">
-        <img :src="product.photos[0]" alt="" />
-      </div>
-      <div class="product-content">
-        <div class="product-name">{{ product.name }}</div>
-        <div class="d-flex">
-          <div class="product-rating text-secondary">
-            {{ product.rate }}
-            <star-filled style="color: #fdd836" /> | Đã bán
-            {{ product.purchases }}
+    <router-link :to="{ name: 'detail', params: { id: product._id } }">
+      <div class="product-body">
+        <div class="product-image">
+          <img :src="product.photos[0]" alt="" />
+        </div>
+        <div class="product-content">
+          <div class="product-name">
+            {{ product.name }}
+          </div>
+          <div class="d-flex">
+            <div class="product-rating text-secondary">
+              {{ product.rate }}
+              <star-filled style="color: #fdd836" /> | Đã bán
+              {{ product.purchases }}
+            </div>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="product-price">
+              {{ fomated(product.price - product.price * product.sale) }}
+            </div>
+            &nbsp;
+            <div class="product-sale">
+              - {{ (product.sale * 100).toFixed(0) }}%
+            </div>
           </div>
         </div>
-        <div class="d-flex align-items-center">
-          <div class="product-price">
-            {{ fomated(product.price) }}
-          </div>
-          &nbsp;
-          <div class="product-sale">
-            - {{ (product.sale * 100).toFixed(0) }}%
-          </div>
-        </div>
       </div>
-    </div>
+    </router-link>
+
     <div class="product-preview shadow-full">
-      <div class="preview-title">{{ product.name }}</div>
+      <router-link :to="{ name: 'detail', params: { id: product._id } }">
+        <div class="preview-title">{{ product.name }}</div>
+      </router-link>
       <div class="preview-author">Tác giả: {{ product.author }}</div>
       <div class="preview-desc" v-html="product.desciption"></div>
       <div class="d-flex justify-content-start align-items-center">
@@ -48,10 +55,10 @@
         <shopping-outlined />
         Thêm vào giỏ hàng
       </a-button>
-      <a-button type="primary" ghost class="preview-button brr-5 w-100 my-2">
+      <!-- <a-button type="primary" ghost class="preview-button brr-5 w-100 my-2">
         <heart-outlined />
         Thêm vào yêu thích
-      </a-button>
+      </a-button> -->
     </div>
   </div>
   <animated-placeholder v-else height="280px" width="170px" />
@@ -150,6 +157,7 @@ export default defineComponent({
 }
 .product .product-name {
   height: 41px;
+  color: #000;
   font-size: 13px;
   font-weight: 600;
   text-align: left;
@@ -157,6 +165,8 @@ export default defineComponent({
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
 }
 .product .product-rating {
   font-size: 12px;
@@ -190,8 +200,8 @@ export default defineComponent({
   width: 200px;
   border-radius: 10px;
   background-color: #fff;
-  left: 70%;
-  top: -10px;
+  left: 60%;
+  top: 10%;
   z-index: 999;
   padding: 15px;
   text-align: start;
@@ -203,6 +213,7 @@ export default defineComponent({
 .product .product-preview .preview-title {
   font-size: 13px;
   font-weight: 600;
+  color: #000;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

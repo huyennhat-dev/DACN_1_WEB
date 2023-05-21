@@ -374,7 +374,7 @@ export default defineComponent({
     async setupUpdate() {
       try {
         const res = await axios.get(
-          `${BASE_URL}/product/edit/${this.route.params.id}`
+          `${BASE_URL}/admin/product/edit/${this.route.params.id}`
         );
         if (res.status == 200) {
           const data = res.data.data;
@@ -464,7 +464,7 @@ export default defineComponent({
         try {
           message.loading({ content: "Đang tải...", key, duration: 100000 });
           const res = await axios.put(
-            `${BASE_URL}/product/edit/${this.route.params.id}`,
+            `${BASE_URL}/admin/product/edit/${this.route.params.id}`,
             this.product
           );
           if (res.status == 200) {

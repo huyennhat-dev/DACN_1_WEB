@@ -11,14 +11,16 @@ export const imgZoom = (imgId, rsId) => {
   cx = rs.offsetWidth / lens.offsetWidth;
   cy = rs.offsetHeight / lens.offsetHeight;
 
-  rs.style.backgroundImage = `url('${img.src}')`;
-  rs.style.backgroundSize = `${img.width * cx}px ${img.height * cy}px`;
+  function initializeZoom() {
+    rs.style.backgroundImage = `url('${img.src}')`;
+    rs.style.backgroundSize = `${img.width * cx}px ${img.height * cy}px`;
 
-  lens.addEventListener("mousemove", moveLens);
-  img.addEventListener("mousemove", moveLens);
+    lens.addEventListener("mousemove", moveLens);
+    img.addEventListener("mousemove", moveLens);
 
-  lens.addEventListener("touchmove", moveLens);
-  img.addEventListener("touchmove", moveLens);
+    lens.addEventListener("touchmove", moveLens);
+    img.addEventListener("touchmove", moveLens);
+  }
 
   function moveLens(e) {
     var pos, x, y;
@@ -49,4 +51,12 @@ export const imgZoom = (imgId, rsId) => {
     y = y - window.pageYOffset;
     return { x: x, y: y };
   }
+
+  if (img.complete) {
+    initializeZoom();
+  } else {
+    img.addEventListener("load", initializeZoom);
+  }
+
+  document.addEventListener("DOMContentLoaded", initializeZoom);
 };

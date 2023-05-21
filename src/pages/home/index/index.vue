@@ -32,16 +32,12 @@ export default defineComponent({
     TheCarousel,
     TheSideBar,
     TheListProduct,
-    TheListNewProduct
+    TheListNewProduct,
   },
 });
 </script>
 
 <style>
-.main {
-  position: relative;
-  top: 70px;
-}
 .main .main-right {
   height: calc(100vh - var(--header-height));
   overflow-y: scroll;

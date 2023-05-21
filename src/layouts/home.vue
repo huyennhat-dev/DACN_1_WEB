@@ -5,7 +5,9 @@
       v-on:handleClickToggleCartDrawer="handleOpenCart"
       v-on:handleClickToggleMenuDrawer="handleOpenMenu"
     />
-    <router-view></router-view>
+    <div class="position-relative" style="top:70px">
+      <router-view></router-view>
+    </div>
 
     <a-modal
       v-model:visible="isToggleLoginModal"

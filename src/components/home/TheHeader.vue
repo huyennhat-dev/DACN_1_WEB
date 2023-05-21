@@ -4,10 +4,14 @@
       <div class="container">
         <div class="row">
           <div class="d-none d-sm-block col-sm-3 logo text-center">
-            <img class="" src="../../assets/images/logo.png" alt="" />
+            <router-link :to="{ name: 'index' }">
+              <img class="" src="../../assets/images/logo.png" alt="" />
+            </router-link>
           </div>
           <div class="col-2 d-sm-none d-block logo text-center">
-            <img class="" src="../../assets/images/logo_2.png" alt="" />
+            <router-link :to="{ name: 'index' }">
+              <img class="" src="../../assets/images/logo_2.png" alt="" />
+            </router-link>
           </div>
           <div
             class="d-flex align-items-center-center"
@@ -90,7 +94,7 @@
                 <shopping-outlined class="button-icon me-1" />
                 <span class="d-none d-sm-block"> Giỏ hàng</span>
                 <div v-if="carts.length > 0" class="count-cart">
-                  {{ carts.length < 99 ? "+99" : carts.length }}
+                  {{ carts.length > 99 ? "+99" : carts.length }}
                 </div>
               </li>
               <li

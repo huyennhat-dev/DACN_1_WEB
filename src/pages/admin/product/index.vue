@@ -192,7 +192,7 @@ export default defineComponent({
   methods: {
     async getProducts() {
       try {
-        const res = await axios.get(`${BASE_URL}/product`);
+        const res = await axios.get(`${BASE_URL}/admin/product`);
         this.products = res.data.products;
       } catch (error) {
         console.log(error);
@@ -201,7 +201,7 @@ export default defineComponent({
     async deleteProduct(id) {
       return new Promise(async (resolve) => {
         try {
-          const res = await axios.delete(`${BASE_URL}/product/delete/${id}`);
+          const res = await axios.delete(`${BASE_URL}/admin/product/delete/${id}`);
 
           if (res.status == 200) {
             setTimeout(() => {

@@ -363,7 +363,7 @@ export default defineComponent({
     },
     async setupCreate() {
       try {
-        const res = await axios.get(`${BASE_URL}/product/create`);
+        const res = await axios.get(`${BASE_URL}/admin/product/create`);
         this.status = res.data.data.status;
         this.categories = res.data.data.categories;
       } catch (error) {
@@ -439,7 +439,7 @@ export default defineComponent({
         try {
           message.loading({ content: "Đang tải...", key, duration: 100000 });
           const res = await axios.post(
-            `${BASE_URL}/product/create`,
+            `${BASE_URL}/admin/product/create`,
             this.product
           );
           if (res.status == 200) {
