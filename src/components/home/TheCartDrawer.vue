@@ -54,6 +54,40 @@
           <p>Hoa Vẫn Nở Mỗi Ngày</p>
         </div>
         <div class="subInfo">
+          <!-- <p>Số lượng: 10</p> -->
+          <div class="buttons_added">
+            <p>Số lượng:</p>
+            <input aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" value="1">
+          </div>
+          <p class="price">Giá: 50.000đ</p>
+        </div>
+      </div>
+      <img class="icon-delete" src="../../assets/images/delete.png" alt="" />
+    </div>
+    <div class="item">
+      <div class="left">
+        <img src="http://res.cloudinary.com/huyennhat/image/upload/v1684683502/images/products/gbpcybctohctifa1jbtc.png" alt="">
+      </div>
+      <div class="right">
+        <div class="name">
+          <p>Hoa Vẫn Nở Mỗi Ngày</p>
+        </div>
+        <div class="subInfo">
+          <p>Số lượng: 10</p>
+          <p>Giá: 50.000đ</p>
+        </div>
+      </div>
+      <img class="icon-delete" src="../../assets/images/delete.png" alt="" />
+    </div>
+    <div class="item">
+      <div class="left">
+        <img src="http://res.cloudinary.com/huyennhat/image/upload/v1684683502/images/products/gbpcybctohctifa1jbtc.png" alt="">
+      </div>
+      <div class="right">
+        <div class="name">
+          <p>Hoa Vẫn Nở Mỗi Ngày</p>
+        </div>
+        <div class="subInfo">
           <p>Số lượng: 10</p>
           <p>Giá: 50.000đ</p>
         </div>
@@ -108,6 +142,21 @@ export default defineComponent({
     font-size: 14px;
     font-weight: 400;
     color: #555;
+  }
+  .items .item .right .subInfo .price{
+    margin-top: 5px;
+  }
+  .items .item .right .subInfo .buttons_added{
+   display: flex;
+   align-items: center;
+  }
+  .items .item .right .subInfo .buttons_added p{
+    width: fit-content;
+    margin-right: 10px;
+  }
+  .items .item .right .subInfo .buttons_added input{
+    border: 1px solid #b3b2b2;
+    color: black;
   }
 
   .items .button {
