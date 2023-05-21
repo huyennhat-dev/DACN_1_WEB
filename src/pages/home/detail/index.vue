@@ -403,6 +403,12 @@ export default defineComponent({
   pointer-events: none;
   transition: transform 0.5s, scale 0.5s, opacity 0.5s, top 0.5s, bottom 0.5s;
 }
+@media (max-width:576px){
+.detail-main-left .img-zoom-lens,
+.detail-main-left .img-zoom-rs{
+display:none;
+}
+}
 .detail-main-left .review-image_item {
   box-sizing: content-box;
 }
