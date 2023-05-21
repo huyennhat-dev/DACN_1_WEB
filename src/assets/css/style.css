@@ -1,6 +1,6 @@
   @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap');
    :root {
-      --primary-color: #f15c22;
+      --primary-color: #ff4d4f;
       --header-height: 70px;
   }
   
@@ -8,6 +8,7 @@
       font-family: 'Open Sans';
       font-weight: 400;
       background-color: #f5f5fa;
+      background-image: url('../images/bg.png');
   }
   
   .shadow-full {
@@ -47,8 +48,33 @@
   }
   
   .brr-10 {
-    border-radius: 10px !important;
+      border-radius: 10px !important;
+  }
+  
+  .text-primary {
+      color: var(--primary-color) !important;
+  }
+  
+  .border-left {
+      border-left: 1px solid !important;
+  }
+  
+  .border-secondary {
+      border-color: #d1d1d1 !important;
+  }
+
+  .border-primary {
+    border-color: var(--primary-color) !important;
 }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
   @media (max-width: 576px) {
       .vue-image-crop-upload .vicp-wrap {
           width: 80% !important;
@@ -101,8 +127,6 @@
       color: #000;
   }
   
-
-  
   .nav .nav-item:hover,
   a:hover {
       color: var(--primary-color) !important;
@@ -111,7 +135,7 @@
   .fs-small {
       font-size: 13px !important;
   }
-
-  .ant-notification-notice{
-    border-radius: 10px;
+  
+  .ant-notification-notice {
+      border-radius: 10px;
   }

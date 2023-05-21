@@ -17,11 +17,11 @@
             </div>
           </div>
           <div class="d-flex align-items-center">
-            <div class="product-price">
+            <div class="product-price text-primary">
               {{ fomated(product.price - product.price * product.sale) }}
             </div>
             &nbsp;
-            <div class="product-sale">
+            <div class="product-sale text-primary">
               - {{ (product.sale * 100).toFixed(0) }}%
             </div>
           </div>
@@ -36,14 +36,14 @@
       <div class="preview-author">Tác giả: {{ product.author }}</div>
       <div class="preview-desc" v-html="product.desciption"></div>
       <div class="d-flex justify-content-start align-items-center">
-        <div class="preview-price">
+        <div class="preview-price text-primary">
           {{ fomated(product.price - product.price * product.sale) }}
         </div>
         <div class="preview-price-sale text-secondary fst-italic ms-3">
           {{ fomated(product.price) }}
         </div>
       </div>
-      <div class="preview-sale">
+      <div class="preview-sale text-primary">
         Giảm giá &nbsp;
         <span>{{ (product.sale * 100).toFixed(0) }}%</span>
       </div>
@@ -174,12 +174,10 @@ export default defineComponent({
   font-weight: 600;
 }
 .product .product-price {
-  color: #ff424e;
   font-size: 18px;
   font-weight: 600;
 }
 .product .product-sale {
-  color: #ff424e;
   font-size: 14px;
   font-weight: 500;
 }
@@ -248,7 +246,6 @@ export default defineComponent({
   display: none;
 }
 .product .product-preview .preview-price {
-  color: #ff424e;
   font-size: 16px;
   font-weight: 600;
 }
@@ -264,6 +261,5 @@ export default defineComponent({
 }
 .product .product-preview .preview-sale span {
   font-size: 14px;
-  color: #ff424e;
 }
 </style>
