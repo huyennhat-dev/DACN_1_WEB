@@ -205,6 +205,13 @@ export default defineComponent({
   padding: 15px;
   text-align: start;
 }
+
+@media (max-width:576px) {
+	.product .product-preview{
+			display:none !important;
+	}
+}
+
 .product:hover .product-preview {
   display: block;
 }
