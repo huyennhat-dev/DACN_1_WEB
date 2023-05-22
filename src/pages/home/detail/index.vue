@@ -2,7 +2,7 @@
   <div class="main container detail" style="">
     <div class="row">
       <div class="col-12 py-4">
-        <div class="book-detail py-sm-5 py-2 px-1 px-sm-3 brr-10">
+        <div class="book-detail py-sm-5 py-3 px-1 px-sm-3 brr-10">
           <div class="book-detail-main row">
             <div class="col-12 col-sm-4 detail-main-left">
               <div class="px-2 px-sm-5">
