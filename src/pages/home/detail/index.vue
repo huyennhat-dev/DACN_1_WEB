@@ -37,7 +37,7 @@
               </div>
             </div>
             <div
-              class="col-12 col-sm-8 detail-main-right px-3 px-sm-5 border-left border-secondary"
+              class="col-12 col-sm-8 detail-main-right px-3 px-sm-5 border-none border-sm-left border-secondary"
             >
               <div class="row">
                 <div class="product-name col-12 mb-2">
@@ -183,7 +183,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="col-12 col-sm-4 pe-4 border-left border-secondary">
+                <div class="col-12 col-sm-4 pe-4 boỏder-none border-sm-left border-secondary">
                   <div class="row brr-5">
                     <div class="col-12 text-center my-3">
                       <span class="text-black fs-6">Sách cùng tác giả</span>
