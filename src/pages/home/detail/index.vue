@@ -240,6 +240,11 @@
         </div> 
       </div>
 	  <div class="col-12 py-4 my-4 book-desc">
+				 <div class=" px-4 py-3">
+		         <span class=" fs-6 fw-bold text-back">
+								Mô tả sản phẩm
+							</span>
+					</div>
 		     <div class="book-desc-content">
 							 <div v-html="product.desciption"></div>
 				  </div>
@@ -368,9 +373,12 @@ export default defineComponent({
 .main.detail::-webkit-scrollbar {
   width: 0;
 }
-.book-detail {
+
+.book-detail,
+.book-desc{
   background-color: #fff;
 }
+
 .detail-main-left .img-wrapper {
   position: relative;
 }
