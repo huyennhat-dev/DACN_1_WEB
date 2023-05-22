@@ -285,7 +285,7 @@ export default defineComponent({
   data() {
     return {
       settings: {
-        itemsToShow: 4,
+        itemsToShow: 5,
         snapAlign: "start",
       },
 
