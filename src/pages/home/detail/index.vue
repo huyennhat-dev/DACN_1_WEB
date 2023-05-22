@@ -241,7 +241,7 @@
       </div>
 	  <div class="col-12 py-4 my-4 book-desc">
 		     <div class="book-desc-content">
-							 <div :v-html="product.description"></div>
+							 <div v-html="product.desciption"></div>
 				  </div>
     </div>
     </div>
