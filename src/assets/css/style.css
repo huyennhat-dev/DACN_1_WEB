@@ -54,8 +54,14 @@
   .text-primary {
       color: var(--primary-color) !important;
   }
+  .border-none {
+    border-left: none;
+    border-right:none;
+    border-top:none;
+    border-bottom:none
+  } 
   
-  .border-left {
+  .border-sm-left {
       border-left: 1px solid !important;
   }
   
