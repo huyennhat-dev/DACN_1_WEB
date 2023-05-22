@@ -11,6 +11,10 @@
       background-image: url('../images/bg.png');
   }
   
+  *::-webkit-scrollbar {
+      width: 0;
+  }
+  
   .shadow-full {
       box-shadow: 0px 0px 10px 1px rgba(101, 101, 101, 0.25) !important;
   }
@@ -54,12 +58,13 @@
   .text-primary {
       color: var(--primary-color) !important;
   }
+  
   .border-none {
-    border-left: none;
-    border-right:none;
-    border-top:none;
-    border-bottom:none
-  } 
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: none
+  }
   
   .border-sm-left {
       border-left: 1px solid !important;
@@ -68,19 +73,21 @@
   .border-secondary {
       border-color: #d1d1d1 !important;
   }
-
+  
   .border-primary {
-    border-color: var(--primary-color) !important;
-}
+      border-color: var(--primary-color) !important;
+  }
+  
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+      -webkit-appearance: none;
+      margin: 0;
   }
-
+  
   input[type="number"] {
-    -moz-appearance: textfield;
+      -moz-appearance: textfield;
   }
+  
   @media (max-width: 576px) {
       .vue-image-crop-upload .vicp-wrap {
           width: 80% !important;
