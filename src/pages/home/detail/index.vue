@@ -239,7 +239,8 @@
           </div>
         </div> 
       </div>
-	  <div class="col-12 py-2 my-4 book-desc brr-10">
+	  <div class="col-12 py-2 my-4 ">
+       <div class=" book-desc brr-10">
 				 <div class=" px-4 py-3">
 		         <span class=" fs-6 fw-bold text-back">
 								Mô tả sản phẩm
@@ -248,6 +249,7 @@
 		     <div class="book-desc-content">
 							 <div v-html="product.desciption"></div>
 				  </div>
+				</div>
     </div>
     </div>
   </div>
