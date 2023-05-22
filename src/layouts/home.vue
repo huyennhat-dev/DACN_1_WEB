@@ -5,7 +5,7 @@
       v-on:handleClickToggleCartDrawer="handleOpenCart"
       v-on:handleClickToggleMenuDrawer="handleOpenMenu"
     />
-    <div class="position-relative" style="top:70px">
+    <div class="position-relative" style="top: 70px">
       <router-view></router-view>
     </div>
 
@@ -23,10 +23,16 @@
     <a-drawer
       v-model:visible="isToggleCartDrawer"
       class="cart-drawer"
-      style="color: red"
       title="Giỏ hàng"
       placement="right"
     >
+      <template #extra>
+        <div v-if="cartLength > 0">
+          <span class="fs-6 text-black fw-medium"> Hiện có </span>
+          <span class="fs-6 text-primary fw-semibold"> {{ cartLength }} </span>
+          <span class="fs-6 text-black fw-medium"> đơn hàng </span>
+        </div>
+      </template>
       <the-cart-drawer />
     </a-drawer>
     <a-drawer
@@ -41,7 +47,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import { BASE_URL } from "../configs";
 import { message } from "ant-design-vue";
 
@@ -49,6 +55,7 @@ import TheHeader from "../components/home/TheHeader.vue";
 import TheLoginForm from "../pages/home/auth/login.vue";
 import TheCartDrawer from "../components/home/TheCartDrawer.vue";
 import TheMenuDrawer from "../components/home/TheMenuDrawer.vue";
+import { useCartStore } from "../store/cart";
 
 export default defineComponent({
   components: {
@@ -73,6 +80,11 @@ export default defineComponent({
       isToggleMenuDrawer.value = !isToggleMenuDrawer.value;
     };
 
+    const cartLength = ref(useCartStore().getCartData.length);
+    watch(
+      () => useCartStore().carts.length,
+      (nVal) => (cartLength.value = nVal)
+    );
     return {
       isToggleLoginModal,
       isToggleCartDrawer,
@@ -80,6 +92,7 @@ export default defineComponent({
       handleOpenLoginModal,
       handleOpenCart,
       handleOpenMenu,
+      cartLength,
     };
   },
   created() {},
@@ -96,9 +109,9 @@ export default defineComponent({
 
 @media (max-width: 576px) {
   .menu-drawer .ant-drawer-content-wrapper,
-  .cart-drawer .ant-drawer-content-wrapper  {
-  width: 340px !important;
-}
+  .cart-drawer .ant-drawer-content-wrapper {
+    width: 340px !important;
+  }
 }
 
 .login-modal .ant-modal-body,

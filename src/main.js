@@ -41,6 +41,7 @@ import {
   Modal,
   Form,
   Carousel,
+  Empty,
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 
@@ -83,6 +84,7 @@ app.use(Select);
 app.use(Form);
 app.use(Affix);
 app.use(Carousel);
+app.use(Empty);
 app.use(Popconfirm);
 app.use(VueFullscreen);
 

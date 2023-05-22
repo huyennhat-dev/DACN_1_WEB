@@ -97,19 +97,13 @@ export default defineComponent({
     async addToCartStore(product, quantity) {
       try {
         if (!product) return;
-        const data = { product: product, quantity };
-        const res = await axios.post(
-          `${BASE_URL}/home/cart/create`,
-          { id: product._id, quantity },
-          { headers: { "x-auth-token": useAuthStore().getToken } }
-        );
-        if (res.data.status) {
-         useCartStore().addToCart(data);
+        delete product.description;
+        const res = useCartStore().addToCart(product, quantity);
+        if (res)
           notification.success({
             description: "Thêm vào giỏ hàng thành công",
             duration: 3,
           });
-        }
       } catch (error) {
         notification.warning({
           description: "Bạn cần phải đăng nhập",
@@ -206,10 +200,10 @@ export default defineComponent({
   text-align: start;
 }
 
-@media (max-width:576px) {
-	.product .product-preview{
-			display:none !important;
-	}
+@media (max-width: 576px) {
+  .product .product-preview {
+    display: none !important;
+  }
 }
 
 .product:hover .product-preview {

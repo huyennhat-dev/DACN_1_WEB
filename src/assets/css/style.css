@@ -152,3 +152,16 @@
   .ant-notification-notice {
       border-radius: 10px;
   }
+  
+  .text-overflow-2-lines,
+  .text-overflow-3-lines {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+  }
+  
+  .text-overflow-2-lines {
+      -webkit-line-clamp: 2;
+  }
