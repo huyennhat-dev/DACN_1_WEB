@@ -58,7 +58,7 @@ export default defineComponent({
   mounted() {
     setInterval(() => {
       this.scrollNext();
-    }, 7000);
+    }, 2000);
   },
   methods: {
     fomated(price) {

@@ -34,7 +34,7 @@
         <div class="preview-title">{{ product.name }}</div>
       </router-link>
       <div class="preview-author">Tác giả: {{ product.author }}</div>
-      <div class="preview-desc" v-html="product.desciption"></div>
+      <div class="preview-desc" v-html="product.description"></div>
       <div class="d-flex justify-content-start align-items-center">
         <div class="preview-price text-primary">
           {{ fomated(product.price - product.price * product.sale) }}

@@ -228,12 +228,12 @@
             <div class="col-12 mb-1">
               <ckeditor
                 :editor="editor"
-                v-model="product.desciption"
+                v-model="product.description"
                 :config="editorConfig"
               />
               <div class="w-100"></div>
-              <small v-if="errors.desciption" class="text-danger">
-                {{ errors.desciption }}
+              <small v-if="errors.description" class="text-danger">
+                {{ errors.description }}
               </small>
             </div>
           </div>
@@ -334,7 +334,7 @@ export default defineComponent({
         price: "",
         sale: "",
         quantity: "",
-        desciption: "",
+        description: "",
         categories: null,
         status: null,
       },
@@ -346,7 +346,7 @@ export default defineComponent({
         author: "",
         price: "",
         quantity: "",
-        desciption: "",
+        description: "",
         categories: "",
         status: "",
       },
@@ -414,10 +414,10 @@ export default defineComponent({
       }
 
       if (
-        this.product.desciption.length < 6 ||
-        this.product.desciption.length > 5000
+        this.product.description.length < 6 ||
+        this.product.description.length > 5000
       ) {
-        this.errors.desciption = "Độ dài mô tả không hợp lệ!";
+        this.errors.description = "Độ dài mô tả không hợp lệ!";
         inValid = false;
       }
 
@@ -467,7 +467,7 @@ export default defineComponent({
       this.product.price = "";
       this.product.quantity = "";
       this.product.status = null;
-      this.product.desciption = "";
+      this.product.description = "";
     },
     toggleShow() {
       this.show = !this.show;
