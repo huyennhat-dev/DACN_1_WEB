@@ -54,7 +54,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-12 col-sm-8">
+                <div class="col-12 col-sm-8 px-4">
                   <div class="product-author col-12 text-black">
                     <span class="fs-small text-black">Tác giả : </span>
                     <span class="text-primary ms-2"> {{ product.author }}</span>
