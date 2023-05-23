@@ -6,7 +6,7 @@
           <div class="img-wrapper w-100 shadow-full brr-5">
             <img
               id="img-original"
-              class="w-100 brr-5"
+              class="w-100 brr-5 h-100"
               :src="activePhoto ? activePhoto : defaultPhoto"
               :alt="name"
             />
@@ -112,12 +112,17 @@
               </a-button>
               <a-input
                 v-model:value="amount"
-                style="width: 60px"
-                class="text-center mx-2 text-primary"
+                style="width: 60px; cursor: default"
+                class="text-center mx-2 text-primary bg-white"
                 type="number"
+                disabled
                 min="1"
+                :max="quantity"
               />
-              <a-button class="rounded-circle text-black" @click="amount++">
+              <a-button
+                class="rounded-circle text-black"
+                @click="amount < quantity ? amount++ : null"
+              >
                 <template #icon> <plus-outlined /></template>
               </a-button>
             </div>
@@ -128,6 +133,7 @@
                 size="large"
                 class="brr-5 me-sm-3 mb-3 mb-sm-0 ps-3 pe-4"
                 danger
+                @click="addToCart"
               >
                 <template #icon>
                   <shopping-cart-outlined />
@@ -199,6 +205,8 @@ import {
   GiftOutlined,
 } from "@ant-design/icons-vue";
 import AnimatedPlaceholder from "../../../../components/skeleton_loader/AnimatedPlaceholder.vue";
+import { notification } from "ant-design-vue";
+import { useCartStore } from "../../../../store/cart";
 
 export default defineComponent({
   components: {
@@ -229,6 +237,7 @@ export default defineComponent({
   },
   props: {
     defaultPhoto: String,
+    _id: String,
     name: String,
     author: String,
     photos: Array,
@@ -241,6 +250,33 @@ export default defineComponent({
     tagSlug: String,
   },
   methods: {
+    async addToCart() {
+      try {
+        const product = {
+          _id: this._id,
+          name: this.name,
+          photos: this.photos,
+          author: this.author,
+          price: this.price,
+          sale: this.sale,
+          star: this.star,
+          quantity: this.quantity,
+          purchases: this.purchases,
+        };
+        const res = useCartStore().addToCart(product, this.amount);
+        if (res)
+          notification.success({
+            description: "Thêm vào giỏ hàng thành công",
+            duration: 3,
+          });
+      } catch (error) {
+        notification.warning({
+          description: "Bạn cần phải đăng nhập",
+          duration: 3,
+        });
+        console.log(error);
+      }
+    },
     fomated(price) {
       if (price) return formattedPrice(price);
     },
@@ -282,6 +318,7 @@ export default defineComponent({
   left: 30%;
   opacity: 0;
   z-index: 9999;
+  object-fit: contain;
   width: 100px;
   height: 100px;
   overflow: hidden;

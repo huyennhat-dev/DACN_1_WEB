@@ -47,6 +47,7 @@
               </div>
               <div class="d-flex align-items-center">
                 <a-button
+                  v-if="item.quantity > 1"
                   class="rounded-circle text-black"
                   style="width: 25px; height: 25px"
                   @click="decrease(item.product._id)"
@@ -55,6 +56,24 @@
                     <minus-outlined style="font-size: 10px" />
                   </template>
                 </a-button>
+                <a-popconfirm
+                  v-else
+                  title="Bạn có muốn xóa?"
+                  placement="topLeft"
+                  ok-text="Xóa"
+                  cancel-text="Hủy"
+                  @confirm="decrease(item.product._id)"
+                  class="rounded-circle"
+                >
+                  <a-button
+                    class="rounded-circle text-black"
+                    style="width: 25px; height: 25px"
+                  >
+                    <template #icon>
+                      <minus-outlined style="font-size: 10px" />
+                    </template>
+                  </a-button>
+                </a-popconfirm>
                 <a-input
                   v-model:value="item.quantity"
                   style="width: 50px; height: 25px; cursor: default !important"
@@ -105,11 +124,11 @@
               {{ formatPrice(totalPrice) }}
             </span>
           </div>
-          <a-button class="brr-5 px-5" size="large" danger>
+          <a-button class="brr-5 px-5" size="large" danger @click="checkOut">
             <template #icon>
               <shopping-outlined />
             </template>
-            <span>Thanh toán</span>
+            <span>Đặt hàng</span>
           </a-button>
         </div>
       </div>
@@ -180,7 +199,10 @@ export default defineComponent({
           duration: 3,
         });
     },
-
+    checkOut(e) {
+      this.$router.push({ name: "checkout" });
+      this.$emit("handleClickToggleCartDrawer");
+    },
     formatPrice(price) {
       return formattedPrice(price);
     },

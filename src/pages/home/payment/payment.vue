@@ -62,6 +62,7 @@
 <script>
 import { defineComponent } from "vue";
 import { BASE_URL } from "../../../configs";
+import { useAuthStore } from "../../../store/auth";
 export default defineComponent({
   setup() {
     const filterOption = (input, option) => {
@@ -76,7 +77,7 @@ export default defineComponent({
       data: {
         amount: "",
         bankCode: null,
-        language:"vn"
+        language: "vn",
       },
       bankCodes: [
         {
@@ -100,8 +101,16 @@ export default defineComponent({
   },
   methods: {
     async getVNPUrl() {
-      const res = await axios.post(`${BASE_URL}/payment/create-url`, this.data);
-      console.log(res)
+      const res = await axios.post(
+        `${BASE_URL}/home/order/create-url`,
+        this.data,
+        {
+          headers: {
+            "x-auth-token": useAuthStore().getToken,
+          },
+        }
+      );
+      console.log(res);
       if (res.status == 200) window.location.href = res.data.vnpUrl;
     },
   },

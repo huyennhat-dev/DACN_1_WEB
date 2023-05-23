@@ -3,9 +3,15 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-12 col-sm-9 detail-body">
+          <div
+            class="col-12 detail-body"
+            :style="{
+              height: `${screenHeight - 85}px`,
+            }"
+          >
             <div class="col-12 py-4">
               <the-product-detail
+                :_id="product.id"
                 :defaultPhoto="defaultPhoto"
                 :photos="product.photos"
                 :name="product.name"
@@ -25,9 +31,9 @@
               <the-product-evaluate />
             </div>
           </div>
-          <div class="col-12 col-sm-3 m-0">
+          <!-- <div class="col-12 col-sm-3 m-0">
             <the-same-author />
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -60,8 +66,11 @@ export default defineComponent({
   },
   data() {
     return {
+      screenHeight: 0,
+
       defaultPhoto: "",
       product: {
+        id: "",
         name: "",
         photos: [],
         author: "",
@@ -78,6 +87,8 @@ export default defineComponent({
 
   created() {
     this.getDetailData();
+    this.screenHeight = window.innerHeight;
+    console.log(this.screenHeight);
   },
   methods: {
     async getDetailData() {
@@ -88,6 +99,7 @@ export default defineComponent({
 
         if (res.status == 200) {
           this.product.photos = res.data.product.photos;
+          this.product.id = res.data.product._id;
           this.product.name = res.data.product.name;
           this.product.author = res.data.product.author;
           this.product.price = res.data.product.price;
@@ -113,7 +125,6 @@ export default defineComponent({
 }
 
 .main.detail .detail-body {
-  height: calc(100vh - var(--header-height));
   overflow-y: scroll;
 }
 

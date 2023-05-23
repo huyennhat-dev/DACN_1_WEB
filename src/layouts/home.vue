@@ -33,7 +33,7 @@
           <span class="fs-6 text-black fw-medium"> đơn hàng </span>
         </div>
       </template>
-      <the-cart-drawer />
+      <the-cart-drawer v-on:handleClickToggleCartDrawer="handleOpenCart" />
     </a-drawer>
     <a-drawer
       v-model:visible="isToggleMenuDrawer"
@@ -48,8 +48,6 @@
 
 <script>
 import { defineComponent, ref, watch } from "vue";
-import { BASE_URL } from "../configs";
-import { message } from "ant-design-vue";
 
 import TheHeader from "../components/home/TheHeader.vue";
 import TheLoginForm from "../pages/home/auth/login.vue";

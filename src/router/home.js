@@ -14,14 +14,15 @@ const home = [
         component: () => import("../pages/home/detail/index.vue"),
       },
       {
-        path: "payment",
-        name: "payment",
-        component: () => import("../pages/home/payment/payment.vue"),
+        path: "checkout",
+        name: "checkout",
+        component: () => import("../pages/home/checkout/index.vue"),
       },
+ 
       {
-        path: "payment/success",
-        name: "payment-success",
-        component: () => import("../pages/home/payment/success.vue"),
+        path: "checkout/success",
+        name: "checkout-success",
+        component: () => import("../pages/home/checkout/success.vue"),
       },
     ],
   },

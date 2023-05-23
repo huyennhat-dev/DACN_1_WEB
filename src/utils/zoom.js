@@ -16,7 +16,10 @@ export const imgZoom = (imgId, rsId, imgSrc) => {
 
   function initializeZoom() {
     rs.style.backgroundImage = `url('${imgSrc}')`;
-    rs.style.backgroundSize = `300px 300px`;
+    rs.style.backgroundSize = `${img.width * cx}px ${img.width * cy}px`;
+    rs.style.backgroundRepeat = "no-repeat";
+
+
 
     lens.addEventListener("mousemove", moveLens);
     img.addEventListener("mousemove", moveLens);

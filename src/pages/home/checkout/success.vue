@@ -11,3 +11,21 @@
     </template>
   </a-result>
 </template>
+
+<script>
+import { defineComponent } from "vue";
+export default defineComponent({
+  created() {
+    this.createOrder();
+  },
+  methods: {
+    async createOrder() {
+     
+      try {
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+});
+</script>
