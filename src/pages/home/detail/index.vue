@@ -120,13 +120,7 @@ export default defineComponent({
 </script>
 
 <style>
-.main.detail {
-  height: calc(100vh - var(--header-height));
-}
 
-.main.detail .detail-body {
-  overflow-y: scroll;
-}
 
 .main.detail .detail-body::-webkit-scrollbar {
   width: 0;

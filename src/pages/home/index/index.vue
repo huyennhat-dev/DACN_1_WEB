@@ -38,12 +38,5 @@ export default defineComponent({
 </script>
 
 <style>
-.main .main-right {
-  height: calc(100vh - var(--header-height));
-  overflow-y: scroll;
-}
 
-.main .main-right::-webkit-scrollbar {
-  width: 0;
-}
 </style>

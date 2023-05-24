@@ -41,6 +41,7 @@ import {
   Modal,
   Form,
   Carousel,
+  Tabs,
   Empty,
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
@@ -80,6 +81,7 @@ app.use(Image);
 app.use(Tooltip);
 app.use(Rate);
 app.use(Result);
+app.use(Tabs);
 app.use(Select);
 app.use(Form);
 app.use(Affix);

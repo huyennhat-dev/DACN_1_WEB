@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="main container overflow-y-scroll"
-    style="height: calc(100vh - var(--header-height))"
-  >
+  <div class="main container">
     <div class="row">
       <div class="col-12 py-3 py-sm-4 w-100">
         <div class="row w-100 p-0 p-sm-4 m-0 px-0 px-sm-5">
@@ -453,6 +450,7 @@ export default defineComponent({
         if (this.validate()) {
           switch (this.order.paymentMethods) {
             case "COD":
+              this.codMethod();
               break;
             case "VNP":
               this.vnpayMethod();
@@ -483,20 +481,18 @@ export default defineComponent({
             totalPrice: this.totalPrice,
             paymentMethod: this.order.paymentMethods,
           },
-          {
-            headers: {
-              "x-auth-token": useAuthStore().getToken,
-            },
-          }
+          { headers: { "x-auth-token": useAuthStore().getToken } }
         );
-        console.log(res);
         if (res.status == 200) window.location.href = res.data.vnpUrl;
       } catch (error) {
         console.log(error);
       }
     },
     async codMethod() {
-      console.log("cod method");
+      notification.error({
+        description: "Hiẹn tại shop không hỗ trợ phương thức thanh toán này!",
+        duration: 3,
+      });
     },
   },
 });

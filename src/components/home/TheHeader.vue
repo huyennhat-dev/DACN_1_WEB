@@ -73,7 +73,7 @@
                         <span>Tài khoản của tôi</span>
                       </li>
                     </router-link>
-                    <router-link :to="{ name: 'index' }" class="w-100">
+                    <router-link :to="{ name: 'order' }" class="w-100">
                       <li class="account-item p-2 w-100">
                         <deployment-unit-outlined class="me-2 fw-bolder" />
                         <span>Xem đơn hàng</span>
