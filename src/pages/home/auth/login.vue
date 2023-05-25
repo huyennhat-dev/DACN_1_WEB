@@ -75,15 +75,15 @@
 
         <div class="row justify-content-center mt-3">
           <div class="col-10">
-            <!-- <a-button
+            <a-button
               type="primary"
               @click="signInWithGoogle"
               class="w-100 brr-5"
             >
               <google-outlined />
               Đăng nhập bằng Google
-            </a-button> -->
-            <GoogleLogin :callback="callback" prompt auto-login />
+            </a-button>
+            <!-- <GoogleLogin :callback="callback" prompt auto-login /> -->
           </div>
         </div>
 
@@ -114,7 +114,7 @@ import {
   CloseOutlined,
 } from "@ant-design/icons-vue";
 import axios from "axios";
-import { BASE_URL } from "../../../configs";
+import { BASE_URL, CLIENT_ID } from "../../../configs";
 import { useAuthStore } from "../../../store/auth";
 import { useCartStore } from "../../../store/cart";
 export default defineComponent({
@@ -185,14 +185,14 @@ export default defineComponent({
     },
     signInWithGoogle() {
       google.accounts.id.initialize({
-        client_id: "YOUR_CLIENT_ID",
+        client_id: CLIENT_ID,
         callback: this.handleGoogleSignIn,
       });
       google.accounts.id.prompt();
     },
     handleGoogleSignIn(response) {
-      // Xử lý phản hồi khi người dùng đăng nhập thành công
-      const credential = response.credential;
+      console.log("ok");
+      // const credential = response.credential;
       // Gửi credential cho server để xác thực và tạo phiên đăng nhập
       // ...
     },

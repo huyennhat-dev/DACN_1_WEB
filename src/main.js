@@ -74,7 +74,7 @@ const app = createApp(App);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(router);
 app.use(pinia);
-app.use(vue3GoogleLogin, { clientId: "938114731912-p7dtjb2lh1vcicihnkdtrmqq84qjt8vc.apps.googleusercontent.com" });
+app.use(vue3GoogleLogin, { clientId: CLIENT_ID });
 app.use(Menu);
 app.use(Button);
 app.use(Layout);
