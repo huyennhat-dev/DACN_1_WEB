@@ -54,7 +54,7 @@ export default defineComponent({
             $(".owl-carousel").owlCarousel({
               loop: true,
               autoplay: true,
-              autoplayTimeout: 7000,
+              autoplayTimeout: 10000,
               margin: 10,
               responsive: {
                 0: {

@@ -1,6 +1,9 @@
 <template>
   <div v-if="product" class="product">
-    <router-link :to="{ name: 'detail', params: { id: product._id } }">
+    <router-link
+      :to="{ name: 'detail', params: { id: product._id } }"
+      style="cursor: pointer"
+    >
       <div class="product-body">
         <div class="product-image">
           <img :src="product.photos[0]" alt="" />
@@ -61,7 +64,7 @@
       </a-button> -->
     </div>
   </div>
-  <a-skeleton-avatar v-else/>
+  <a-skeleton-avatar v-else />
 </template>
 
 <script>
@@ -184,17 +187,20 @@ export default defineComponent({
   border-bottom: 15px solid transparent;
 }
 .product .product-preview {
-  display: none;
   position: absolute;
   height: auto;
   width: 200px;
-  border-radius: 10px;
-  background-color: #fff;
-  left: 60%;
-  top: 10%;
+  left: 40%;
+  top: 5%;
+  opacity: 0;
   z-index: 999;
   padding: 15px;
   text-align: start;
+  border-radius: 10px;
+  pointer-events: none;
+  transform: translateX(0);
+  background-color: #fff;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
 @media (max-width: 576px) {
@@ -204,7 +210,10 @@ export default defineComponent({
 }
 
 .product:hover .product-preview {
-  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(10px);
+  transition: opacity 0.3s, transform 0.3s;
 }
 
 .product .product-preview .preview-title {
