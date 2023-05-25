@@ -83,7 +83,7 @@
               <google-outlined />
               Đăng nhập bằng Google
             </a-button>
-            <!-- <GoogleLogin :callback="callback" prompt auto-login /> -->
+            <GoogleLogin :callback="callback" prompt auto-login />
           </div>
         </div>
 
