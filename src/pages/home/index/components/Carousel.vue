@@ -50,7 +50,17 @@ export default defineComponent({
 });
 </script>
 <style>
+.banner {
+  height: 350px;
+}
+.banner .banner-img {
+  height: 350px;
+  object-fit: cover;
+}
 @media (max-width: 576px) {
+  .banner {
+    height: auto;
+  }
   .banner .banner-img {
     height: 200px !important;
     object-fit: cover;
@@ -66,7 +76,6 @@ export default defineComponent({
   overflow: hidden;
   border-radius: 10px;
 }
-
 
 .ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
   width: 25px;

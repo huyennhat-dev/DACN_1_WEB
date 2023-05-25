@@ -14,21 +14,20 @@
           </div>
         </div>
         <div class="px-2 mt-3">
-          <Carousel v-bind="settings">
-            <Slide
-              v-for="photo in photos"
-              :key="photo"
-              class="px-1 review-image_item brr-2"
+          <div class="owl-carousel">
+            <div
+              v-for="(photo, index) of photos"
+              :key="index"
+              class="px-1 review-image_item brr-2 "
+              style="padding: 1px;"
               @click="setActivePhoto(photo)"
               :class="{
                 active: photo == (activePhoto ? activePhoto : defaultPhoto),
               }"
             >
-              <div>
-                <img :src="photo" class="brr-2 w-100" :alt="name" />
-              </div>
-            </Slide>
-          </Carousel>
+              <img :src="photo" class="brr-2" :alt="name" />
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -195,8 +194,8 @@
 import { defineComponent } from "vue";
 import { imgZoom } from "../../../../utils/zoom";
 import { formattedPrice } from "../../../../utils/formatPrice";
-import { Carousel, Navigation, Slide } from "vue3-carousel";
-import "vue3-carousel/dist/carousel.css";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel";
 import {
   PlusOutlined,
   MinusOutlined,
@@ -210,9 +209,6 @@ import { useCartStore } from "../../../../store/cart";
 
 export default defineComponent({
   components: {
-    Carousel,
-    Slide,
-    Navigation,
     AnimatedPlaceholder,
     PlusOutlined,
     ShoppingOutlined,
@@ -232,7 +228,11 @@ export default defineComponent({
   },
   watch: {
     defaultPhoto(nVal, oVal) {
-      if (nVal) imgZoom("img-original", "img-zoom", nVal);
+      imgZoom("img-original", "img-zoom", nVal);
+      this.setupCarousel();
+    },
+    activePhoto(nVal, oVal) {
+      imgZoom("img-original", "img-zoom", nVal);
     },
   },
   props: {
@@ -249,7 +249,26 @@ export default defineComponent({
     tag: String,
     tagSlug: String,
   },
+  mounted() {},
   methods: {
+    setupCarousel() {
+      this.$nextTick(() => {
+        $(".owl-carousel").owlCarousel({
+          margin: 10,
+          responsive: {
+            0: {
+              items: 4,
+            },
+            600: {
+              items: 5,
+            },
+            1000: {
+              items: 6,
+            },
+          },
+        });
+      });
+    },
     async addToCart() {
       try {
         const product = {
@@ -263,17 +282,18 @@ export default defineComponent({
           quantity: this.quantity,
           purchases: this.purchases,
         };
-        const res = useCartStore().addToCart(product, this.amount);
+        const res = await useCartStore().addToCart(product, this.amount);
         if (res)
           notification.success({
             description: "Thêm vào giỏ hàng thành công",
             duration: 3,
           });
+        else
+          notification.warning({
+            description: "Bạn cần phải đăng nhập",
+            duration: 3,
+          });
       } catch (error) {
-        notification.warning({
-          description: "Bạn cần phải đăng nhập",
-          duration: 3,
-        });
         console.log(error);
       }
     },

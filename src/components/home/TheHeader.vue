@@ -216,10 +216,7 @@ export default defineComponent({
   height: 50px;
 }
 
-.header .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
-  border-color: #d9d9d9;
-  box-shadow: none;
-}
+
 .header .ant-input-affix-wrapper:focus,
 .ant-input-affix-wrapper-focused {
   border-color: #d9d9d9;

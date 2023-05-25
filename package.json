@@ -26,8 +26,7 @@
     "vue-fullscreen": "^3.1.1",
     "vue-image-crop-upload": "^3.0.3",
     "vue-jwt-decode": "^0.1.0",
-    "vue-router": "^4.1.6",
-    "vue3-carousel": "^0.3.1"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",

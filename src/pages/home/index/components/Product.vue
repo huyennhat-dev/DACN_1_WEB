@@ -61,7 +61,7 @@
       </a-button> -->
     </div>
   </div>
-  <animated-placeholder v-else height="280px" width="170px" />
+  <a-skeleton-avatar v-else/>
 </template>
 
 <script>
@@ -75,15 +75,11 @@ import {
 } from "@ant-design/icons-vue";
 import { notification } from "ant-design-vue";
 import { useCartStore } from "../../../../store/cart";
-import { BASE_URL } from "../../../../configs";
-import { useAuthStore } from "../../../../store/auth";
-import AnimatedPlaceholder from "../../../../components/skeleton_loader/AnimatedPlaceholder.vue";
 export default defineComponent({
   components: {
     StarFilled,
     HeartOutlined,
     ShoppingOutlined,
-    AnimatedPlaceholder,
   },
 
   props: {
@@ -98,17 +94,18 @@ export default defineComponent({
       try {
         if (!product) return;
         delete product.description;
-        const res = useCartStore().addToCart(product, quantity);
+        const res = await useCartStore().addToCart(product, quantity);
         if (res)
           notification.success({
             description: "Thêm vào giỏ hàng thành công",
             duration: 3,
           });
+        else
+          notification.warning({
+            description: "Bạn cần phải đăng nhập",
+            duration: 3,
+          });
       } catch (error) {
-        notification.warning({
-          description: "Bạn cần phải đăng nhập",
-          duration: 3,
-        });
         console.log(error);
       }
     },

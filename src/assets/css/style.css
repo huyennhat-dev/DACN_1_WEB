@@ -165,3 +165,7 @@
   .text-overflow-2-lines {
       -webkit-line-clamp: 2;
   }
+  
+  .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+      border-color: rgba(255, 77, 80, 0.2);
+  }

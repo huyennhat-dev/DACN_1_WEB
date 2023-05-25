@@ -1,7 +1,7 @@
 <template>
-  <div class="row mt-3">
+  <div class="mt-3">
     <div class="list-products col-12">
-      <div class="list-products-body p-1 p-sm-3">
+      <div class="list-products-body">
         <div
           class="w-100 list-products-heading d-flex mb-2 justify-content-between p-2"
         >
@@ -9,18 +9,12 @@
           <div class="btn-more">Xem thêm <right-outlined /></div>
         </div>
         <div class="list-products-content">
-          <Carousel
-            v-if="products.length > 0"
-            v-bind="settings"
-            :breakpoints="breakpoints"
-          >
-            <Slide v-for="product in products" :key="product._id" class="px-2">
-              <div class="carousel__item">
-                <the-product :product="product" />
-              </div>
-            </Slide>
-          </Carousel>
-      
+          <div class="owl-carousel">
+            <div v-for="product in products" :key="product._id">
+              <!-- Your carousel item content -->
+              <the-product :product="product" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -29,58 +23,53 @@
 
 <script>
 import { defineComponent } from "vue";
-import { Carousel, Navigation, Slide } from "vue3-carousel";
-import "vue3-carousel/dist/carousel.css";
 import { RightOutlined } from "@ant-design/icons-vue";
 import TheProduct from "./Product.vue";
 import { BASE_URL } from "../../../../configs";
-import AnimatedPlaceholder from "../../../../components/skeleton_loader/AnimatedPlaceholder.vue";
-
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel";
 export default defineComponent({
   components: {
     TheProduct,
     RightOutlined,
-    Carousel,
-    Slide,
-    Navigation,
-    AnimatedPlaceholder,
   },
 
   data() {
     return {
       products: [],
-      settings: {
-        itemsToShow: 1,
-        snapAlign: "start",
-        autoplay: 7000,
-        // wrapAround: true,
-      },
-
-      breakpoints: {
-        390: {
-          itemsToShow: 2,
-          snapAlign: "start",
-        },
-        700: {
-          itemsToShow: 3,
-          snapAlign: "start",
-        },
-        1024: {
-          itemsToShow: 5,
-          snapAlign: "start",
-        },
-      },
     };
   },
-
-  created() {
+  watch: {},
+  mounted() {
     this.getRecommentProduct();
   },
+  created() {},
   methods: {
     async getRecommentProduct() {
       try {
         const res = await axios.get(`${BASE_URL}/home/index/recommend-product`);
-        if (res.status == 200) this.products = res.data.products;
+        if (res.status == 200) {
+          this.products = res.data.products;
+          this.$nextTick(() => {
+            $(".owl-carousel").owlCarousel({
+              loop: true,
+              autoplay: true,
+              autoplayTimeout: 7000,
+              margin: 10,
+              responsive: {
+                0: {
+                  items: 2,
+                },
+                600: {
+                  items: 4,
+                },
+                1000: {
+                  items: 6,
+                },
+              },
+            });
+          });
+        }
       } catch (error) {
         console.log(error);
       }
@@ -128,21 +117,18 @@ export default defineComponent({
   transition: all 0.2s;
 }
 
-.list-products .carousel__next,
-.list-products .carousel__prev {
-  margin: 0;
-}
-
-.list-products .carousel__slide {
-  transform: none;
-}
-.list-products .carousel__viewport {
+.list-products .owl-carousel .owl-stage-outer {
   overflow-x: clip;
   overflow-y: inherit;
 }
 
-@media (max-width: 576px) {
-  .list-products-heading {
-  }
+.list-products .owl-carousel .owl-wrapper,
+.owl-carousel .owl-item {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
 }
 </style>

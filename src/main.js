@@ -39,6 +39,7 @@ import {
   Result,
   Affix,
   Modal,
+  Skeleton,
   Form,
   Carousel,
   Tabs,
@@ -57,6 +58,10 @@ library.add(fas, fab, far);
 /* import app style */
 import "./assets/css/style.css";
 
+import $ from "jquery";
+window.jQuery = $;
+window.$ = $;
+
 /*import store */
 import { useAuthStore } from "./store/auth";
 import { useCartStore } from "./store/cart";
@@ -74,6 +79,7 @@ app.use(Modal);
 app.use(Drawer);
 app.use(Table);
 app.use(Card);
+app.use(Skeleton);
 app.use(Avatar);
 app.use(Checkbox);
 app.use(Input);

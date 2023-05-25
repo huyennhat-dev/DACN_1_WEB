@@ -1,21 +1,19 @@
 <template>
   <div class="main container" style="">
     <div class="row">
-      <div class="col-12">
+      <div class="main-right col-12 py-3">
         <div class="row">
-          <div class="d-none d-sm-block col-sm-3">
+          <div class="col-3 d-none d-sm-block">
             <the-side-bar />
           </div>
           <div class="col-12 col-sm-9">
-            <div class="row">
-              <div class="main-right col-12 py-3">
-                <the-carousel />
-                <the-list-product />
-                <!-- <the-list-new-product /> -->
-              </div>
-            </div>
+            <the-carousel />
           </div>
         </div>
+        <div class="row">
+          <the-list-product />
+        </div>
+        <!-- <the-list-new-product /> -->
       </div>
     </div>
   </div>
@@ -37,6 +35,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-
-</style>
+<style></style>

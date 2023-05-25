@@ -65,6 +65,7 @@ export const useCartStore = defineStore("cart", {
         }
       } catch (error) {
         console.error("Failed add to cart ", error);
+        return false;
       }
     },
     async delToCart(id) {
