@@ -229,6 +229,6 @@ export default defineComponent({
 
 .auth-modal .g-btn-wrapper iframe #container{
   padding: 0 !important;
-  width: 100%;
+  width: 100% !important;
 }
 </style>
