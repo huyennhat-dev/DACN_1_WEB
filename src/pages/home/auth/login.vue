@@ -75,9 +75,15 @@
 
         <div class="row justify-content-center mt-3">
           <div class="col-10">
-            <a-button type="primary" class="w-100 brr-5">
-              <google-outlined /> Đăng nhập bằng Google
-            </a-button>
+            <!-- <a-button
+              type="primary"
+              @click="signInWithGoogle"
+              class="w-100 brr-5"
+            >
+              <google-outlined />
+              Đăng nhập bằng Google
+            </a-button> -->
+            <GoogleLogin :callback="callback" prompt auto-login />
           </div>
         </div>
 
@@ -129,6 +135,10 @@ export default defineComponent({
         username: "",
         password: "",
       },
+      callback: (response) => {
+        console.log("Logged in");
+        console.log(response);
+      },
     };
   },
 
@@ -149,7 +159,10 @@ export default defineComponent({
     async login() {
       if (this.validate()) {
         try {
-          const res = await axios.post(`${BASE_URL}/home/auth/login`, this.user);
+          const res = await axios.post(
+            `${BASE_URL}/home/auth/login`,
+            this.user
+          );
           if (res.status == 200) {
             useAuthStore().setToken(res.data.token);
             useAuthStore().setUser(res.data.token);
@@ -169,6 +182,19 @@ export default defineComponent({
           console.log(error);
         }
       }
+    },
+    signInWithGoogle() {
+      google.accounts.id.initialize({
+        client_id: "YOUR_CLIENT_ID",
+        callback: this.handleGoogleSignIn,
+      });
+      google.accounts.id.prompt();
+    },
+    handleGoogleSignIn(response) {
+      // Xử lý phản hồi khi người dùng đăng nhập thành công
+      const credential = response.credential;
+      // Gửi credential cho server để xác thực và tạo phiên đăng nhập
+      // ...
     },
   },
 });

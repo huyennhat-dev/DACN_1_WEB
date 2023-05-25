@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
+import vue3GoogleLogin from "vue3-google-login";
+
 /* import the pinia */
 import { createPinia } from "pinia";
 const pinia = createPinia();
@@ -65,13 +67,14 @@ window.$ = $;
 /*import store */
 import { useAuthStore } from "./store/auth";
 import { useCartStore } from "./store/cart";
+import { CLIENT_ID } from "./configs";
 
 const app = createApp(App);
 
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(router);
 app.use(pinia);
-
+app.use(vue3GoogleLogin, { clientId: "938114731912-p7dtjb2lh1vcicihnkdtrmqq84qjt8vc.apps.googleusercontent.com" });
 app.use(Menu);
 app.use(Button);
 app.use(Layout);
