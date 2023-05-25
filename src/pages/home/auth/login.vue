@@ -221,4 +221,14 @@ export default defineComponent({
   border-radius: 5px;
   border-color: var(--bs-primary);
 }
+.auth-modal .g-btn-wrapper iframe{
+  margin: 0 !important;
+  width: 100% !important;
+
+}
+
+.auth-modal .g-btn-wrapper iframe #container{
+  padding: 0 !important;
+  width: 100%;
+}
 </style>
