@@ -54,6 +54,8 @@
               htmlType="submit"
               type="primary"
               danger
+              ghost
+              size="large"
               class="w-100 brr-5"
             >
               Đăng nhập
@@ -61,7 +63,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-2 col-sm-3 ps-4">
             <hr class="d-none d-sm-block" />
           </div>
@@ -71,19 +73,16 @@
           <div class="col-2 col-sm-3 pe-4">
             <hr class="d-none d-sm-block" />
           </div>
-        </div>
+        </div> -->
 
         <div class="row justify-content-center mt-3">
           <div class="col-10">
-            <a-button
-              type="primary"
-              @click="signInWithGoogle"
+            <GoogleLogin
               class="w-100 brr-5"
-            >
-              <google-outlined />
-              Đăng nhập bằng Google
-            </a-button>
-            <GoogleLogin :callback="callback" prompt auto-login />
+              :callback="callback"
+              prompt
+              auto-login
+            />
           </div>
         </div>
 
@@ -183,19 +182,6 @@ export default defineComponent({
         }
       }
     },
-    signInWithGoogle() {
-      google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-        callback: this.handleGoogleSignIn,
-      });
-      google.accounts.id.prompt();
-    },
-    handleGoogleSignIn(response) {
-      console.log("ok");
-      // const credential = response.credential;
-      // Gửi credential cho server để xác thực và tạo phiên đăng nhập
-      // ...
-    },
   },
 });
 </script>
@@ -230,5 +216,9 @@ export default defineComponent({
   .auth-modal .modal-left {
     padding: 10px;
   }
+}
+.auth-modal .nsm7Bb-HzV7m-LgbsSe {
+  border-radius: 5px;
+  border-color: var(--bs-primary);
 }
 </style>
