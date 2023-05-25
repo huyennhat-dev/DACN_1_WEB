@@ -9,7 +9,7 @@
       font-weight: 400;
       background-color: #f5f5fa;
       background-image: url('../images/bg.png');
-      background-size: auto 100%;
+      background-size: 100% auto;
   }
   
   *::-webkit-scrollbar {
