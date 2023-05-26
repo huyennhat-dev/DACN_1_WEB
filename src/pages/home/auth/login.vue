@@ -9,21 +9,21 @@
         <br />
         <div class="row">
           <div class="col-12">
-            <label for="">Tên đăng nhập</label>
+            <label for="">Email</label>
           </div>
           <div class="col-12">
             <a-input
               class="brr-5"
-              v-model:value="user.username"
-              placeholder="Nhập tên đăng nhập"
+              v-model:value="user.email"
+              placeholder="Nhập email"
             >
               <template #prefix>
                 <user-outlined />
               </template>
             </a-input>
             <div class="w-100"></div>
-            <small v-if="errors.username" class="text-danger">
-              {{ errors.username }}
+            <small v-if="errors.email" class="text-danger">
+              {{ errors.email }}
             </small>
           </div>
         </div>
@@ -128,11 +128,11 @@ export default defineComponent({
   data() {
     return {
       user: {
-        username: "",
+        email: "",
         password: "",
       },
       errors: {
-        username: "",
+        email: "",
         password: "",
       },
     };
@@ -141,8 +141,8 @@ export default defineComponent({
   methods: {
     validate() {
       let inValid = true;
-      if (!this.user.username) {
-        this.errors.username = "Tên đăng nhập không được bỏ trống";
+      if (!this.user.email) {
+        this.errors.email = "Email không được bỏ trống";
         inValid = false;
       }
       if (!this.user.password || this.user.password.length < 8) {
@@ -166,10 +166,10 @@ export default defineComponent({
 
             this.$emit("handleClickToggleLoginModal");
 
-            this.user.username = "";
+            this.user.email = "";
             this.user.password = "";
-            this.errors.username = "";
-            this.errors.username = "";
+            this.errors.email = "";
+            this.errors.password = "";
             notification.success({
               description: "Đăng nhập thành công!",
             });
