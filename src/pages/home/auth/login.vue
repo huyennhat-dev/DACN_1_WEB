@@ -105,6 +105,7 @@
 <script>
 import { defineComponent } from "vue";
 import { notification } from "ant-design-vue";
+import { decodeCredential } from "vue3-google-login";
 
 import {
   UserOutlined,
