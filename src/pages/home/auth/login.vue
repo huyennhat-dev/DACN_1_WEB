@@ -180,10 +180,23 @@ export default defineComponent({
       }
     },
     async loginWithGoogle(response) {
-      console.log("Logged in");
-      console.log(response);
-      let x = decodeCredential(response.credential);
-      console.log(x);
+      const user = decodeCredential(response.credential);
+      const rs = await axios.get(`${BASE_URL}/home/auth/login-google`, {
+        email: user.email,
+        name: `${user.given_name} ${user.family_name}`,
+        photo: user.picture,
+      });
+      if (rs.status == 200) {
+        useAuthStore().setToken(rs.data.token);
+        useAuthStore().setUser(rs.data.token);
+        useCartStore().fetchCartData();
+
+        this.$emit("handleClickToggleLoginModal");
+
+        notification.success({
+          description: "Đăng nhập thành công!",
+        });
+      }
     },
   },
 });
