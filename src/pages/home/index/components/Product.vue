@@ -190,17 +190,18 @@ export default defineComponent({
   position: absolute;
   height: auto;
   width: 200px;
-  left: 40%;
+  left: 0;
   top: 5%;
   opacity: 0;
   z-index: 999;
+  scale: 0.5;
   padding: 15px;
   text-align: start;
   border-radius: 10px;
   pointer-events: none;
   transform: translateX(0);
   background-color: #fff;
-  transition: opacity 0.3s, transform 0.3s;
+  transition: all 0.3s;
 }
 
 @media (max-width: 576px) {
@@ -210,10 +211,11 @@ export default defineComponent({
 }
 
 .product:hover .product-preview {
+  scale: 1;
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(10px);
-  transition: opacity 0.3s, transform 0.3s;
+  transform: translateX(50%);
+  transition: all 0.3s;
 }
 
 .product .product-preview .preview-title {
