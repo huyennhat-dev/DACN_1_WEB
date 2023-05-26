@@ -385,7 +385,7 @@ export default defineComponent({
     async getUserEdit() {
       try {
         const res = await axios.get(
-          `${BASE_URL}/user/edit/${this.route.params.id}`,
+          `${BASE_URL}/admin/user/edit/${this.route.params.id}`,
           { headers: { "x-auth-token": useAdminAuthStore().getToken } }
         );
         if (res.status == 200) {
@@ -477,7 +477,7 @@ export default defineComponent({
         try {
           message.loading({ content: "Đang tải...", key, duration: 100000 });
           const res = await axios.put(
-            `${BASE_URL}/user/edit/${this.route.params.id}`,
+            `${BASE_URL}/admin/user/edit/${this.route.params.id}`,
             this.user,
             { headers: { "x-auth-token": useAdminAuthStore().getToken } }
           );
