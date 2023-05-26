@@ -79,7 +79,7 @@
           <div class="col-10">
             <GoogleLogin
               class="w-100 brr-5"
-              :callback="callback"
+              :callback="loginWithGoogle"
               prompt
               auto-login
             />
@@ -135,10 +135,6 @@ export default defineComponent({
         username: "",
         password: "",
       },
-      callback: (response) => {
-        console.log("Logged in");
-        console.log(response);
-      },
     };
   },
 
@@ -182,6 +178,12 @@ export default defineComponent({
           console.log(error);
         }
       }
+    },
+    async loginWithGoogle(response) {
+      console.log("Logged in");
+      console.log(response);
+      let x = decodeCredential(response.credential);
+      console.log(x);
     },
   },
 });
