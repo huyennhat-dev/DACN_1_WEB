@@ -181,7 +181,7 @@ export default defineComponent({
     },
     async loginWithGoogle(response) {
       const user = decodeCredential(response.credential);
-      const rs = await axios.get(`${BASE_URL}/home/auth/login-google`, {
+      const rs = await axios.post(`${BASE_URL}/home/auth/login-google`, {
         email: user.email,
         name: `${user.given_name} ${user.family_name}`,
         photo: user.picture,
