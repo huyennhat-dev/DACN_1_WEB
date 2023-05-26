@@ -1,7 +1,11 @@
 <template>
   <fullscreen>
     <a-layout style="min-height: 100vh" has-sider class="container-fluid p-0">
-      <side-bar v-bind:collapsed="collapsed" class="d-none d-sm-block" />
+      <side-bar
+        v-bind:collapsed="collapsed"
+        class="d-none d-sm-block"
+        :role="user.role"
+      />
       <the-header v-on:handleClickCollapsed="handleCollapsed" />
 
       <a-layout class="app-layout" :class="{ active: collapsed == true }">
@@ -22,6 +26,7 @@ import { defineComponent, ref } from "vue";
 import SideBar from "../components/admin/SideBar.vue";
 import TheHeader from "../components/admin/Header.vue";
 import TheFooter from "../components/admin/Footer.vue";
+import { useAdminAuthStore } from "../store/admin/auth";
 export default defineComponent({
   components: {
     SideBar,
@@ -36,6 +41,30 @@ export default defineComponent({
     };
 
     return { collapsed, handleCollapsed };
+  },
+  data() {
+    return {
+      user: {
+        role: "",
+      },
+    };
+  },
+  mounted() {
+    this.checkLogin();
+  },
+  methods: {
+    checkLogin() {
+      try {
+        const isLogged = useAdminAuthStore().isAuthenticated;
+        if (!isLogged) this.$router.push({ name: "admin-login" });
+        else {
+          const user = useAdminAuthStore().getUser;
+          this.user.role = user.role;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });
 </script>

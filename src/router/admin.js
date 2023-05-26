@@ -1,5 +1,10 @@
 const admin = [
   {
+    path: "/admin/login",
+    name: "admin-login",
+    component: () => import("../pages/admin/auth/login.vue"),
+  },
+  {
     path: "/admin",
     component: () => import("../layouts/admin.vue"),
     children: [
@@ -9,9 +14,14 @@ const admin = [
         component: () => import("../pages/admin/dashboard/index.vue"),
       },
       {
+        path: "admins",
+        name: "admin-list-admins",
+        component: () => import("../pages/admin/user/index.vue"),
+      },
+      {
         path: "users",
         name: "admin-list-users",
-        component: () => import("../pages/admin/user/index.vue"),
+        component: () => import("../pages/admin/user/users.vue"),
       },
       {
         path: "user/create",
@@ -72,7 +82,7 @@ const admin = [
         component: () => import("../pages/admin/product/edit.vue"),
       },
     ],
-  }
+  },
 ];
 
 export default admin;

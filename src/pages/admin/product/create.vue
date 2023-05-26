@@ -288,6 +288,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons-vue";
 import { BASE_URL } from "../../../configs/index.js";
+import { useAdminAuthStore } from "../../../store/admin/auth.js";
 const key = "createProduct";
 export default defineComponent({
   components: {
@@ -363,7 +364,9 @@ export default defineComponent({
     },
     async setupCreate() {
       try {
-        const res = await axios.get(`${BASE_URL}/admin/product/create`);
+        const res = await axios.get(`${BASE_URL}/admin/product/create`, {
+          headers: { "x-auth-token": useAdminAuthStore().getToken },
+        });
         this.status = res.data.data.status;
         this.categories = res.data.data.categories;
       } catch (error) {
@@ -440,7 +443,8 @@ export default defineComponent({
           message.loading({ content: "Đang tải...", key, duration: 100000 });
           const res = await axios.post(
             `${BASE_URL}/admin/product/create`,
-            this.product
+            this.product,
+            { headers: { "x-auth-token": useAdminAuthStore().getToken } }
           );
           if (res.status == 200) {
             setTimeout(() => {

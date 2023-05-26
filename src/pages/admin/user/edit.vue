@@ -309,6 +309,7 @@ import {
 import { message } from "ant-design-vue";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons-vue";
 import { useRoute, useRouter } from "vue-router";
+import { useAdminAuthStore } from "../../../store/admin/auth.js";
 
 const key = "updateUser";
 export default defineComponent({
@@ -384,7 +385,8 @@ export default defineComponent({
     async getUserEdit() {
       try {
         const res = await axios.get(
-          `${BASE_URL}/user/edit/${this.route.params.id}`
+          `${BASE_URL}/user/edit/${this.route.params.id}`,
+          { headers: { "x-auth-token": useAdminAuthStore().getToken } }
         );
         if (res.status == 200) {
           const data = res.data.data;
@@ -476,7 +478,8 @@ export default defineComponent({
           message.loading({ content: "Đang tải...", key, duration: 100000 });
           const res = await axios.put(
             `${BASE_URL}/user/edit/${this.route.params.id}`,
-            this.user
+            this.user,
+            { headers: { "x-auth-token": useAdminAuthStore().getToken } }
           );
           if (res.status == 200) {
             setTimeout(() => {

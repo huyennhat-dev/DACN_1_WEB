@@ -7,8 +7,18 @@
     class="app-sider px-2 position-fixed"
   >
     <div class="side_bar-logo d-flex justify-content-center align-items-center">
-      <img v-if="!collapsed" src="../../assets/images/logo.png" alt="" height="55" />
-      <img v-if="collapsed" src="../../assets/images/logo_2.png" alt="" height="55" />
+      <img
+        v-if="!collapsed"
+        src="../../assets/images/logo.png"
+        alt=""
+        height="55"
+      />
+      <img
+        v-if="collapsed"
+        src="../../assets/images/logo_2.png"
+        alt=""
+        height="55"
+      />
     </div>
     <a-menu
       v-model:selectedKeys="selectedKeys"
@@ -26,13 +36,27 @@
       <a-sub-menu key="admin-users-sub">
         <template #icon><user-outlined /> </template>
         <template #title>Tài khoản</template>
+        <a-menu-item
+          v-if="role == 'ADM'"
+          key="admin-list-admin"
+          class="rounded-1 my-0 mt-1"
+        >
+          <router-link :to="{ name: 'admin-list-admins' }">
+            <team-outlined />
+            <span>Danh sách quản trị viên</span>
+          </router-link>
+        </a-menu-item>
         <a-menu-item key="admin-list-user" class="rounded-1 my-0 mt-1">
           <router-link :to="{ name: 'admin-list-users' }">
             <team-outlined />
-            <span>Danh sách tài khoản</span>
+            <span>Danh sách khách hàng</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="admin-create-user" class="rounded-1 my-1">
+        <a-menu-item
+          v-if="role == 'ADM'"
+          key="admin-create-user"
+          class="rounded-1 my-1"
+        >
           <router-link :to="{ name: 'admin-create-user' }">
             <user-add-outlined />
             <span>Thêm tài khoản</span>
@@ -109,6 +133,7 @@ import {
   PlusOutlined,
   AppstoreOutlined,
 } from "@ant-design/icons-vue";
+import { useAdminAuthStore } from "../../store/admin/auth.js";
 
 export default defineComponent({
   components: {
@@ -124,8 +149,9 @@ export default defineComponent({
   },
   props: {
     collapsed: Boolean,
+    role: String,
   },
-  setup() { 
+  setup() {
     return {
       ...storeToRefs(useMenuStore()),
     };

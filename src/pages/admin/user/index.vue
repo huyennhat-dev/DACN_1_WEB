@@ -84,6 +84,7 @@ import {
   EyeOutlined,
   DeleteOutlined,
 } from "@ant-design/icons-vue";
+import { useAdminAuthStore } from "../../../store/admin/auth";
 export default defineComponent({
   components: {
     FormOutlined,
@@ -91,7 +92,7 @@ export default defineComponent({
     DeleteOutlined,
   },
   setup() {
-    useMenuStore().onSelectedKeys(["admin-list-user"]);
+    useMenuStore().onSelectedKeys(["admin-list-admin"]);
     useMenuStore().onOpenKeys(["admin-users-sub"]);
   },
   data() {
@@ -164,7 +165,11 @@ export default defineComponent({
   methods: {
     async getUsers() {
       try {
-        const res = await axios.get(`${BASE_URL}/user`);
+        const res = await axios.get(`${BASE_URL}/admin/user`, {
+          headers: {
+            "x-auth-token": useAdminAuthStore().getToken,
+          },
+        });
         this.users = res.data.users;
       } catch (error) {
         console.log(error);
@@ -185,7 +190,10 @@ export default defineComponent({
             }, 1000);
             return;
           }
-          const res = await axios.delete(`${BASE_URL}/user/delete/${id}`);
+          const res = await axios.delete(
+            `${BASE_URL}/admin/user/delete/${id}`,
+            { headers: { "x-auth-token": useAdminAuthStore().getToken } }
+          );
           if (res.status == 200) {
             setTimeout(() => {
               resolve(true);

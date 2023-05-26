@@ -1,8 +1,7 @@
-// store/user.js
 import jwtDecode from "jwt-decode";
 import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore("uAuth", {
+export const useAdminAuthStore = defineStore("adminAuth", {
   state: () => ({
     token: null,
     isLoggedIn: false,
@@ -24,7 +23,7 @@ export const useAuthStore = defineStore("uAuth", {
       if (token) {
         this.token = token;
         this.isLoggedIn = true;
-        localStorage.setItem("uToken", token);
+        localStorage.setItem("aToken", token);
       }
     },
     setUser(token) {

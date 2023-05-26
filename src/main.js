@@ -68,6 +68,7 @@ window.$ = $;
 import { useAuthStore } from "./store/auth";
 import { useCartStore } from "./store/cart";
 import { CLIENT_ID } from "./configs";
+import { useAdminAuthStore } from "./store/admin/auth";
 
 const app = createApp(App);
 
@@ -99,15 +100,15 @@ app.use(Empty);
 app.use(Popconfirm);
 app.use(VueFullscreen);
 
-const token = localStorage.getItem("token");
-if (token) {
+const uToken = localStorage.getItem("uToken");
+const aToken = localStorage.getItem("aToken");
+if (uToken) {
   try {
-    const tokenExpiration = jwtDecode(token).exp;
-    console.log(tokenExpiration);
+    const tokenExpiration = jwtDecode(uToken).exp;
     const currentTimestamp = Date.now();
     if (tokenExpiration && tokenExpiration > currentTimestamp) {
-      useAuthStore().setToken(token);
-      useAuthStore().setUser(token);
+      useAuthStore().setToken(uToken);
+      useAuthStore().setUser(uToken);
       useCartStore().fetchCartData();
     } else {
       useAuthStore().logout();
@@ -118,6 +119,24 @@ if (token) {
   }
 } else {
   useAuthStore().logout();
+}
+
+if (aToken) {
+  try {
+    const tokenExpiration = jwtDecode(aToken).exp;
+    const currentTimestamp = Date.now();
+    if (tokenExpiration && tokenExpiration > currentTimestamp) {
+      useAdminAuthStore().setToken(aToken);
+      useAdminAuthStore().setUser(aToken);
+    } else {
+      useAdminAuthStore().logout();
+    }
+  } catch (error) {
+    console.log(error);
+    useAdminAuthStore().logout();
+  }
+} else {
+  useAdminAuthStore().logout();
 }
 
 app.mount("#app");

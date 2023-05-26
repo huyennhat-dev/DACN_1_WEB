@@ -296,6 +296,7 @@ import {
 } from "../../../utils/validation";
 import { message } from "ant-design-vue";
 import { UserOutlined, PlusOutlined } from "@ant-design/icons-vue";
+import { useAdminAuthStore } from "../../../store/admin/auth.js";
 const key = "createUser";
 export default defineComponent({
   components: {
@@ -362,7 +363,9 @@ export default defineComponent({
   methods: {
     async getUsersCreate() {
       try {
-        const res = await axios.get(`${BASE_URL}/user/create`);
+        const res = await axios.get(`${BASE_URL}/admin/user/create`, {
+          headers: { "x-auth-token": useAdminAuthStore().getToken },
+        });
         this.status = res.data.data.status;
         this.roles = res.data.data.roles;
       } catch (error) {
@@ -437,8 +440,9 @@ export default defineComponent({
         try {
           message.loading({ content: "Đang tải...", key, duration: 100000 });
           const res = await axios.post(
-            `${BASE_URL}/user/create`,
-            this.user
+            `${BASE_URL}/admin/user/create`,
+            this.user,
+            { headers: { "x-auth-token": useAdminAuthStore().getToken } }
           );
           if (res.status == 200) {
             setTimeout(() => {
@@ -451,6 +455,7 @@ export default defineComponent({
             this.clearForm();
           }
         } catch (error) {
+          message.destroy();
           if (error.response.data.error.keyPattern.email) {
             this.errors.email = "Email đã được sử dụng!";
           }
@@ -460,7 +465,6 @@ export default defineComponent({
           if (error.response.data.error.keyPattern.phone) {
             this.errors.phone = "Số điện thoại đã được sử dụng!";
           }
-          message.destroy();
         }
       }
     },
