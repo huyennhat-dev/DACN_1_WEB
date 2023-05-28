@@ -22,6 +22,7 @@
     "jquery": "^3.7.0",
     "jwt-decode": "^3.1.2",
     "owl.carousel": "^2.3.4",
+    "unidecode": "^0.1.8",
     "vue": "^3.2.47",
     "vue-fullscreen": "^3.1.1",
     "vue-image-crop-upload": "^3.0.3",

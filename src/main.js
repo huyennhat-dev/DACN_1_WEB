@@ -46,6 +46,7 @@ import {
   Carousel,
   Tabs,
   Empty,
+  Pagination
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 
@@ -78,6 +79,7 @@ app.use(pinia);
 app.use(vue3GoogleLogin, { clientId: CLIENT_ID });
 app.use(Menu);
 app.use(Button);
+app.use(Pagination);
 app.use(Layout);
 app.use(Modal);
 app.use(Drawer);

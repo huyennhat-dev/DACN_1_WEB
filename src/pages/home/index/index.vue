@@ -13,7 +13,12 @@
         <div class="row">
           <the-list-product />
         </div>
-        <!-- <the-list-new-product /> -->
+        <div class="row">
+          <the-list-selling-product />
+        </div>
+        <div class="row">
+          <the-list-new-product />
+        </div>
       </div>
     </div>
   </div>
@@ -25,12 +30,14 @@ import TheCarousel from "./components/Carousel.vue";
 import TheSideBar from "./components/SideBar.vue";
 import TheListProduct from "./components/ListProduct.vue";
 import TheListNewProduct from "./components/ListNewProduct.vue";
+import TheListSellingProduct from "./components/ListSellingProduct.vue";
 export default defineComponent({
   components: {
     TheCarousel,
     TheSideBar,
     TheListProduct,
     TheListNewProduct,
+    TheListSellingProduct,
   },
 });
 </script>

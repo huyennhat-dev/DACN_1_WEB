@@ -18,12 +18,22 @@
             :class="{ 'col-7 col-sm-4': isLogged, 'col-7 col-sm-6': !isLogged }"
           >
             <div class="header-body-seach_form w-100 py-2 py-sm-1">
-              <a-input class="h-100 brr-5" placeholder="Bạn muốn tìm gì?">
+              <a-input
+                v-model:value="searchValue"
+                class="h-100 brr-5"
+                placeholder="Bạn muốn tìm gì?"
+                @keyup.enter="searchProducts"
+                allowClear
+              >
                 <template #prefix>
                   <search-outlined class="d-none d-sm-block" />
                 </template>
                 <template #suffix>
-                  <div class="header-search_button d-none d-sm-block">
+                  <div
+                    class="header-search_button d-none d-sm-block"
+                    style="cursor: pointer"
+                    @click="searchProducts"
+                  >
                     Tìm kiếm
                   </div>
                   <search-outlined class="d-block d-sm-none" />
@@ -171,6 +181,11 @@ export default defineComponent({
     );
     return { isLogged, carts, user };
   },
+  data() {
+    return {
+      searchValue: "",
+    };
+  },
 
   methods: {
     handleClick(e) {
@@ -186,6 +201,21 @@ export default defineComponent({
 
     logOut() {
       useAuthStore().logout();
+    },
+
+    searchProducts() {
+      if (this.searchValue) {
+        if (this.$route.name == "search") {
+          this.$router.replace({
+            query: { ...this.$route.query, key: this.searchValue },
+          });
+        } else {
+          this.$router.push({
+            name: "search",
+            query: { key: this.searchValue },
+          });
+        }
+      }
     },
   },
 });
@@ -216,7 +246,6 @@ export default defineComponent({
   height: 50px;
 }
 
-
 .header .ant-input-affix-wrapper:focus,
 .ant-input-affix-wrapper-focused {
   border-color: #d9d9d9;
@@ -227,6 +256,19 @@ export default defineComponent({
   cursor: pointer;
   transition: all 0.2s;
 }
+.header .header-search_button {
+  font-weight: 600;
+  transition: scale 0.2s;
+}
+.header .header-search_button:active {
+  scale: 1.03;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  transition: scale 0.2s;
+}
+
 .header .header-button.active {
   font-weight: 600;
 }

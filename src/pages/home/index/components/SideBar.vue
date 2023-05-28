@@ -3,7 +3,7 @@
     <div class="side-bar_body">
       <div class="side-bar_header px-2">
         <a-input
-          v-model="searchValue"
+          v-model:value="searchValue"
           @change="changeSearchValue"
           class="brr-5"
           size="large"
@@ -45,6 +45,8 @@
 import { defineComponent } from "vue";
 import { SearchOutlined, TagOutlined } from "@ant-design/icons-vue";
 import { BASE_URL } from "../../../../configs";
+import unidecode from 'unidecode';
+
 export default defineComponent({
   components: {
     TagOutlined,
@@ -77,10 +79,11 @@ export default defineComponent({
         console.log(error);
       }
     },
-    changeSearchValue(e) {
-      this.searchValue = e.target.value;
+    changeSearchValue() {
       this.filteredCategories = this.categories.filter((category) =>
-        category.name.toLowerCase().includes(this.searchValue.toLowerCase())
+        unidecode(category.name.toLowerCase()).includes(
+          unidecode(this.searchValue.toLowerCase())
+        )
       );
     },
   },

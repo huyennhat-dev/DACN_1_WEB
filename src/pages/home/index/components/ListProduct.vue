@@ -39,7 +39,6 @@ export default defineComponent({
       products: [],
     };
   },
-  watch: {},
   mounted() {
     this.getRecommentProduct();
   },

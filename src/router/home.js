@@ -9,6 +9,11 @@ const home = [
         component: () => import("../pages/home/index/index.vue"),
       },
       {
+        path: "search",
+        name: "search",
+        component: () => import("../pages/home/search/index.vue"),
+      },
+      {
         path: "book/detail/:id",
         name: "detail",
         component: () => import("../pages/home/detail/index.vue"),
