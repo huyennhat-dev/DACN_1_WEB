@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3">
+  <div class="mt-3 ">
     <div class="list-products col-12">
       <div class="list-products-body">
         <div
@@ -120,7 +120,9 @@ export default defineComponent({
   overflow-x: clip;
   overflow-y: inherit;
 }
-
+.list-products .owl-dots{
+  display: none;
+}
 .list-products .owl-carousel .owl-wrapper,
 .owl-carousel .owl-item {
   -webkit-backface-visibility: hidden;

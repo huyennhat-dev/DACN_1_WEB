@@ -7,9 +7,22 @@
   body {
       font-family: 'Open Sans';
       font-weight: 400;
+      background: linear-gradient(
+      rgba(255, 255, 255, 0) 22.49%,
+      rgb(245, 245, 250) 73.49%
+    ),
+    
+    linear-gradient(
+      94.03deg,
+      rgb(226, 246, 251) 10.27%,
+      rgb(221, 228, 248) 65.65%,
+      rgb(194, 223, 245) 110.66%
+
+    );
       background-color: #f5f5fa;
       background-image: url('../images/bg.png');
-      background-size: 100% auto;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
   }
   
   *::-webkit-scrollbar {

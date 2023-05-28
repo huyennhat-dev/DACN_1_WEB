@@ -1,5 +1,5 @@
 <template>
-  <div v-if="product" class="product position-relative">
+  <div v-if="product" class="product position-relative brr-10">
     <router-link
       :to="{ name: 'detail', params: { id: product._id } }"
       style="cursor: pointer"

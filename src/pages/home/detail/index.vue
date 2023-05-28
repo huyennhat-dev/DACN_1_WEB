@@ -3,12 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div
-            class="col-12 detail-body"
-            :style="{
-              height: `${screenHeight - 85}px`,
-            }"
-          >
+          <div class="col-12 detail-body">
             <div class="col-12 py-4">
               <the-product-detail
                 :_id="product.id"
@@ -120,8 +115,6 @@ export default defineComponent({
 </script>
 
 <style>
-
-
 .main.detail .detail-body::-webkit-scrollbar {
   width: 0;
 }

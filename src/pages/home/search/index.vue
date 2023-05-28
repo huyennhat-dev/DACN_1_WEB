@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div v-if="totalCount" class="col-12 text-center">
+      <div v-if="totalCount > 24" class="col-12 text-center">
         <a-pagination
           v-model:current="page"
           :total="totalCount"

@@ -1,5 +1,5 @@
 <template>
-  <div class="bookshop container-fuild position-relative">
+  <div class="bookshop container-fuild position-relative " >
     <the-header
       v-on:handleClickToggleLoginModal="handleOpenLoginModal"
       v-on:handleClickToggleCartDrawer="handleOpenCart"
@@ -98,7 +98,11 @@ export default defineComponent({
 });
 </script>
 <style>
-
+.bookshop {
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: scroll;
+}
 .menu-drawer .ant-drawer-header-title {
   justify-content: flex-end;
 }

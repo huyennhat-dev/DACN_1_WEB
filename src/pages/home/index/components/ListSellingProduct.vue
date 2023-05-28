@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-3">
+    <div class="">
       <div class="list-products new-book col-12">
         <div class="list-products-body">
           <div
@@ -15,7 +15,7 @@
                 v-for="(product, index) of products"
                 :key="index"
               >
-                <the-product :product="product" />
+                <the-product :product="product" class="shadow-full "/>
               </div>
             </div>
           </div>
