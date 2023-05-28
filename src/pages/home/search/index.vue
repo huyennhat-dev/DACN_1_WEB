@@ -88,15 +88,15 @@ export default defineComponent({
   },
 
   mounted() {
+    this.page = this.$route.query.page || 1;
     this.getProducts();
   },
   methods: {
     sortProduct(key) {
       this.activeSortKey = key;
-      const originalProducts = [...this.products];
       switch (key) {
         case "all":
-          this.products = originalProducts;
+          this.products.sort((a, b) => a.createdAt - b.createdAt);
           break;
         case "price":
           this.products.sort((a, b) => b.price - a.price);

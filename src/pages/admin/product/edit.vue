@@ -291,6 +291,7 @@ import {
 } from "@ant-design/icons-vue";
 import { BASE_URL } from "../../../configs/index.js";
 import { useRoute, useRouter } from "vue-router";
+import { useAdminAuthStore } from "../../../store/admin/auth";
 
 const key = "updateProduct";
 export default defineComponent({
@@ -374,7 +375,12 @@ export default defineComponent({
     async setupUpdate() {
       try {
         const res = await axios.get(
-          `${BASE_URL}/admin/product/edit/${this.route.params.id}`
+          `${BASE_URL}/admin/product/edit/${this.route.params.id}`,
+          {
+            headers: {
+              "x-auth-token": useAdminAuthStore().getToken,
+            },
+          }
         );
         if (res.status == 200) {
           const data = res.data.data;
@@ -465,7 +471,12 @@ export default defineComponent({
           message.loading({ content: "Đang tải...", key, duration: 100000 });
           const res = await axios.put(
             `${BASE_URL}/admin/product/edit/${this.route.params.id}`,
-            this.product
+            this.product,
+            {
+              headers: {
+                "x-auth-token": useAdminAuthStore().getToken,
+              },
+            }
           );
           if (res.status == 200) {
             setTimeout(() => {
