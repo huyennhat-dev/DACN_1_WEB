@@ -1,6 +1,7 @@
 // store/user.js
 import jwtDecode from "jwt-decode";
 import { defineStore } from "pinia";
+import { useCartStore } from "./cart";
 
 export const useAuthStore = defineStore("uAuth", {
   state: () => ({
@@ -34,6 +35,7 @@ export const useAuthStore = defineStore("uAuth", {
     logout() {
       this.token = null;
       this.isLoggedIn = false;
+      useCartStore().carts = [];
       localStorage.clear();
     },
   },
