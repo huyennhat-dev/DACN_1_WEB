@@ -6,7 +6,7 @@
     >
       <div class="product-body">
         <div class="product-image">
-          <img :src="product.photos[0]" alt="" />
+          <img :src="product.photos[0]" alt="" class="square"/>
         </div>
         <div class="product-content">
           <div class="product-name">

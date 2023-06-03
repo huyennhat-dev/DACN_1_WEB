@@ -6,7 +6,7 @@
           <div class="img-wrapper w-100 shadow-full brr-5">
             <img
               id="img-original"
-              class="w-100 brr-5 h-100"
+              class="w-100 brr-5 h-100 square"
               :src="activePhoto ? activePhoto : defaultPhoto"
               :alt="name"
             />
@@ -18,14 +18,14 @@
             <div
               v-for="(photo, index) of photos"
               :key="index"
-              class="px-1 review-image_item brr-2 "
+              class="p-1 review-image_item brr-2 "
               style="padding: 1px;"
               @click="setActivePhoto(photo)"
               :class="{
                 active: photo == (activePhoto ? activePhoto : defaultPhoto),
               }"
             >
-              <img :src="photo" class="brr-2" :alt="name" />
+              <img :src="photo" class="brr-2 square" :alt="name" />
             </div>
           </div>
         </div>

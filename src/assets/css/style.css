@@ -172,3 +172,8 @@
   .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
       border-color: rgba(255, 77, 80, 0.2);
   }
+
+  .square{
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
