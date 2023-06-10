@@ -43,6 +43,7 @@
     >
       <the-menu-drawer />
     </a-drawer>
+    <the-footer/>
   </div>
 </template>
 
@@ -50,6 +51,7 @@
 import { defineComponent, ref, watch } from "vue";
 
 import TheHeader from "../components/home/TheHeader.vue";
+import TheFooter from "../components/home/TheFooter.vue";
 import TheLoginForm from "../pages/home/auth/login.vue";
 import TheCartDrawer from "../components/home/TheCartDrawer.vue";
 import TheMenuDrawer from "../components/home/TheMenuDrawer.vue";
@@ -57,6 +59,7 @@ import { useCartStore } from "../store/cart";
 
 export default defineComponent({
   components: {
+    TheFooter,
     TheHeader,
     TheLoginForm,
     TheCartDrawer,
