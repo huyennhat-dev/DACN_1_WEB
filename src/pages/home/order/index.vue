@@ -86,9 +86,7 @@
                     </div>
                   </div>
                 </div>
-                <div v-if="item.item.length > 1" class="view-more">
-                  <a-button @click="viewMore(index)">Xem them</a-button>
-                </div>
+               
               </div>
             </a-tab-pane>
           </a-tabs>
@@ -186,14 +184,5 @@ export default defineComponent({
   border-bottom: 2px solid red !important;
 }
 
-.order .item-body {
-  max-height: 164px;
-  overflow: hidden;
-  transition: all 0.3s;
-}
 
-.order .item-body.active {
-  max-height: none;
-  transition: all 0.3s;
-}
 </style>

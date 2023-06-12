@@ -1,5 +1,4 @@
 <template>
-  <div class="ok"></div>
 </template>
 
 <script>
@@ -14,8 +13,5 @@ export default defineComponent({
 </script>
 
 <style>
-.ok{
-  height: 1000px;
-background-color: aqua;
-}
+
 </style>

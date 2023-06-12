@@ -495,6 +495,7 @@ export default defineComponent({
     cropSuccess(val) {
       console.log("-------- crop success --------");
       this.user.photo = val;
+      console.log(val)
     },
   },
 });

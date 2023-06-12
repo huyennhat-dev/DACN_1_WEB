@@ -33,6 +33,23 @@
         </router-link>
       </a-menu-item>
 
+      <a-sub-menu key="admin-order-sub">
+        <template #icon><gold-outlined /></template>
+        <template #title>Đơn hàng</template>
+        <a-menu-item key="admin-orders-1" class="rounded-1 my-0 mt-1">
+          <router-link :to="{ name: 'admin-orders-1' }">
+            <inbox-outlined />
+            <span>Đơn hàng đã gửi</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="admin-orders-2" class="rounded-1 my-1">
+          <router-link :to="{ name: 'admin-orders-2' }">
+            <interaction-outlined />
+            <span>Đơn hàng đang chờ</span>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+
       <a-sub-menu key="admin-users-sub">
         <template #icon><user-outlined /> </template>
         <template #title>Tài khoản</template>
@@ -130,8 +147,11 @@ import {
   ApartmentOutlined,
   DeploymentUnitOutlined,
   UnorderedListOutlined,
+  GoldOutlined,
   PlusOutlined,
   AppstoreOutlined,
+  InboxOutlined,
+  InteractionOutlined
 } from "@ant-design/icons-vue";
 import { useAdminAuthStore } from "../../store/admin/auth.js";
 
@@ -146,6 +166,9 @@ export default defineComponent({
     UnorderedListOutlined,
     PlusOutlined,
     AppstoreOutlined,
+    GoldOutlined,
+    InboxOutlined,
+    InteractionOutlined
   },
   props: {
     collapsed: Boolean,
