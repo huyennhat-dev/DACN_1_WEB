@@ -27,7 +27,10 @@
             :key="category._id"
             class="side-bar_item mb-1"
           >
-            <router-link :to="{ name: 'index' }" class="w-100">
+            <router-link
+              :to="{ name: 'category', params: { slug: category.slug } }"
+              class="w-100"
+            >
               <div class="side-bar_item_body">
                 <tag-outlined class="me-2" />
                 {{ category.name }}
@@ -45,7 +48,7 @@
 import { defineComponent } from "vue";
 import { SearchOutlined, TagOutlined } from "@ant-design/icons-vue";
 import { BASE_URL } from "../../../../configs";
-import unidecode from 'unidecode';
+import unidecode from "unidecode";
 
 export default defineComponent({
   components: {

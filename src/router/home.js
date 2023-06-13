@@ -9,6 +9,11 @@ const home = [
         component: () => import("../pages/home/index/index.vue"),
       },
       {
+        path: "account",
+        name: "account",
+        component: () => import("../pages/home/auth/index.vue"),
+      },
+      {
         path: "search",
         name: "search",
         component: () => import("../pages/home/search/index.vue"),
@@ -30,9 +35,19 @@ const home = [
         component: () => import("../pages/home/checkout/success.vue"),
       },
       {
+        path: "checkout/error",
+        name: "checkout-error",
+        component: () => import("../pages/home/checkout/error.vue"),
+      },
+      {
         path: "order",
         name: "order",
         component: () => import("../pages/home/order/index.vue"),
+      },
+      {
+        path: "category/:slug",
+        name: "category",
+        component: () => import("../pages/home/categories/index.vue"),
       },
     ],
   },

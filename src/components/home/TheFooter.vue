@@ -92,10 +92,10 @@
     </section>
     <!-- Section: Links  -->
     <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
-      © 2023 Copyright
+    <!-- <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)"> -->
+      <!-- © 2023 Copyright -->
       <!-- <a class="text-reset fw-bold" href="https://www.facebook.com/huyennhat.dev">Facebook Me Truyen Chu</a> -->
-    </div>
+    <!-- </div> -->
     <!-- Copyright -->
   </MDBFooter>
   <!-- Footer -->
@@ -124,7 +124,5 @@
     font-size: 18px;
     font-weight: 600;
   }
-  #mtc{
-    font-family: Didot;
-  }
+
 </style>

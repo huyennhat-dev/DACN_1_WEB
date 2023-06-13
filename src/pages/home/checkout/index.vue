@@ -263,6 +263,34 @@
             </div>
           </div>
           <div class="bg-white brr-10 w-100 px-3 px-sm-5 py-3 mt-3">
+            <div>
+              <div class="row">
+                <div class="col-12 col-sm-8 mb-sm-0 mb-2">
+                  <span class="fs-6 fw-medium text-black">
+                    Địa chỉ nhận hàng
+                  </span>
+                </div>
+                <div class="col-12">
+                  <span class="fs-small fw-medium text-secondary">
+                    Trương Huy Hoàng
+                  </span>
+                </div>
+                <div class="col-12">
+                  <span class="fs-small fw-medium text-secondary">
+                    Trương Huy Hoàng
+                  </span>
+                </div>
+                <div class="col-12">
+                  <span
+                    class="fs-small fw-bold text-decoration-underline text-secondary"
+                  >
+                    Trương Huy Hoàng
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white brr-10 w-100 px-3 px-sm-5 py-3 mt-3">
             <div class="payment-method">
               <div class="row border-bottom pb-3">
                 <div class="col-12 col-sm-8 mb-sm-0 mb-2">
@@ -400,7 +428,7 @@ export default defineComponent({
         paymentMethods: null,
         transportFee: 0,
       },
-
+      user: null,
       errors: {
         paymentMethods: "",
       },
@@ -410,6 +438,9 @@ export default defineComponent({
     this.screenHeight = window.innerHeight;
   },
   methods: {
+    setUserInfo(){
+      this.user = useAuthStore().getUser
+    },
     validate() {
       this.errors.paymentMethods = "";
 

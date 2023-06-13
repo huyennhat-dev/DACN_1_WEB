@@ -39,14 +39,21 @@
           <template v-if="column.key == 'time'">
             <span>{{ formatTime(record.createdAt) }}</span>
           </template>
+          <template v-if="column.key == 'productQuantity'">
+            <span>{{ record.products.length }}</span>
+          </template>
           <template v-if="column.key == 'totalPrice'">
             <span>{{ fomated(record.totalPrice) }}</span>
           </template>
           <template v-if="column.key == 'action'">
             <a-tooltip placement="topRight" title="Xem chi tiết">
-              <a-button class="" type="primary" ghost>
-                <eye-outlined />
-              </a-button>
+              <router-link
+                :to="{ name: 'admin-order-detail', params: { id: record._id } }"
+              >
+                <a-button class="" type="primary" ghost>
+                  <eye-outlined />
+                </a-button>
+              </router-link>
             </a-tooltip>
           </template>
         </template>
@@ -97,6 +104,7 @@ export default defineComponent({
         title: "Người đặt",
         key: "user",
         dataIndex: "user",
+        width: 300,
       },
       {
         title: "Thời gian",
@@ -105,16 +113,27 @@ export default defineComponent({
         width: 140,
       },
       {
+        title: "Số hàng",
+        key: "productQuantity",
+        dataIndex: "productQuantity",
+        width: 100,
+        sorter: (a, b) => a.products.length - b.products.length,
+        sortDirections: ["descend", "ascend"],
+      },
+      {
         title: "Tổng tiền",
         key: "totalPrice",
         dataIndex: "totalPrice",
-        width: 100,
+        sorter: (a, b) => a.totalPrice - b.totalPrice,
+        sortDirections: ["descend", "ascend"],
+        width: 120,
       },
       {
         title: "Công cụ",
         key: "action",
+        fixed: "right",
         dataIndex: "action",
-        width: 100,
+        width: 90,
       },
     ];
 

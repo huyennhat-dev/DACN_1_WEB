@@ -82,6 +82,7 @@ import { defineComponent } from "vue";
 import { useMenuStore } from "../../../store/menu.js";
 import { BASE_URL } from "../../../configs/index.js";
 import { message } from "ant-design-vue";
+import { useAdminAuthStore } from "../../../store/admin/auth.js";
 
 const key = "createCategories";
 
@@ -111,7 +112,11 @@ export default defineComponent({
   methods: {
     async setupCategories() {
       try {
-        const res = await axios.get(`${BASE_URL}/categories/create`);
+        const res = await axios.get(`${BASE_URL}/categories/create`, {
+          headers: {
+            "x-auth-token": useAdminAuthStore().getToken,
+          },
+        });
         this.status = res.data.data.status;
       } catch (error) {
         console.log(error);
@@ -144,7 +149,12 @@ export default defineComponent({
 
           const res = await axios.post(
             `${BASE_URL}/categories/create`,
-            this.categories
+            this.categories,
+            {
+              headers: {
+                "x-auth-token": useAdminAuthStore().getToken,
+              },
+            }
           );
           if (res.status == 200) {
             setTimeout(() => {

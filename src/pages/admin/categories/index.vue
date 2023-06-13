@@ -66,6 +66,7 @@ import {
   EyeOutlined,
   DeleteOutlined,
 } from "@ant-design/icons-vue";
+import { useAdminAuthStore } from "../../../store/admin/auth.js";
 
 export default defineComponent({
   components: {
@@ -120,7 +121,11 @@ export default defineComponent({
   methods: {
     async getCategories() {
       try {
-        const res = await axios.get(`${BASE_URL}/categories`);
+        const res = await axios.get(`${BASE_URL}/admin/categories`, {
+          headers: {
+            "x-auth-token": useAdminAuthStore().getToken,
+          },
+        });
         this.categories = res.data.categories;
       } catch (error) {
         console.log(error);
@@ -129,7 +134,14 @@ export default defineComponent({
     async deleteCategories(id) {
       return new Promise(async (resolve) => {
         try {
-          const res = await axios.delete(`${BASE_URL}/categories/delete/${id}`);
+          const res = await axios.delete(
+            `${BASE_URL}/admin/categories/delete/${id}`,
+            {
+              headers: {
+                "x-auth-token": useAdminAuthStore().getToken,
+              },
+            }
+          );
 
           if (res.status == 200) {
             setTimeout(() => {

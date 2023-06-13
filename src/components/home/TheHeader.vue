@@ -2,21 +2,20 @@
   <div class="header">
     <div class="header-body shadow-full">
       <div class="container">
-        <div class="row">
-          <div class="d-none d-sm-block col-sm-3 logo text-center">
-            <router-link :to="{ name: 'index' }">
-              <img class="" src="../../assets/images/logo.png" alt="" />
-            </router-link>
+        <div class="d-flex justify-content-around">
+          <div>
+            <div class="d-none d-sm-block logo text-center">
+              <router-link :to="{ name: 'index' }">
+                <img class="" src="../../assets/images/logo.png" alt="" />
+              </router-link>
+            </div>
+            <div class="d-sm-none d-block logo text-center">
+              <router-link :to="{ name: 'index' }">
+                <img class="" src="../../assets/images/logo_2.png" alt="" />
+              </router-link>
+            </div>
           </div>
-          <div class="col-2 d-sm-none d-block logo text-center">
-            <router-link :to="{ name: 'index' }">
-              <img class="" src="../../assets/images/logo_2.png" alt="" />
-            </router-link>
-          </div>
-          <div
-            class="d-flex align-items-center-center"
-            :class="{ 'col-7 col-sm-4': isLogged, 'col-7 col-sm-6': !isLogged }"
-          >
+          <div class="input-search-form d-flex align-items-center-center">
             <div class="header-body-seach_form w-100 py-2 py-sm-1">
               <a-input
                 v-model:value="searchValue"
@@ -42,19 +41,9 @@
             </div>
           </div>
           <div
-            class="d-flex align-items-center justify-content-between justify-content-sm-end"
-            :class="{ 'col-3 col-sm-5': isLogged, 'col-3 col-sm-3': !isLogged }"
+            class="d-flex ms-2 align-items-center justify-content-between justify-content-sm-end"
           >
-            <ul class="nav w-100 justify-content-sm-end">
-              <router-link
-                :to="{ name: 'index' }"
-                class="d-none d-sm-block me-2"
-              >
-                <li class="header-button brr-5 active px-3 py-2">
-                  <home-outlined class="button-icon me-1" />
-                  <span>Trang chủ</span>
-                </li>
-              </router-link>
+            <ul class="nav justify-content-sm-end">
               <li
                 v-if="!isLogged"
                 class="header-button d-flex cart brr-5 px-1 px-sm-3 me-2 me-sm-0 py-sm-2 align-items-center justify-content-center"
@@ -65,7 +54,7 @@
               </li>
               <li
                 v-if="isLogged"
-                class="d-none d-sm-block header-account px-5 position-relative me-2"
+                class="d-none d-sm-block header-account position-relative me-2"
               >
                 <div
                   class="d-flex justify-content-between align-items-center h-100"
@@ -73,11 +62,16 @@
                   <div class="user-photo me-1 rounded-circle">
                     <img :src="user.photo" width="30" class="rounded-circle" />
                   </div>
-                  {{ user.name }}
+                  <span class="username">
+                    {{ user.name }}
+                  </span>
                 </div>
-                <div class="account-body position-absolute z-3 p-2">
+                <div
+                  class="account-body position-absolute z-3 p-2"
+                  style="width: 200px"
+                >
                   <ul class="nav">
-                    <router-link :to="{ name: 'index' }" class="w-100">
+                    <router-link :to="{ name: 'account' }" class="w-100">
                       <li class="account-item p-2 w-100">
                         <user-outlined class="me-2 fw-bolder" />
                         <span>Tài khoản của tôi</span>
@@ -102,7 +96,7 @@
                 @click="handleClickOpenCart"
               >
                 <shopping-outlined class="button-icon me-1" />
-                <span class="d-none d-sm-block"> Giỏ hàng</span>
+                <span class="d-none d-sm-block cart-button-title"> Giỏ hàng</span>
                 <div v-if="carts.length > 0" class="count-cart">
                   {{ carts.length > 99 ? "+99" : carts.length }}
                 </div>
@@ -227,6 +221,24 @@ export default defineComponent({
   z-index: 998;
   top: 0;
 }
+.header .input-search-form {
+  width: 40%;
+}
+@media (max-width: 768px) {
+  .header .input-search-form {
+    width: 50%;
+  }
+  .header .cart-button-title,
+  .header .username {
+    display: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .header .input-search-form {
+    width: 55%;
+  }
+}
 
 .header .header-body {
   position: absolute;
@@ -290,7 +302,6 @@ export default defineComponent({
   transition: opacity 0.3s, transform 0.3s;
 }
 .header .account-body {
-  left: 0;
   right: 0;
   top: 35px;
   opacity: 0;
@@ -305,7 +316,7 @@ export default defineComponent({
 .header .account-body::after {
   content: "";
   position: absolute;
-  left: 50px;
+  right: 130px;
   top: -8px;
   background-color: transparent;
   border-left: 15px solid transparent;

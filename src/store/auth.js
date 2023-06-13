@@ -2,6 +2,7 @@
 import jwtDecode from "jwt-decode";
 import { defineStore } from "pinia";
 import { useCartStore } from "./cart";
+import { BASE_URL } from "../configs";
 
 export const useAuthStore = defineStore("uAuth", {
   state: () => ({
@@ -28,9 +29,11 @@ export const useAuthStore = defineStore("uAuth", {
         localStorage.setItem("uToken", token);
       }
     },
-    setUser(token) {
-      const user = jwtDecode(token).sub;
-      this.user = user;
+    async setUser(token) {
+      const rs = await axios.get(`${BASE_URL}/home/auth/get-info`, {
+        headers: { "x-auth-token": token },
+      });
+      this.user = rs.data.user;
     },
     logout() {
       this.token = null;

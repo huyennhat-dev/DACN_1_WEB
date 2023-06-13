@@ -24,6 +24,11 @@ const admin = [
         component: () => import("../pages/admin/order/index-2.vue"),
       },
       {
+        path: "order/:id",
+        name: "admin-order-detail",
+        component: () => import("../pages/admin/order/order-detail.vue"),
+      },
+      {
         path: "admins",
         name: "admin-list-admins",
         component: () => import("../pages/admin/user/index.vue"),

@@ -120,9 +120,8 @@ export default defineComponent({
     },
     async getProducts() {
       try {
-        if (this.$route.name != "search") return;
         const rs = await axios.get(
-          `${BASE_URL}/home/product/search/search?key=${this.searchValue}&page=${this.page}`
+          `${BASE_URL}/home/product/categories/${this.$route.params.slug}`
         );
         if (rs.status == 200) {
           this.products = rs.data.products;
@@ -177,14 +176,12 @@ export default defineComponent({
   border-color: #d9d9d9 !important;
   cursor: not-allowed;
 }
-
 @media (max-width: 768px) {
   .search-product-header {
     overflow-y: scroll;
   }
-  .search-product-header .sort-title span:last-child{
+  .search-product-header .sort-title span:last-child {
     display: none;
   }
-  
 }
 </style>

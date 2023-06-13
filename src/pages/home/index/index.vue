@@ -11,13 +11,11 @@
           </div>
         </div>
         <div class="row">
-          <the-list-product />
+          <the-carousel-product />
         </div>
+
         <div class="row">
-          <the-list-selling-product />
-        </div>
-        <div class="row">
-          <the-list-new-product />
+          <the-list-product :title="'Sách mới nhất'"/>
         </div>
       </div>
     </div>
@@ -28,16 +26,14 @@
 import { defineComponent } from "vue";
 import TheCarousel from "./components/Carousel.vue";
 import TheSideBar from "./components/SideBar.vue";
+import TheCarouselProduct from "./components/CarouselProduct.vue";
 import TheListProduct from "./components/ListProduct.vue";
-import TheListNewProduct from "./components/ListNewProduct.vue";
-import TheListSellingProduct from "./components/ListSellingProduct.vue";
 export default defineComponent({
   components: {
     TheCarousel,
     TheSideBar,
+    TheCarouselProduct,
     TheListProduct,
-    TheListNewProduct,
-    TheListSellingProduct,
   },
 });
 </script>

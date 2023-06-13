@@ -83,6 +83,7 @@ import { useMenuStore } from "../../../store/menu.js";
 import { BASE_URL } from "../../../configs/index.js";
 import { message } from "ant-design-vue";
 import { useRoute, useRouter } from "vue-router";
+import { useAdminAuthStore } from "../../../store/admin/auth.js";
 
 const key = "updateCategories";
 
@@ -117,7 +118,12 @@ export default defineComponent({
     async getCategories() {
       try {
         const res = await axios.get(
-          `${BASE_URL}/categories/edit/${this.route.params.id}`
+          `${BASE_URL}/categories/edit/${this.route.params.id}`,
+          {
+            headers: {
+              "x-auth-token": useAdminAuthStore().getToken,
+            },
+          }
         );
         if (res.status == 200) {
           const data = res.data.data;
@@ -156,7 +162,12 @@ export default defineComponent({
 
           const res = await axios.put(
             `${BASE_URL}/categories/edit/${this.route.params.id}`,
-            this.categories
+            this.categories,
+            {
+              headers: {
+                "x-auth-token": useAdminAuthStore().getToken,
+              },
+            }
           );
           if (res.status == 200) {
             setTimeout(() => {

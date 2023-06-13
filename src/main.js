@@ -58,6 +58,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(fas, fab, far);
 
+
 /* import app style */
 import "./assets/css/style.css";
 

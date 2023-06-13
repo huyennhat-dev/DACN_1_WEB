@@ -34,9 +34,10 @@
                 >
                   <div class="col-12 col-sm-8">
                     <div
-                      v-for="pro of item.item"
+                      v-for="(pro, index) of item.item"
                       :key="pro.product._id"
-                      class="col-12 px-4 py-1 d-flex"
+                      class="col-12 px-4 py-1 d-flex position-relative"
+                      :class="{ 'border-top': index > 0 }"
                     >
                       <div class="item-image brr-2 border" style="padding: 1px">
                         <img
@@ -67,6 +68,21 @@
                           </span>
                         </div>
                       </div>
+                      <div
+                        v-if="pane.key == 'da-nhan-hang'"
+                        class="position-absolute my-2"
+                        style="right: 0; top: 15px"
+                      >
+                        <a-button
+                          type="primary"
+                          danger
+                          ghost
+                          class="brr-5"
+                          @click="vote(item.id)"
+                        >
+                          Đánh giá
+                        </a-button>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -83,10 +99,23 @@
                           {{ fomated(item.totalPrice) }}</span
                         >
                       </div>
+                      <div
+                        v-if="pane.key == 'dang-van-chuyen'"
+                        class="col-12 w-100 text-center my-2"
+                      >
+                        <a-button
+                          type="primary"
+                          danger
+                          ghost
+                          class="brr-5"
+                          @click="receive(item.id)"
+                        >
+                          Đã nhận hàng
+                        </a-button>
+                      </div>
                     </div>
                   </div>
                 </div>
-               
               </div>
             </a-tab-pane>
           </a-tabs>
@@ -102,6 +131,7 @@ import { BASE_URL } from "../../../configs";
 import { useAuthStore } from "../../../store/auth";
 import { formattedPrice } from "../../../utils/formatPrice";
 import { DollarOutlined } from "@ant-design/icons-vue";
+import { message } from "ant-design-vue";
 
 export default defineComponent({
   components: {
@@ -143,6 +173,7 @@ export default defineComponent({
         const res = await axios.get(`${BASE_URL}/home/order/user-order`, {
           headers: { "x-auth-token": useAuthStore().getToken },
         });
+        console.log(res.data);
         if (res.status == 200) {
           for (const tab of res.data.orderStatus) {
             const data = {
@@ -158,6 +189,7 @@ export default defineComponent({
             for (const pro of order.products) items.push(pro);
 
             const data = {
+              id: order._id,
               item: items,
               totalPrice: order.totalPrice,
               createdAt: order.createdAt,
@@ -169,8 +201,22 @@ export default defineComponent({
               }
             }
           }
-          console.log(this.panes[4].content[0].item);
         }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async receive(id) {
+      try {
+        await axios.put(
+          `${BASE_URL}/admin/orders/update/${id}`,
+          { orderStatus: "da-nhan-hang" },
+          { headers: { "x-auth-token": useAuthStore().getToken } }
+        );
+        message.success({
+          content: "Cập nhật thành công!",
+          duration: 3,
+        });
       } catch (error) {
         console.log(error);
       }
@@ -183,6 +229,4 @@ export default defineComponent({
 .ant-tabs-large > .ant-tabs-nav .ant-tabs-tab.ant-tabs-tab-active {
   border-bottom: 2px solid red !important;
 }
-
-
 </style>
