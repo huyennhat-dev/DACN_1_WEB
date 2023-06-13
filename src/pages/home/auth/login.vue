@@ -48,7 +48,7 @@
           </div>
         </div> -->
 
-        <div class="row justify-content-center mt-3 mb-3">
+        <!-- <div class="row justify-content-center mt-3 mb-3">
           <div class="col-10">
             <a-button
               htmlType="submit"
@@ -61,7 +61,7 @@
               Đăng nhập
             </a-button>
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="row">
           <div class="col-2 col-sm-3 ps-4">
