@@ -15,7 +15,10 @@
         </div>
 
         <div class="row">
-          <the-list-product :title="'Sách mới nhất'"/>
+          <the-list-product :title="'Sách mới nhất'" :products="newProducts" />
+        </div>
+        <div class="row">
+          <the-list-product :title="'Sách bán chạy'" :products="saleProducts" />
         </div>
       </div>
     </div>
@@ -28,12 +31,41 @@ import TheCarousel from "./components/Carousel.vue";
 import TheSideBar from "./components/SideBar.vue";
 import TheCarouselProduct from "./components/CarouselProduct.vue";
 import TheListProduct from "./components/ListProduct.vue";
+import { BASE_URL } from "../../../configs";
 export default defineComponent({
   components: {
     TheCarousel,
     TheSideBar,
     TheCarouselProduct,
     TheListProduct,
+  },
+  data() {
+    return {
+      newProducts: null,
+      saleProducts: null,
+    };
+  },
+  created() {
+    this.getNewProducts();
+    this.getSaleProducts();
+  },
+  methods: {
+    async getNewProducts() {
+      try {
+        const rs = await axios.get(`${BASE_URL}/home/index/new-products`);
+        this.newProducts = rs.data.products;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getSaleProducts() {
+      try {
+        const rs = await axios.get(`${BASE_URL}/home/index/sale-products`);
+        this.saleProducts = rs.data.products;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });
 </script>

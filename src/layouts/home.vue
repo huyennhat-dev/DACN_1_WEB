@@ -43,7 +43,7 @@
     >
       <the-menu-drawer />
     </a-drawer>
-    <the-footer/>
+    <the-footer class="mt-3 bg-white shadow-full"/>
   </div>
 </template>
 

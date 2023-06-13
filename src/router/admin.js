@@ -98,6 +98,11 @@ const admin = [
       },
     ],
   },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: () => import("../pages/404.vue"),
+  },
 ];
 
 export default admin;

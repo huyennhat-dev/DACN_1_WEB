@@ -46,7 +46,7 @@ import {
   Carousel,
   Tabs,
   Empty,
-  Pagination
+  Pagination,
 } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 
@@ -57,7 +57,6 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(fas, fab, far);
-
 
 /* import app style */
 import "./assets/css/style.css";
@@ -78,6 +77,7 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(router);
 app.use(pinia);
 app.use(vue3GoogleLogin, { clientId: CLIENT_ID });
+
 app.use(Menu);
 app.use(Button);
 app.use(Pagination);

@@ -219,7 +219,6 @@ export default defineComponent({
 }
 .cart-drawer-body .item-name {
   height: 40px;
-  display: flex;
   align-items: center;
 }
 

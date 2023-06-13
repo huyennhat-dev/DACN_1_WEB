@@ -11,26 +11,26 @@
       />
 
       <menu-outlined class="trigger d-block d-sm-none" @click="showDrawer" />
-
-      <fullscreen-exit-outlined
-        v-if="tonggle == true"
-        class="trigger"
-        v-fullscreen
-        @click="tonggle = !tonggle"
-      />
-      <fullscreen-outlined
-        v-if="tonggle == false"
-        class="trigger"
-        v-fullscreen
-        @click="tonggle = !tonggle"
-      />
+      <div>
+        <a-tooltip title="Đăng xuất">
+          <export-outlined class="fs-6" @click="logOut()" />
+        </a-tooltip>
+        <fullscreen-exit-outlined
+          v-if="tonggle == true"
+          class="trigger"
+          v-fullscreen
+          @click="tonggle = !tonggle"
+        />
+        <fullscreen-outlined
+          v-if="tonggle == false"
+          class="trigger"
+          v-fullscreen
+          @click="tonggle = !tonggle"
+        />
+      </div>
     </a-layout-header>
-    <a-drawer
-      v-model:visible="visible"
-      width="300"
-      placement="left"
-    >
-    <side-bar/>
+    <a-drawer v-model:visible="visible" width="300" placement="left">
+      <side-bar />
     </a-drawer>
   </div>
 </template>
@@ -42,17 +42,24 @@ import {
   MenuOutlined,
   FullscreenOutlined,
   FullscreenExitOutlined,
+  ExportOutlined,
 } from "@ant-design/icons-vue";
+import { useAdminAuthStore } from "../../store/admin/auth";
 export default defineComponent({
   components: {
     MenuOutlined,
     FullscreenOutlined,
     FullscreenExitOutlined,
-    SideBar
+    SideBar,
+    ExportOutlined,
   },
   methods: {
     handleClick(e) {
       this.$emit("handleClickCollapsed");
+    },
+    logOut() {
+      useAdminAuthStore().logout();
+      this.$router.push({ path: "/admin/login" });
     },
   },
   setup() {

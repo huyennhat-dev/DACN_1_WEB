@@ -19,7 +19,7 @@
               <canvas style="max-width: 90%" ref="barcodeCanvas"></canvas>
             </div>
             <div class="d-flex ps-2 justify-content-center">
-              <p class="fs-6 text-black fw-semibold">Mã đơn hàng:</p>
+              <!-- <p class="fs-6 text-black fw-semibold">Mã đơn hàng:</p> -->
               <p class="ms-2 fs-6 text-black fw-semibold text-uppercase">
                 {{ this.order._id }}
               </p>

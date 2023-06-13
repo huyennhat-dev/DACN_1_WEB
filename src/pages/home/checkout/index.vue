@@ -270,22 +270,35 @@
                     Địa chỉ nhận hàng
                   </span>
                 </div>
-                <div class="col-12">
-                  <span class="fs-small fw-medium text-secondary">
-                    Trương Huy Hoàng
-                  </span>
+                <div v-if="user == null">
+                  <div class="col-12">
+                    <span class="fs-small fw-medium text-secondary">
+                      {{ user.name }}
+                    </span>
+                  </div>
+                  <div class="col-12">
+                    <span class="fs-small fw-medium text-secondary">
+                      {{ user.phone }}
+                    </span>
+                  </div>
+                  <div class="col-12">
+                    <span
+                      class="fs-small fw-bold text-decoration-underline text-secondary"
+                    >
+                      {{ user.address }}
+                    </span>
+                  </div>
                 </div>
-                <div class="col-12">
-                  <span class="fs-small fw-medium text-secondary">
-                    Trương Huy Hoàng
-                  </span>
-                </div>
-                <div class="col-12">
-                  <span
-                    class="fs-small fw-bold text-decoration-underline text-secondary"
-                  >
-                    Trương Huy Hoàng
-                  </span>
+                <div v-else>
+                  <div 
+                  @click="this.$router.push({name:'account'})"
+                  class="col-12 mt-2" style="cursor: pointer;">
+                    <span
+                      class="fs-small text-decoration-underline fw-medium fst-italic text-secondary"
+                    >
+                      Địa chỉ nhận hàng của bạn trống <edit-outlined class="ms-2 fs-6 text-black"/>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -383,6 +396,7 @@ import {
   MinusOutlined,
   ShoppingOutlined,
   DeleteOutlined,
+  EditOutlined,
 } from "@ant-design/icons-vue";
 import { BASE_URL } from "../../../configs";
 import { useAuthStore } from "../../../store/auth";
@@ -392,6 +406,7 @@ export default defineComponent({
     PlusOutlined,
     MinusOutlined,
     DeleteOutlined,
+    EditOutlined,
   },
   setup() {
     const carts = ref(useCartStore().getCartData);
@@ -423,7 +438,6 @@ export default defineComponent({
   },
   data() {
     return {
-      screenHeight: 0,
       order: {
         paymentMethods: null,
         transportFee: 0,
@@ -435,11 +449,16 @@ export default defineComponent({
     };
   },
   created() {
-    this.screenHeight = window.innerHeight;
+    this.checkLogin();
+    this.setUserInfo();
   },
   methods: {
-    setUserInfo(){
-      this.user = useAuthStore().getUser
+    checkLogin() {
+      const user = useAuthStore().getUser;
+      if (!user) return this.$router.push({ name: "index" });
+    },
+    setUserInfo() {
+      this.user = useAuthStore().getUser;
     },
     validate() {
       this.errors.paymentMethods = "";

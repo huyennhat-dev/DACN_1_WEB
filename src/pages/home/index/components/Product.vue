@@ -14,7 +14,7 @@
           </div>
           <div class="d-flex">
             <div class="product-rating text-secondary">
-              {{ product.rate }}
+              {{ product.star }}
               <star-filled style="color: #fdd836" /> | Đã bán
               {{ product.purchases }}
             </div>

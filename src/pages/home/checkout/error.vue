@@ -1,32 +1,32 @@
 <template>
-    <a-result
-      status="error"
-      title="Successfully Purchased Cloud Server ECS!"
-      sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-    >
-      <template #extra>
-        <router-link :to="{ name: 'index' }">
-          <a-button key="buy">Buy Again</a-button>
-        </router-link>
-      </template>
-    </a-result>
-  </template>
-  
-  <script>
-  import { defineComponent } from "vue";
-  export default defineComponent({
-    created() {
-      this.createOrder();
-    },
-    methods: {
-      async createOrder() {
-       
-        try {
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    },
-  });
-  </script>
-  
+  <div class="main container detail" style="">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 py-4">
+            <div class="px-3 py-5 bg-white brr-10">
+              <div class="row justify-content-center">
+                <div class="col-12 col-sm-10">
+                  <a-result
+                    status="error"
+                    title="Thanh toán thất bại!"
+                    sub-title="Đã có lỗi xảy ra trong quá trình thanh toán, liên hệ quản trị viên để được hỗ trợ!"
+                  >
+                    <template #extra>
+                      <router-link :to="{ name: 'index' }">
+                        <a-button key="buy" class="brr-5" size="large">
+                          Tiếp tục mua hàng
+                        </a-button>
+                      </router-link>
+                    </template>
+                  </a-result>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+

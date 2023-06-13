@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="row">
           <div class="col-12 detail-body">
-            <div class="col-12 py-4">
+            <div class="col-12 py-3">
               <the-product-detail
                 :_id="product.id"
                 :defaultPhoto="defaultPhoto"
@@ -19,6 +19,9 @@
                 :tag="product.tag"
               />
             </div>
+            <div class="col-12 m-0">
+              <the-same-author :products="sameAuthorProducts" />
+            </div>
             <div class="col-12 pb-2">
               <the-product-desc v-bind:description="product.description" />
             </div>
@@ -26,9 +29,6 @@
               <the-product-evaluate />
             </div>
           </div>
-          <!-- <div class="col-12 col-sm-3 m-0">
-            <the-same-author />
-          </div> -->
         </div>
       </div>
     </div>
@@ -61,9 +61,8 @@ export default defineComponent({
   },
   data() {
     return {
-      screenHeight: 0,
-
       defaultPhoto: "",
+      sameAuthorProducts: null,
       product: {
         id: "",
         name: "",
@@ -82,10 +81,20 @@ export default defineComponent({
 
   created() {
     this.getDetailData();
-    this.screenHeight = window.innerHeight;
-    console.log(this.screenHeight);
   },
   methods: {
+    async getSameAuthor() {
+      try {
+        const res = await axios.get(
+          `${BASE_URL}/home/index/same-author-products/${this.product.author}`
+        );
+        if (res.status == 200) {
+          this.sameAuthorProducts = res.data.products;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async getDetailData() {
       try {
         const res = await axios.get(
@@ -106,6 +115,7 @@ export default defineComponent({
           this.product.tag = res.data.product.categories.name;
           this.defaultPhoto = res.data.product.photos[0];
         }
+        this.getSameAuthor();
       } catch (error) {
         console.log(error);
       }

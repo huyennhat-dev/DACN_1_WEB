@@ -140,7 +140,7 @@
                 Thêm vào giỏ hàng
               </a-button>
 
-              <a-button
+              <!-- <a-button
                 size="large"
                 type="primary"
                 class="brr-5 ms-2 ps-3 pe-4"
@@ -150,7 +150,7 @@
                   <shopping-outlined />
                 </template>
                 Mua ngay
-              </a-button>
+              </a-button> -->
             </div>
             <div class="col-12">
               <span class="text-black me-2">Gọi đặt hàng: </span>

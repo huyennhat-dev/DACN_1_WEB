@@ -14,7 +14,7 @@
               v-for="(product, index) of products"
               :key="index"
             >
-              <the-product :product="product" class="shadow-full " />
+              <the-product :product="product" class="shadow-full" />
             </div>
           </div>
         </div>
@@ -33,42 +33,16 @@ export default {
     TheProduct,
     RightOutlined,
   },
-  props:{
-    title:String
-  },
-  data() {
-    return {
-      products: [],
-    };
-  },
-  mounted() {
-    this.getRecommentProduct();
-  },
-  created() {},
-  methods: {
-    async getRecommentProduct() {
-      try {
-        const res = await axios.get(`${BASE_URL}/home/index/recommend-product`);
-        if (res.status == 200) {
-          const pros = res.data.products;
-          let quantity = 12;
-          if (pros.length < 12) quantity = pros.length;
-
-          for (let i = 0; i < quantity; i++) {
-            this.products.push(pros[i]);
-          }
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
+  props: {
+    title: String,
+    products: Array,
   },
 };
 </script>
 
 <style>
 @media (max-width: 576px) {
-  .new-book .list-products-content .item:nth-child(n + 7) {
+  .new-book .list-products-content .item:nth-child(n + 11) {
     display: none;
   }
 }

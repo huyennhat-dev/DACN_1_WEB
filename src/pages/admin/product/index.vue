@@ -140,7 +140,7 @@ export default defineComponent({
         key: "price",
         dataIndex: "price",
         width: 100,
-        sorter: (a, b) => a.price.length - b.price.length,
+        sorter: (a, b) => a.price - b.price,
         sortDirections: ["descend", "ascend"],
       },
       {
@@ -154,7 +154,7 @@ export default defineComponent({
         key: "purchases",
         dataIndex: "purchases",
         width: 70,
-        sorter: (a, b) => a.purchases.length - b.purchases.length,
+        sorter: (a, b) => a.purchases - b.purchases,
         sortDirections: ["descend", "ascend"],
       },
       {
@@ -162,7 +162,7 @@ export default defineComponent({
         key: "quantity",
         dataIndex: "quantity",
         width: 70,
-        sorter: (a, b) => a.quantity.length - b.quantity.length,
+        sorter: (a, b) => a.quantity - b.quantity,
         sortDirections: ["descend", "ascend"],
       },
       {

@@ -101,7 +101,6 @@
                         <div class="col-12 mb-">
                           <a-input
                             allowClear
-                            type="number"
                             placeholder="Địa chỉ"
                             v-model:value="address"
                             :class="{ 'input-danger': errors.address }"
@@ -148,7 +147,7 @@ import MyUpload from "vue-image-crop-upload";
 import { defineComponent, reactive } from "vue";
 
 import { CameraFilled } from "@ant-design/icons-vue";
-import { useAuthStore } from '../../../store/auth';
+import { useAuthStore } from "../../../store/auth";
 export default {
   components: {
     CameraFilled,
@@ -181,18 +180,19 @@ export default {
       },
     };
   },
+
   created() {
     this.setUserInfor();
   },
   methods: {
     setUserInfor() {
-        const user = useAuthStore().getUser
-        this.name = user.name
-        this.photo = user.photo
-        this.phone = user.phone
-        this.email = user.email
-        this.address = user.address
-        
+      const user = useAuthStore().getUser;
+      if (!user) return this.$router.push({ name: "index" });
+      this.name = user.name;
+      this.photo = user.photo;
+      this.phone = user.phone;
+      this.email = user.email;
+      this.address = user.address;
     },
     toggleShow() {
       this.show = !this.show;

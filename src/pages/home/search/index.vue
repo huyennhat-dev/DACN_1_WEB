@@ -21,7 +21,7 @@
           <div
             v-for="product of products"
             :key="product._id"
-            class="col-6 col-sm-2 mb-2"
+            class="col-6 col-sm-2 mb-4"
           >
             <the-product :product="product" class="shadow-full brr-10" />
           </div>
