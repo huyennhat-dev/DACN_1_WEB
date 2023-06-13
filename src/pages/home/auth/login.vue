@@ -5,7 +5,7 @@
         <div class="form-title">
           <h1>Xin chào!</h1>
         </div>
-        <div class="form-title">Vui lòng điền thông tin đăng nhập</div>
+        <!-- <div class="form-title">Vui lòng điền thông tin đăng nhập</div>
         <br />
         <div class="row">
           <div class="col-12">
@@ -46,7 +46,7 @@
               {{ errors.password }}
             </small>
           </div>
-        </div>
+        </div> -->
 
         <div class="row justify-content-center mt-3 mb-3">
           <div class="col-10">
