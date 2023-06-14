@@ -448,7 +448,7 @@ export default defineComponent({
       user: null,
       errors: {
         paymentMethods: "",
-        address: "",
+        user: "",
       },
     };
   },
@@ -474,11 +474,11 @@ export default defineComponent({
         inValid = false;
       }
       if (!this.user.address) {
-        this.errors.address = "Vui lòng thêm địa chỉ nhận hàng!";
+        this.errors.user = "Vui lòng thêm địa chỉ nhận hàng!";
         inValid = false;
       }
       if (!this.user.phone) {
-        this.errors.phone = "Vui lòng thêm số điện thoại nhận hàng!";
+        this.errors.user = "Vui lòng thêm số điện thoại nhận hàng!";
         inValid = false;
       }
       return inValid;
@@ -520,6 +520,11 @@ export default defineComponent({
               break;
             default:
           }
+        }else{
+          notification.warning({
+            description: this.errors.user,
+            duration: 3,
+          });
         }
       } catch (error) {
         console.log(error);
