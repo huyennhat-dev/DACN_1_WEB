@@ -190,7 +190,7 @@ export default {
     async updateUser() {
       try {
         const rs = await axios.put(
-          `${BASE_URL}/home/auth/get-info`,
+          `${BASE_URL}/home/auth/update`,
           {
             photo: this.photo,
             name: this.name,
