@@ -148,6 +148,8 @@ import { defineComponent, reactive } from "vue";
 
 import { CameraFilled } from "@ant-design/icons-vue";
 import { useAuthStore } from "../../../store/auth";
+import { BASE_URL } from '../../../configs';
+import { notification } from 'ant-design-vue';
 export default {
   components: {
     CameraFilled,
@@ -185,6 +187,30 @@ export default {
     this.setUserInfor();
   },
   methods: {
+    async updateUser() {
+      try {
+        const rs = await axios.put(
+          `${BASE_URL}/home/auth/get-info`,
+          {
+            photo: this.photo,
+            name: this.name,
+            phone: this.phone,
+            address: this.address,
+          },
+          {
+            headers: { "x-auth-token": useAuthStore().getToken },
+          }
+        );
+        if (rs.status == 200) {
+          notification.success({
+            description: "Cập nhật thành thành công",
+            duration: 3,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
     setUserInfor() {
       const user = useAuthStore().getUser;
       if (!user) return this.$router.push({ name: "index" });

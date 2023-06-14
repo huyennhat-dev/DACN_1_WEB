@@ -290,13 +290,16 @@
                   </div>
                 </div>
                 <div v-else>
-                  <div 
-                  @click="this.$router.push({name:'account'})"
-                  class="col-12 mt-2" style="cursor: pointer;">
+                  <div
+                    @click="this.$router.push({ name: 'account' })"
+                    class="col-12 mt-2"
+                    style="cursor: pointer"
+                  >
                     <span
                       class="fs-small text-decoration-underline fw-medium fst-italic text-secondary"
                     >
-                      Địa chỉ nhận hàng của bạn trống <edit-outlined class="ms-2 fs-6 text-black"/>
+                      Địa chỉ nhận hàng của bạn trống
+                      <edit-outlined class="ms-2 fs-6 text-black" />
                     </span>
                   </div>
                 </div>
@@ -445,7 +448,7 @@ export default defineComponent({
       user: null,
       errors: {
         paymentMethods: "",
-        address:""
+        address: "",
       },
     };
   },
@@ -454,6 +457,7 @@ export default defineComponent({
     this.setUserInfo();
   },
   methods: {
+  
     checkLogin() {
       const user = useAuthStore().getUser;
       if (!user) return this.$router.push({ name: "index" });
