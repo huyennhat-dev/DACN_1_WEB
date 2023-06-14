@@ -270,7 +270,7 @@
                     Địa chỉ nhận hàng
                   </span>
                 </div>
-                <div v-if="user == null">
+                <div v-if="user != null">
                   <div class="col-12">
                     <span class="fs-small fw-medium text-secondary">
                       {{ user.name }}
