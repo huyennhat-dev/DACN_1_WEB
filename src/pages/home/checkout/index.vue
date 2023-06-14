@@ -445,6 +445,7 @@ export default defineComponent({
       user: null,
       errors: {
         paymentMethods: "",
+        address:""
       },
     };
   },
@@ -466,6 +467,14 @@ export default defineComponent({
       let inValid = true;
       if (!this.order.paymentMethods) {
         this.errors.paymentMethods = "Vui lòng chọn phương thức thanh toán!";
+        inValid = false;
+      }
+      if (!this.user.address) {
+        this.errors.address = "Vui lòng thêm địa chỉ nhận hàng!";
+        inValid = false;
+      }
+      if (!this.user.phone) {
+        this.errors.phone = "Vui lòng thêm số điện thoại nhận hàng!";
         inValid = false;
       }
       return inValid;
