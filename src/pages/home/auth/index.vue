@@ -53,7 +53,7 @@
                           </small>
                         </div>
                       </div>
-                      <div class="row mb-2">
+                      <!-- <div class="row mb-2">
                         <div class="col-12 mb-1">
                           <label for="">
                             <span class="text-danger me-1">*</span>
@@ -69,7 +69,7 @@
                             v-model:value="email"
                           />
                         </div>
-                      </div>
+                      </div> -->
                       <div class="row mb-2">
                         <div class="col-12 mb-1">
                           <label for="">
@@ -113,7 +113,7 @@
                       </div>
                       <div class="row my-4">
                         <div class="col-12 mb-">
-                          <a-button type="primary" class="brr-5" ghost>
+                          <a-button type="primary" @click="updateUser" class="brr-5" ghost>
                             Cập nhật
                           </a-button>
                         </div>
